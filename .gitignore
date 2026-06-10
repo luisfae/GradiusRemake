@@ -1,1 +1,12 @@
-404: Not Found
+cat > .gitignore << 'EOF'
+# Godot
+.godot/
+*.translation
+export.cfg
+export_presets.cfg
+
+# Mono/C#
+.mono/
+data_*/
+mono_crash.*.json
+EOF
