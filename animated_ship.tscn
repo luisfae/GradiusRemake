@@ -57,4 +57,4 @@ shape = SubResource("CircleShape2D_amiry")
 texture_filter = 1
 position = Vector2(0, -11)
 sprite_frames = SubResource("SpriteFrames_rqaf1")
-animation = &"Down"
+animation = &"Standard"
