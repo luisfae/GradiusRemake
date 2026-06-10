@@ -1,28 +1,61 @@
 [gd_scene format=3 uid="uid://dapugmoyj4g0l"]
 
 [ext_resource type="Script" uid="uid://b6k7qs3gl514u" path="res://animated_ship.gd" id="1_6m5ak"]
-[ext_resource type="Texture2D" uid="uid://d3p8xqcw41d3f" path="res://Sprites/NES - Gradius - Playable Characters - Vic Viper.png" id="2_1i3m0"]
+[ext_resource type="Texture2D" uid="uid://c4r2j2642lxds" path="res://Sprites/NES - Gradius - Spaceship Sheet.png" id="2_6m5ak"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_amiry"]
 radius = 4.0
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_1i3m0"]
+atlas = ExtResource("2_6m5ak")
+region = Rect2(0, 15, 28, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_amiry"]
+atlas = ExtResource("2_6m5ak")
+region = Rect2(28, 15, 28, 15)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_nwuvh"]
-atlas = ExtResource("2_1i3m0")
-region = Rect2(34, 0, 30, 22)
+atlas = ExtResource("2_6m5ak")
+region = Rect2(56, 15, 28, 15)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1a8xn"]
-atlas = ExtResource("2_1i3m0")
-region = Rect2(4, 0, 30, 22)
+atlas = ExtResource("2_6m5ak")
+region = Rect2(84, 15, 28, 15)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gaqve"]
-atlas = ExtResource("2_1i3m0")
-region = Rect2(64, 0, 30, 22)
+atlas = ExtResource("2_6m5ak")
+region = Rect2(26, 0, 26, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rqaf1"]
+atlas = ExtResource("2_6m5ak")
+region = Rect2(0, 0, 26, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0mhub"]
+atlas = ExtResource("2_6m5ak")
+region = Rect2(52, 0, 26, 12)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_rqaf1"]
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_1i3m0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_amiry")
+}, {
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_nwuvh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1a8xn")
+}],
+"loop": false,
+"name": &"Death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gaqve")
 }],
 "loop": true,
 "name": &"Down",
@@ -30,7 +63,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_1a8xn")
+"texture": SubResource("AtlasTexture_rqaf1")
 }],
 "loop": true,
 "name": &"Standard",
@@ -38,7 +71,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_gaqve")
+"texture": SubResource("AtlasTexture_0mhub")
 }],
 "loop": true,
 "name": &"Up",
@@ -50,11 +83,11 @@ script = ExtResource("1_6m5ak")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1983544233]
 top_level = true
-position = Vector2(3, -10)
+position = Vector2(1, -5)
 shape = SubResource("CircleShape2D_amiry")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1657476875]
 texture_filter = 1
-position = Vector2(0, -11)
+position = Vector2(0, -6)
 sprite_frames = SubResource("SpriteFrames_rqaf1")
 animation = &"Standard"

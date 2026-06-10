@@ -31,9 +31,10 @@ func _physics_process(delta: float) -> void:
 	
 	# Codigo teste para limitar a nave de sair da tela
 	var half_screen := get_viewport_rect().size / 2.0
-	var padding := Vector2(15, 15) #valores hard coded q seriam o tamanho da nave, mas a sprite tem tamanho maior q a nave em si
+	var padding := Vector2(20, 12) # esse 20 eh hard coded, se fosse o tamanho da nave real q eh 26, ela nao vai tao pra < quanto no jogo original
 	position.x = clampf(position.x, -half_screen.x + padding.x, half_screen.x - padding.x)
-	position.y = clampf(position.y, -half_screen.y + padding.y, half_screen.y - padding.y)
+	position.y = clampf(position.y, -102 + padding.y, 98 - padding.y)
+	print(half_screen)
 
 func animate():
 	if velocity.y < 0:
