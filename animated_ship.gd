@@ -57,6 +57,11 @@ func die():
 	alive = false
 	print("e morreu")
 	sprite.play("Death")
+	sprite.animation_finished.connect(onDeathAnimationFinished, CONNECT_ONE_SHOT)
+
+
+func onDeathAnimationFinished():
+	queue_free()
 	
 func animate():
 	if !alive:

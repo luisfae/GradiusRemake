@@ -2,9 +2,12 @@
 
 [ext_resource type="Script" uid="uid://eky53yus5k8c" path="res://enemy.gd" id="1_7l2ec"]
 [ext_resource type="Texture2D" uid="uid://c3b0g40er4j5s" path="res://Sprites/enemiesSpritesheet.png" id="1_8vgsl"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_7l2ec"]
-size = Vector2(16, 16)
+[ext_resource type="Texture2D" uid="uid://bdyp1ajvhus1t" path="res://Sprites/deathplaceholder/d1.png" id="2_wtkv6"]
+[ext_resource type="Texture2D" uid="uid://b118tar3r3pxn" path="res://Sprites/deathplaceholder/d2.png" id="3_oecep"]
+[ext_resource type="Texture2D" uid="uid://csojykhdnv6wi" path="res://Sprites/deathplaceholder/d3.png" id="4_vhedc"]
+[ext_resource type="Texture2D" uid="uid://8inlp47f7eaf" path="res://Sprites/deathplaceholder/d4.png" id="5_rc4bm"]
+[ext_resource type="Texture2D" uid="uid://bb2jy57doowbk" path="res://Sprites/deathplaceholder/d5.png" id="6_eshmn"]
+[ext_resource type="Texture2D" uid="uid://dgt4oilcfsut6" path="res://Sprites/deathplaceholder/d6.png" id="7_rnr4r"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3ml7w"]
 atlas = ExtResource("1_8vgsl")
@@ -22,6 +25,29 @@ region = Rect2(32, 0, 16, 16)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("2_wtkv6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_oecep")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_vhedc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_rc4bm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_eshmn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_rnr4r")
+}],
+"loop": true,
+"name": &"Death",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_3ml7w")
 }, {
 "duration": 1.0,
@@ -35,15 +61,18 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7l2ec"]
+size = Vector2(16, 16)
+
 [node name="Fan" type="Area2D" unique_id=2034083558]
 script = ExtResource("1_7l2ec")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2018544737]
-shape = SubResource("RectangleShape2D_7l2ec")
-
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=182715390]
 sprite_frames = SubResource("SpriteFrames_v5n3l")
+animation = &"Death"
 autoplay = "default"
-frame_progress = 0.9265907
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2018544737]
+shape = SubResource("RectangleShape2D_7l2ec")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

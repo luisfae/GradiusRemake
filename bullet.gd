@@ -1,4 +1,5 @@
 extends Area2D
+
 class_name Bullet
 
 @export var speed: float = 700.0
@@ -23,3 +24,9 @@ func kill_sprite2d() -> void:
 	print("kill")
 	if find_child("Sprite2D"):
 		$Sprite2D.queue_free()
+
+
+func _on_body_entered(body: Node2D) -> void:
+	if body is Enemy:
+		print("MATA O INIMIGO")
+		body.die()
