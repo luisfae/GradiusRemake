@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://b6jpyikece2bg"]
+
+[ext_resource type="Script" uid="uid://duug12avs0wnc" path="res://Scripts/bullet.gd" id="1_v8qja"]
+[ext_resource type="Texture2D" uid="uid://cqc57odeejx84" path="res://Sprites/NES - Gradius - Player Shot.png" id="2_t4vbm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oduel"]
+atlas = ExtResource("2_t4vbm")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ycag2"]
+atlas = ExtResource("2_t4vbm")
+region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6afsh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oduel")
+}],
+"loop": false,
+"name": &"Straight",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ycag2")
+}],
+"loop": true,
+"name": &"Up",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2b2rl"]
+size = Vector2(5.000001, 5.9973373)
+
+[node name="Bullet" type="Area2D" unique_id=1391774488]
+script = ExtResource("1_v8qja")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=993501477]
+sprite_frames = SubResource("SpriteFrames_6afsh")
+animation = &"Straight"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2060872638]
+position = Vector2(-2.3821485e-07, -0.49999988)
+rotation = -1.571684
+scale = Vector2(0.99999934, 0.99999934)
+shape = SubResource("RectangleShape2D_2b2rl")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=241377415]
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

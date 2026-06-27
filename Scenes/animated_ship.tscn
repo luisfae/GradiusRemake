@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dapugmoyj4g0l"]
 
-[ext_resource type="Script" uid="uid://b6k7qs3gl514u" path="res://animated_ship.gd" id="1_6m5ak"]
+[ext_resource type="Script" uid="uid://b6k7qs3gl514u" path="res://Scripts/animated_ship.gd" id="1_6m5ak"]
 [ext_resource type="Texture2D" uid="uid://c4r2j2642lxds" path="res://Sprites/NES - Gradius - Spaceship Sheet.png" id="2_6m5ak"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_amiry"]
@@ -49,7 +49,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_1a8xn")
 }],
-"loop": false,
+"loop": 0,
 "name": &"Death",
 "speed": 5.0
 }, {
@@ -57,7 +57,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_gaqve")
 }],
-"loop": true,
+"loop": 1,
 "name": &"Down",
 "speed": 5.0
 }, {
@@ -65,7 +65,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_rqaf1")
 }],
-"loop": true,
+"loop": 1,
 "name": &"Standard",
 "speed": 5.0
 }, {
@@ -73,12 +73,12 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_0mhub")
 }],
-"loop": true,
+"loop": 1,
 "name": &"Up",
 "speed": 5.0
 }]
 
-[node name="AnimatedShip" type="CharacterBody2D" unique_id=808763228]
+[node name="AnimatedShip" type="CharacterBody2D" unique_id=808763228 groups=["Player"]]
 script = ExtResource("1_6m5ak")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1983544233]
@@ -90,4 +90,6 @@ shape = SubResource("CircleShape2D_amiry")
 texture_filter = 1
 position = Vector2(0, -6)
 sprite_frames = SubResource("SpriteFrames_rqaf1")
-animation = &"Standard"
+animation = &"Death"
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

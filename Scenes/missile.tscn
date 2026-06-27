@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://qu62nrdnv8kn"]
+
+[ext_resource type="Script" uid="uid://idbb7mknd0j2" path="res://Scripts/missile.gd" id="1_u28tq"]
+[ext_resource type="Texture2D" uid="uid://niuoegyq2ql8" path="res://Sprites/Missile Sheet.png" id="2_bkb3y"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5epdn"]
+atlas = ExtResource("2_bkb3y")
+region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d3kn2"]
+atlas = ExtResource("2_bkb3y")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_brtn2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5epdn")
+}],
+"loop": true,
+"name": &"Down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d3kn2")
+}],
+"loop": true,
+"name": &"Straight",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tewhd"]
+radius = 4.0
+
+[node name="Missile" type="Area2D" unique_id=1469110321]
+script = ExtResource("1_u28tq")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=958105964]
+sprite_frames = SubResource("SpriteFrames_brtn2")
+animation = &"Down"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1400962352]
+shape = SubResource("CircleShape2D_tewhd")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1607033821]
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
