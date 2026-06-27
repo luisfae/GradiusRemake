@@ -1,5 +1,20 @@
 extends CanvasLayer
 
+#				meus comentarios sempre vao começar em minusculo, pra saber q fui eu
+#				⡴⠑⡄⠀⠀⠀⠀⠀⠀⠀ ⣀⣀⣤⣤⣤⣀⡀
+#				⠸⡇⠀⠿⡀⠀⠀⠀⣀⡴⢿⣿⣿⣿⣿⣿⣿⣿⣷⣦⡀
+#				⠀⠀⠀⠀⠑⢄⣠⠾⠁⣀⣄⡈⠙⣿⣿⣿⣿⣿⣿⣿⣿⣆
+#				⠀⠀⠀⠀⢀⡀⠁⠀⠀⠈⠙⠛⠂⠈⣿⣿⣿⣿⣿⠿⡿⢿⣆
+#				⠀⠀⠀⢀⡾⣁⣀⠀⠴ ⠙⣗⡀⠀⢻⣿⣿⠭⢤⣴⣦⣤⣹⠀⠀⠀⢀⢴⣶⣆
+#				⠀⠀⢀⣾⣿⣿⣿⣷⣮⣽⣾⣿⣥⣴⣿⣿⡿⢂⠔⢚⡿⢿⣿⣦⣴⣾⠸⣼⡿
+#				⠀⢀⡞⠁⠙⠻⠿⠟⠉⠀⠛⢹⣿⣿⣿⣿⣿⣌⢤⣼⣿⣾⣿⡟⠉
+#				⠀⣾⣷⣶⠇⠀⠀⣤⣄⣀⡀⠈⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇
+#				⠀⠉⠈⠉⠀⠀⢦⡈⢻⣿⣿⣿⣶⣶⣶⣶⣤⣽⡹⣿⣿⣿⣿⡇
+#				⠀⠀⠀⠀⠀⠀⠀⠉⠲⣽⡻⢿⣿⣿⣿⣿⣿⣿⣷⣜⣿⣿⣿⡇
+#				⠀⠀ ⠀⠀⠀⠀⠀⢸⣿⣿⣷⣶⣮⣭⣽⣿⣿⣿⣿⣿⣿⣿⠇
+#				⠀⠀⠀⠀⠀⠀⣀⣀⣈⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠇
+#				⠀⠀⠀⠀⠀⠀⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+
 @onready var hud_tilemap: TileMapLayer = $Foreground
 
 #Constantes da HUD
@@ -10,7 +25,7 @@ const LASER_TILE = Vector2i(16, 26)
 const OPTION_TILE = Vector2i(20, 26)
 const SHIELD_TILE = Vector2i(24, 26)
 
-#Constantes pra não se perder em oq é oq nos vetores
+#constantes pra não se perder em oq é oq nos vetores
 const SPEED = 0
 const MISSILE = 1
 const DOUBLE = 2
@@ -19,7 +34,7 @@ const OPTION = 4
 const SHIELD = 5
 const BLANK = 25
 
-#Vetor de padrões pra poder modificar eles apenas com logica e sem ifs
+#vetor de padrões pra poder modificar eles apenas com logica e sem ifs
 var patternNow: Array = [0, 1, 2, 3, 4, 5]
 const patternInitial: Array = [0, 1, 2, 3, 4, 5]
 
@@ -45,7 +60,7 @@ func resetUpgrades() -> void:
 	hud_tilemap.set_pattern(OPTION_TILE, hud_tilemap.tile_set.get_pattern(patternNow[OPTION]))
 	hud_tilemap.set_pattern(SHIELD_TILE, hud_tilemap.tile_set.get_pattern(patternNow[SHIELD]))
 	
-	#Função pra zerar tudo, pra quando o jogador morrer ou voltar ao menu, talvez modificar ou criar outra, se ele morre com upgrades ele ja começa no SPEED
+	#função pra zerar tudo, pra quando o jogador morrer ou voltar ao menu, talvez modificar ou criar outra, se ele morre com upgrades ele ja começa no SPEED
 func resetUpgrades_to_initial() -> void:
 	hud_tilemap.set_pattern(SPEEDUP_TILE, hud_tilemap.tile_set.get_pattern(patternInitial[SPEED]))
 	hud_tilemap.set_pattern(MISSILE_TILE, hud_tilemap.tile_set.get_pattern(patternInitial[MISSILE]))
@@ -59,7 +74,7 @@ func UpgradeGet(upgrade: int) -> void:
 	match upgrade:
 		0:
 			return
-		1: # +6 é o espaçamento entre cada padrão e seu estado selecionado, tive q adicionar 5 padrões iguais pq o blank space era o 25 e queria q fosse +6 pra todos
+		1: # esse +6 é o espaçamento entre cada padrão e seu estado selecionado, tive q adicionar 5 padrões iguais pq o blank space era o 25 e queria q fosse +6 pra todos
 			hud_tilemap.set_pattern(SPEEDUP_TILE, hud_tilemap.tile_set.get_pattern(patternNow[SPEED] + 6)) 
 			pass
 		2:
