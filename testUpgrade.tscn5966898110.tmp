@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://kbua37j8nevd"]
+
+[ext_resource type="Script" uid="uid://b5ht84kug3sne" path="res://camera_2d.gd" id="1_b02bw"]
+[ext_resource type="PackedScene" uid="uid://dapugmoyj4g0l" path="res://animated_ship.tscn" id="2_28oh7"]
+[ext_resource type="PackedScene" uid="uid://c7mky0noyqc3v" path="res://upgrade.tscn" id="3_7ku0m"]
+[ext_resource type="PackedScene" uid="uid://chwd0av3xvpqo" path="res://fan.tscn" id="4_b02bw"]
+
+[node name="main" type="Node2D" unique_id=1970737621]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=187331477]
+position = Vector2(129, 112)
+script = ExtResource("1_b02bw")
+speed = 0.0
+
+[node name="AnimatedShip" parent="Camera2D" unique_id=808763228 instance=ExtResource("2_28oh7")]
+position = Vector2(-45, -10)
+
+[node name="Upgrade" parent="." unique_id=880508371 instance=ExtResource("3_7ku0m")]
+position = Vector2(162, 148)
+
+[node name="Upgrade2" parent="." unique_id=884881820 instance=ExtResource("3_7ku0m")]
+position = Vector2(193, 124)
+
+[node name="Upgrade3" parent="." unique_id=381076889 instance=ExtResource("3_7ku0m")]
+position = Vector2(197, 89)
+
+[node name="Upgrade4" parent="." unique_id=1562098940 instance=ExtResource("3_7ku0m")]
+position = Vector2(189, 48)
+
+[node name="Upgrade5" parent="." unique_id=1639212593 instance=ExtResource("3_7ku0m")]
+position = Vector2(152, 25)
+
+[node name="Upgrade6" parent="." unique_id=1842556031 instance=ExtResource("3_7ku0m")]
+position = Vector2(104, 28)
+
+[node name="Upgrade7" parent="." unique_id=412276558 instance=ExtResource("3_7ku0m")]
+position = Vector2(128, 64)
+
+[node name="Upgrade8" parent="." unique_id=2024156175 instance=ExtResource("3_7ku0m")]
+position = Vector2(51, 53)
+
+[node name="Upgrade9" parent="." unique_id=1113542209 instance=ExtResource("3_7ku0m")]
+position = Vector2(30, 95)
+
+[node name="Upgrade10" parent="." unique_id=1824763349 instance=ExtResource("3_7ku0m")]
+position = Vector2(40, 136)
+
+[node name="Upgrade11" parent="." unique_id=2023906143 instance=ExtResource("3_7ku0m")]
+position = Vector2(54, 190)
+
+[node name="Fan" parent="." unique_id=2034083558 instance=ExtResource("4_b02bw")]
+position = Vector2(85, 149)
