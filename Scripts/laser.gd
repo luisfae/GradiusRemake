@@ -2,7 +2,6 @@ extends Area2D
 class_name Laser
 
 @export var speed: float = 1000.0
-@onready var sprite = $AnimatedSprite2D
 
 func _ready() -> void:
 	pass
