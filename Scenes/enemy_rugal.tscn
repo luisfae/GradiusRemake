@@ -39,7 +39,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_6rc3u")
 }],
-"loop": false,
+"loop": 0,
 "name": &"Die",
 "speed": 5.0
 }, {
@@ -47,7 +47,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_58wtn")
 }],
-"loop": true,
+"loop": 1,
 "name": &"Down",
 "speed": 5.0
 }, {
@@ -55,7 +55,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_61r5d")
 }],
-"loop": true,
+"loop": 1,
 "name": &"Straight",
 "speed": 5.0
 }, {
@@ -63,7 +63,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ol34y")
 }],
-"loop": true,
+"loop": 1,
 "name": &"Up",
 "speed": 5.0
 }]
@@ -71,7 +71,7 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_xju2l"]
 radius = 6.0
 
-[node name="Area2D" type="Area2D" unique_id=1140015944 groups=["Enemies"]]
+[node name="EnemyRugal" type="Area2D" unique_id=1140015944 groups=["Enemies"]]
 script = ExtResource("1_hrd5o")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=810800796]

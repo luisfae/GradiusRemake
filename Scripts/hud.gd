@@ -38,6 +38,8 @@ const BLANK = 25
 var patternNow: Array = [0, 1, 2, 3, 4, 5]
 const patternInitial: Array = [0, 1, 2, 3, 4, 5]
 
+var optionsCalled: int = 0
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	GlobalVars.UpgradeGet.connect(UpgradeGet)
@@ -68,6 +70,7 @@ func resetUpgrades_to_initial() -> void:
 	hud_tilemap.set_pattern(LASER_TILE, hud_tilemap.tile_set.get_pattern(patternInitial[LASER]))
 	hud_tilemap.set_pattern(OPTION_TILE, hud_tilemap.tile_set.get_pattern(patternInitial[OPTION]))
 	hud_tilemap.set_pattern(SHIELD_TILE, hud_tilemap.tile_set.get_pattern(patternInitial[SHIELD]))
+	optionsCalled = 0
 	
 func UpgradeGet(upgrade: int) -> void:
 	resetUpgrades()
@@ -111,7 +114,9 @@ func UpgradeLaser() -> void:
 	pass
 	
 func UpgradeOption() -> void:
-	patternNow[OPTION] = BLANK
+	optionsCalled += 1
+	if optionsCalled == 2:
+		patternNow[OPTION] = BLANK
 	pass
 	
 func UpgradeShield() -> void:
