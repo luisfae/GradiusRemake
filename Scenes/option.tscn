@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://dalqdv1l7tk3r"]
+
+[ext_resource type="Script" uid="uid://cs0amj2auqnmu" path="res://Scripts/option.gd" id="1_hmytp"]
+[ext_resource type="Texture2D" uid="uid://c2jdsy4xak0bb" path="res://Sprites/option.png" id="1_oxlww"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hmytp"]
+atlas = ExtResource("1_oxlww")
+region = Rect2(0, 0, 16, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tx2dh"]
+atlas = ExtResource("1_oxlww")
+region = Rect2(16, 0, 16, 10)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0cr4r"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hmytp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tx2dh")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 7.0
+}]
+
+[node name="Option" type="Node2D" unique_id=1705535722]
+script = ExtResource("1_hmytp")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=8472631]
+sprite_frames = SubResource("SpriteFrames_0cr4r")
+autoplay = "default"
