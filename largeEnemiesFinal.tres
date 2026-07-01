@@ -1,0 +1,30 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://cljdm51ta5yyt"]
+
+[ext_resource type="Texture2D" uid="uid://c7xqmmk8esnsy" path="res://Sprites/largeEnemiesSpritesheet.png" id="1_5i487"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_40kmj"]
+atlas = ExtResource("1_5i487")
+region = Rect2(0, 24, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0rlds"]
+atlas = ExtResource("1_5i487")
+region = Rect2(48, 24, 48, 48)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_40kmj")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0rlds")
+}],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
+}]

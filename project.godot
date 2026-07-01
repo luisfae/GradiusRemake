@@ -12,7 +12,7 @@ config_version=5
 
 config/name="Gradius"
 run/main_scene="uid://b5emym3svudu0"
-config/features=PackedStringArray("4.7", "Forward Plus")
+config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
@@ -31,6 +31,7 @@ window/stretch/scale_mode="integer"
 
 Enemies=""
 Player=""
+Bullet=""
 
 [input]
 
