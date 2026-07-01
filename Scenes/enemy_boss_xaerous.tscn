@@ -1,0 +1,112 @@
+[gd_scene format=3 uid="uid://b7pg3hvhfc240"]
+
+[ext_resource type="Texture2D" uid="uid://c7xqmmk8esnsy" path="res://Sprites/largeEnemiesSpritesheet.png" id="1_fxnoi"]
+[ext_resource type="Script" uid="uid://cwx0eij0typft" path="res://Scripts/enemy_boss_xaerous.gd" id="1_x0jkm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x0jkm"]
+size = Vector2(36, 17)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uccb1"]
+size = Vector2(2, 12)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0cc02"]
+radius = 6.0827627
+
+[node name="Xaerous" type="Node2D" unique_id=263810032 groups=["Enemies"]]
+script = ExtResource("1_x0jkm")
+
+[node name="ShipSprite" type="Sprite2D" parent="." unique_id=837204009]
+texture = ExtResource("1_fxnoi")
+region_enabled = true
+region_rect = Rect2(48, 24, 48, 48)
+
+[node name="Core" type="Sprite2D" parent="." unique_id=273532380]
+position = Vector2(8, 0)
+texture = ExtResource("1_fxnoi")
+region_enabled = true
+region_rect = Rect2(32, 73, 16, 16)
+
+[node name="ShipTop" type="Area2D" parent="." unique_id=2101975389]
+position = Vector2(-9, -10)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ShipTop" unique_id=2129394311]
+position = Vector2(13, -4.5)
+shape = SubResource("RectangleShape2D_x0jkm")
+debug_color = Color(0.8879683, 0.0002795434, 0.80197716, 0.41960785)
+
+[node name="ShipBottom" type="Area2D" parent="." unique_id=2114962704]
+position = Vector2(-9, 19)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ShipBottom" unique_id=510565806]
+position = Vector2(12.5, -4.5)
+shape = SubResource("RectangleShape2D_x0jkm")
+debug_color = Color(0.8879683, 0.0002795434, 0.80197716, 0.41960785)
+
+[node name="Shield_1" type="Area2D" parent="." unique_id=417210169]
+position = Vector2(-18, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Shield_1" unique_id=98579768]
+shape = SubResource("RectangleShape2D_uccb1")
+debug_color = Color(0.9030482, 0.068789296, 0.7302328, 0.41960785)
+
+[node name="Shield1" type="Sprite2D" parent="Shield_1" unique_id=1804309217]
+texture = ExtResource("1_fxnoi")
+region_enabled = true
+region_rect = Rect2(5, 42, 2, 12)
+
+[node name="Shield_2" type="Area2D" parent="." unique_id=1277576330]
+position = Vector2(-15, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Shield_2" unique_id=1767710085]
+shape = SubResource("RectangleShape2D_uccb1")
+debug_color = Color(0.8879683, 0.0002795434, 0.80197716, 0.41960785)
+
+[node name="Shield2" type="Sprite2D" parent="Shield_2" unique_id=1457705485]
+texture = ExtResource("1_fxnoi")
+region_enabled = true
+region_rect = Rect2(5, 42, 2, 12)
+
+[node name="Shield_3" type="Area2D" parent="." unique_id=836875639]
+position = Vector2(-12, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Shield_3" unique_id=710663050]
+shape = SubResource("RectangleShape2D_uccb1")
+debug_color = Color(0.8879683, 0.0002795434, 0.80197716, 0.41960785)
+
+[node name="Shield3" type="Sprite2D" parent="Shield_3" unique_id=1028060786]
+texture = ExtResource("1_fxnoi")
+region_enabled = true
+region_rect = Rect2(5, 42, 2, 12)
+
+[node name="Shield_4" type="Area2D" parent="." unique_id=195936746]
+position = Vector2(-9, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Shield_4" unique_id=327771955]
+shape = SubResource("RectangleShape2D_uccb1")
+debug_color = Color(0.8879683, 0.0002795434, 0.80197716, 0.41960785)
+
+[node name="Shield4" type="Sprite2D" parent="Shield_4" unique_id=2004525269]
+texture = ExtResource("1_fxnoi")
+region_enabled = true
+region_rect = Rect2(5, 42, 2, 12)
+
+[node name="Core2" type="Area2D" parent="." unique_id=1881997944]
+position = Vector2(6, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Core2" unique_id=695379079]
+shape = SubResource("CircleShape2D_0cc02")
+debug_color = Color(0.8879683, 0.0002795434, 0.80197716, 0.41960785)
+
+[connection signal="area_entered" from="ShipTop" to="." method="_on_ship_top_area_entered"]
+[connection signal="body_entered" from="ShipTop" to="." method="_on_ship_top_body_entered"]
+[connection signal="area_entered" from="ShipBottom" to="." method="_on_ship_bottom_area_entered"]
+[connection signal="body_entered" from="ShipBottom" to="." method="_on_ship_bottom_body_entered"]
+[connection signal="area_entered" from="Shield_1" to="." method="_on_shield_1_area_entered"]
+[connection signal="body_entered" from="Shield_1" to="." method="_on_shield_1_body_entered"]
+[connection signal="area_entered" from="Shield_2" to="." method="_on_shield_2_area_entered"]
+[connection signal="body_entered" from="Shield_2" to="." method="_on_shield_2_body_entered"]
+[connection signal="area_entered" from="Shield_3" to="." method="_on_shield_3_area_entered"]
+[connection signal="body_entered" from="Shield_3" to="." method="_on_shield_3_body_entered"]
+[connection signal="area_entered" from="Shield_4" to="." method="_on_shield_4_area_entered"]
+[connection signal="body_entered" from="Shield_4" to="." method="_on_shield_4_body_entered"]
+[connection signal="area_entered" from="Core2" to="." method="_on_core_2_area_entered"]

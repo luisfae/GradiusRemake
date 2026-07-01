@@ -31,6 +31,9 @@ window/stretch/scale_mode="integer"
 
 Enemies=""
 Player=""
+"Player Projectiles"=""
+"Enemy Projectiles"=""
+"Front Detector"=""
 
 [input]
 

@@ -1,7 +1,7 @@
 extends CharacterBody2D
-
 class_name Player
 
+@export var health: int = 1
 @export var speed := 50.0
 @onready var sprite = $AnimatedSprite2D
 #@export var bullet: PackedScene
@@ -9,6 +9,7 @@ class_name Player
 @onready var missile = preload("res://Scenes/missile.tscn")
 @onready var laser = preload("res://Scenes/laser.tscn")
 @onready var option = preload("res://Scenes/option.tscn")
+@onready var shield = self.get_node("Shield")
 @onready var alive: bool
 @export var double_fire = false
 @export var laser_fire = false
@@ -125,8 +126,18 @@ func _physics_process(delta: float) -> void:
 	position.y = clampf(position.y, -102 + padding.y, 98 - padding.y)
 	#print(half_screen)
 
+func takeHit():
+	health -= 1
+	if health < 1:
+		die()
+	elif health < 2:
+		shield.deactivate()
+	elif health < 4:
+		if(shield.high):
+			shield.setLow()
+
 func die():
-	$CollisionShape2D.disabled = true
+	$CollisionShape2D.set_deferred("disabled", true)
 	alive = false
 	print("e morreu")
 	sprite.play("Death")
@@ -140,9 +151,6 @@ func animate():
 		sprite.play("Down")
 	else:
 		sprite.play("Standard")
-
-func receiveUpgrade(upgrade: int) -> void:
-	pass
 	
 func UpgradeSpeed() -> void:
 	speed += 25
@@ -188,8 +196,9 @@ func UpgradeOption() -> void:
 	pass
 	
 func UpgradeShield() -> void:
+	shield.activate()
+	health = 6
 	pass
-
 
 func _on_animated_sprite_2d_animation_finished() -> void:
 	if sprite.animation == "Death":

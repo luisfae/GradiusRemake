@@ -17,7 +17,7 @@ func _process(delta: float) -> void:
 		return
 
 	if player_ship and is_instance_valid(player_ship):
-		speed = player_ship.speed + 20.0
+		speed = player_ship.speed
 	else:
 		speed = 250.0
 
@@ -27,7 +27,8 @@ func _process(delta: float) -> void:
 		if anim_sprite:
 			#target_global_center += anim_sprite.offset
 			target_global_center += anim_sprite.position
-			target_global_center.x -= 3 #offset hard coded pra ficar identico ao jogo
+			if anim_sprite.animation.get_basename() == "Standard" or anim_sprite.animation.get_basename() == "Up" or anim_sprite.animation.get_basename() == "Down":
+				target_global_center.x -= 3 #offset hard coded pra ficar identico ao jogo
 
 	var target_local_pos: Vector2 = get_parent().to_local(target_global_center)
 	if path_history.is_empty() or path_history.back().distance_to(target_local_pos) > 1.0:

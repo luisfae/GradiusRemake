@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://cochvfrrugxrn"]
+
+[ext_resource type="Script" uid="uid://dwn4048mxmyr4" path="res://Scripts/enemy_spawner.gd" id="1_4l55s"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0cr4r"]
+size = Vector2(16, 16)
+
+[node name="Enemy_Spawner" type="Area2D" unique_id=1465881767]
+script = ExtResource("1_4l55s")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1466505622]
+shape = SubResource("RectangleShape2D_0cr4r")
+debug_color = Color(0.934624, 2.1851361e-05, 0.6418541, 0.41960785)
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
