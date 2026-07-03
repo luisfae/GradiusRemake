@@ -1,0 +1,100 @@
+[gd_scene format=3 uid="uid://yay1ocjs1ws0"]
+
+[ext_resource type="Script" uid="uid://qtgac6y5271a" path="res://Scripts/enemy_dai_01.gd" id="1_0aags"]
+[ext_resource type="Texture2D" uid="uid://c3b0g40er4j5s" path="res://Sprites/enemiesSpritesheet.png" id="1_ydtav"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0aags"]
+atlas = ExtResource("1_ydtav")
+region = Rect2(144, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c276c"]
+atlas = ExtResource("1_ydtav")
+region = Rect2(112, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bmpri"]
+atlas = ExtResource("1_ydtav")
+region = Rect2(128, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ppvra"]
+atlas = ExtResource("1_ydtav")
+region = Rect2(48, 80, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hyly8"]
+atlas = ExtResource("1_ydtav")
+region = Rect2(64, 80, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ixb6l"]
+atlas = ExtResource("1_ydtav")
+region = Rect2(80, 80, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0cr4r"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0aags")
+}],
+"loop": 1,
+"name": &"Aim_Down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c276c")
+}],
+"loop": 1,
+"name": &"Aim_Straight",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bmpri")
+}],
+"loop": 1,
+"name": &"Aim_Up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ppvra")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hyly8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ixb6l")
+}],
+"loop": 0,
+"name": &"Die",
+"speed": 6.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_arp66"]
+radius = 5.0
+
+[node name="EnemyDai01" type="Area2D" unique_id=115204172]
+script = ExtResource("1_0aags")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=643923803]
+sprite_frames = SubResource("SpriteFrames_0cr4r")
+animation = &"Aim_Up"
+autoplay = "Aim_Straight"
+
+[node name="Crosshair_Up" type="Marker2D" parent="AnimatedSprite2D" unique_id=1662407286]
+position = Vector2(4, -10)
+
+[node name="Crosshair_Mid" type="Marker2D" parent="AnimatedSprite2D" unique_id=282851791]
+position = Vector2(8, -8)
+
+[node name="Crosshair_Down" type="Marker2D" parent="AnimatedSprite2D" unique_id=537770642]
+position = Vector2(10, -1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=868014282]
+position = Vector2(0, 2)
+shape = SubResource("CircleShape2D_arp66")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=48955838]
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

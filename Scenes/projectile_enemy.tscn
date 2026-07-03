@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://dipkfquxpe6lk"]
+
+[ext_resource type="Script" uid="uid://dkwnwco3hpnxp" path="res://Scripts/projectile_enemy.gd" id="1_0rlxx"]
+[ext_resource type="Texture2D" uid="uid://ebehxvpb2uva" path="res://Sprites/enemy_projectile.png" id="1_q1gc2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0rlxx"]
+atlas = ExtResource("1_q1gc2")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vlgk1"]
+atlas = ExtResource("1_q1gc2")
+region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0cr4r"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0rlxx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vlgk1")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 6.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_arp66"]
+radius = 3.0
+
+[node name="ProjectileEnemy" type="Area2D" unique_id=721348252 groups=["Enemy Projectiles"]]
+script = ExtResource("1_0rlxx")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=262162131]
+sprite_frames = SubResource("SpriteFrames_0cr4r")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1179387177]
+shape = SubResource("CircleShape2D_arp66")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=796952386]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

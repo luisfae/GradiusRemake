@@ -6,8 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://c3pffkftn3dxs" path="res://Misc/gradius-stage-1-volcano-nes-map.png" id="4_v7gqg"]
 [ext_resource type="Texture2D" uid="uid://53nvfh3ypwlj" path="res://Misc/Fase 1 Inteira Site Japones.png" id="5_v7gqg"]
 [ext_resource type="PackedScene" uid="uid://gvs313y44yp6" path="res://Scenes/hud.tscn" id="6_tx0tn"]
-[ext_resource type="PackedScene" uid="uid://ccw8otnewcuvp" path="res://Scenes/group.tscn" id="7_v7gqg"]
-[ext_resource type="PackedScene" uid="uid://b2bbuuen34qpt" path="res://Scenes/enemy_rugal.tscn" id="8_chwn1"]
+[ext_resource type="PackedScene" uid="uid://cochvfrrugxrn" path="res://Scenes/enemy_spawner.tscn" id="9_chwn1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0cr4r"]
 size = Vector2(0.5, 224)
@@ -47,17 +46,10 @@ texture = ExtResource("5_v7gqg")
 
 [node name="HUD" parent="." unique_id=1733061160 instance=ExtResource("6_tx0tn")]
 
-[node name="Group" parent="." unique_id=1324685765 instance=ExtResource("7_v7gqg")]
-position = Vector2(637, 100)
+[node name="Enemy_Spawner" parent="." unique_id=1465881767 instance=ExtResource("9_chwn1")]
+position = Vector2(632, 36)
+enemy_type = 3
 
-[node name="EnemyRugal" parent="Group" unique_id=1140015944 instance=ExtResource("8_chwn1")]
-position = Vector2(23, -32)
-
-[node name="EnemyRugal2" parent="Group" unique_id=2108965890 instance=ExtResource("8_chwn1")]
-position = Vector2(-59, 40)
-
-[node name="EnemyRugal3" parent="Group" unique_id=1297942751 instance=ExtResource("8_chwn1")]
-position = Vector2(1, 55)
-
-[node name="EnemyRugal" parent="." unique_id=281718305 instance=ExtResource("8_chwn1")]
-position = Vector2(730, 121)
+[node name="Enemy_Spawner2" parent="." unique_id=464557388 instance=ExtResource("9_chwn1")]
+position = Vector2(636, 183)
+enemy_type = 4

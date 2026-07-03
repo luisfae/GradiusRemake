@@ -2,7 +2,7 @@ extends Node2D
 
 var path_history: Array[Vector2] = []
 var speed: float = 50.0 
-@export var follow_distance: float = 25.0
+@export var follow_distance: float = 20.0
 
 var target_node: Node2D
 var player_ship: Player
