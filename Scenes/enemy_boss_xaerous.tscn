@@ -30,7 +30,7 @@ region_rect = Rect2(32, 73, 16, 16)
 position = Vector2(-9, -10)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ShipTop" unique_id=2129394311]
-position = Vector2(13, -4.5)
+position = Vector2(12.5, -4.5)
 shape = SubResource("RectangleShape2D_x0jkm")
 debug_color = Color(0.8879683, 0.0002795434, 0.80197716, 0.41960785)
 
