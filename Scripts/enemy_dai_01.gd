@@ -13,6 +13,7 @@ var shoot_timer: Timer
 @onready var aimUp = $AnimatedSprite2D/Crosshair_Up
 @onready var aimMid = $AnimatedSprite2D/Crosshair_Mid
 @onready var aimDown = $AnimatedSprite2D/Crosshair_Down
+@onready var camera: Camera2D = get_viewport().get_camera_2d()
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -71,13 +72,14 @@ func _on_shoot_timer_timeout() -> void:
 		return
 		
 	var p = projectile.instantiate() as ProjectileEnemy
+	camera.add_child(p)
 	if sprite.animation == "Aim_Up":
-		p.position = aimUp.global_position
+		p.global_position = aimUp.global_position
 	elif sprite.animation == "Aim_Straight":
-		p.position = aimMid.global_position
+		p.global_position = aimMid.global_position
 	elif sprite.animation == "Aim_Down":
-		p.position = aimDown.global_position
-	get_tree().current_scene.add_child(p)
+		p.global_position = aimDown.global_position
+	p.setDirection()
 	print("O timer disparou! Hora de criar o projétil.")
 
 func setDropUpgrade() -> void:
