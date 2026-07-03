@@ -1,7 +1,7 @@
 Versão 03/07
+
 OBS.: Dei um merge que parece q não foi 100%, tinha coisa que eu tinha mudado no meu que tava não mudado no que ficou merged.
 Na duvida usar o do branch Nconseguicommitarnooutropelogitgui
-
 
 Adicionado:
 - Inimigo turret que não anda e dispara projeteis
