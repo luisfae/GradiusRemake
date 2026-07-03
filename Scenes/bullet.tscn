@@ -17,7 +17,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_oduel")
 }],
-"loop": false,
+"loop": 0,
 "name": &"Straight",
 "speed": 0.0
 }, {
@@ -25,7 +25,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ycag2")
 }],
-"loop": true,
+"loop": 1,
 "name": &"Up",
 "speed": 5.0
 }]
@@ -33,7 +33,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2b2rl"]
 size = Vector2(5.000001, 5.9973373)
 
-[node name="Bullet" type="Area2D" unique_id=1391774488 groups=["Bullet"]]
+[node name="Bullet" type="Area2D" unique_id=1391774488 groups=["Player Projectiles"]]
 script = ExtResource("1_v8qja")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=993501477 groups=["Bullet"]]
@@ -48,5 +48,4 @@ shape = SubResource("RectangleShape2D_2b2rl")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=241377415 groups=["Bullet"]]
 
-[connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

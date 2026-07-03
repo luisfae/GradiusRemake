@@ -9,8 +9,8 @@ signal UpgradeLaser
 signal UpgradeOption
 signal UpgradeShield
 signal UpgradeGet(upgrade: int)
-signal KillPlayer
-signal WeakShield
+signal ShieldDeactivated(upgrade: int)
+@onready var UpgradeObject = preload("res://Scenes/upgrade.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -57,12 +57,16 @@ func applyUpgrade() -> void:
 			print("Aplicando upgrade ?")
 			UpgradeShield.emit()
 			pass
+
+func resetUpgrade() -> void:
 	upgrade = 0
 	UpgradeGet.emit(upgrade)
 
-func hitPlayer():
-	health -= 1
-	if health <= 3:
-		WeakShield.emit()
-	if health <= 0:
-		KillPlayer.emit()
+func deactivateShield() -> void:
+	ShieldDeactivated.emit(upgrade)
+	
+func createUpgrade(position: Vector2) -> void:
+	var u = UpgradeObject.instantiate() as Upgrade
+	var main_scene = get_tree().current_scene # não sabia exatamente como criar no Main pq esse script n ta em nada, nao podia chamar owner.add_child
+	u.position = position
+	main_scene.add_child(u)

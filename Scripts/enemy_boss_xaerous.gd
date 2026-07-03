@@ -17,6 +17,7 @@ func _process(delta: float) -> void:
 func playerCollides(body: Node2D) -> void:
 	pass
 
+# COLISÕES DO PLAYER COM AS DIFERENTES PARTES DO BOSS
 func _on_ship_top_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player"):
 		GlobalVars.hitPlayer()
@@ -45,3 +46,33 @@ func _on_shield_3_body_entered(body: Node2D) -> void:
 func _on_shield_4_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player"):
 		GlobalVars.hitPlayer()
+
+
+
+# COLISÕES DOS TIROS DO PLAYER COM AS DIFERENTES PARTES DO BOSS
+func _on_ship_top_area_entered(area: Area2D) -> void:
+	pass # Replace with function body.
+
+
+func _on_ship_bottom_area_entered(area: Area2D) -> void:
+	pass # Replace with function body.
+
+
+func _on_shield_1_area_entered(area: Area2D) -> void:
+	pass # Replace with function body.
+
+
+func _on_shield_2_area_entered(area: Area2D) -> void:
+	pass # Replace with function body.
+
+
+func _on_shield_3_area_entered(area: Area2D) -> void:
+	pass # Replace with function body.
+
+
+func _on_shield_4_area_entered(area: Area2D) -> void:
+	pass # Replace with function body.
+
+
+func _on_core_2_area_entered(area: Area2D) -> void:
+	pass # Replace with function body.

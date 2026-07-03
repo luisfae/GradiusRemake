@@ -6,7 +6,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c8ure"]
 size = Vector2(16, 2)
 
-[node name="Laser" type="Area2D" unique_id=247421472]
+[node name="Laser" type="Area2D" unique_id=247421472 groups=["Player Projectiles"]]
 script = ExtResource("1_mou6w")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=960786350]
@@ -17,5 +17,4 @@ shape = SubResource("RectangleShape2D_c8ure")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=150344834]
 
-[connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

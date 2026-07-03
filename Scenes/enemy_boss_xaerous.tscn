@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://cwx0eij0typft" path="res://Scripts/enemy_boss_xaerous.gd" id="1_x0jkm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x0jkm"]
-size = Vector2(37, 17)
+size = Vector2(36, 17)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uccb1"]
 size = Vector2(2, 12)
@@ -97,9 +97,16 @@ position = Vector2(6, 0)
 shape = SubResource("CircleShape2D_0cc02")
 debug_color = Color(0.8879683, 0.0002795434, 0.80197716, 0.41960785)
 
+[connection signal="area_entered" from="ShipTop" to="." method="_on_ship_top_area_entered"]
 [connection signal="body_entered" from="ShipTop" to="." method="_on_ship_top_body_entered"]
+[connection signal="area_entered" from="ShipBottom" to="." method="_on_ship_bottom_area_entered"]
 [connection signal="body_entered" from="ShipBottom" to="." method="_on_ship_bottom_body_entered"]
+[connection signal="area_entered" from="Shield_1" to="." method="_on_shield_1_area_entered"]
 [connection signal="body_entered" from="Shield_1" to="." method="_on_shield_1_body_entered"]
+[connection signal="area_entered" from="Shield_2" to="." method="_on_shield_2_area_entered"]
 [connection signal="body_entered" from="Shield_2" to="." method="_on_shield_2_body_entered"]
+[connection signal="area_entered" from="Shield_3" to="." method="_on_shield_3_area_entered"]
 [connection signal="body_entered" from="Shield_3" to="." method="_on_shield_3_body_entered"]
+[connection signal="area_entered" from="Shield_4" to="." method="_on_shield_4_area_entered"]
 [connection signal="body_entered" from="Shield_4" to="." method="_on_shield_4_body_entered"]
+[connection signal="area_entered" from="Core2" to="." method="_on_core_2_area_entered"]

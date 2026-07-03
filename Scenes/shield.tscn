@@ -1,0 +1,82 @@
+[gd_scene format=3 uid="uid://c1gdrrh2g6sky"]
+
+[ext_resource type="Texture2D" uid="uid://cf0hihpav5kol" path="res://Sprites/shield.png" id="1_17xpe"]
+[ext_resource type="Script" uid="uid://bpqeufwiwyasc" path="res://Scripts/shield.gd" id="1_oux8c"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oux8c"]
+atlas = ExtResource("1_17xpe")
+region = Rect2(0, 0, 8, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_afmmn"]
+atlas = ExtResource("1_17xpe")
+region = Rect2(8, 0, 8, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v0uwj"]
+atlas = ExtResource("1_17xpe")
+region = Rect2(16, 0, 8, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kxn5r"]
+atlas = ExtResource("1_17xpe")
+region = Rect2(24, 0, 8, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d18dt"]
+atlas = ExtResource("1_17xpe")
+region = Rect2(32, 0, 8, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2qcxp"]
+atlas = ExtResource("1_17xpe")
+region = Rect2(40, 0, 8, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_44y4r"]
+atlas = ExtResource("1_17xpe")
+region = Rect2(48, 0, 8, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fv84e"]
+atlas = ExtResource("1_17xpe")
+region = Rect2(56, 0, 8, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0cr4r"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oux8c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_afmmn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v0uwj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kxn5r")
+}],
+"loop": 1,
+"name": &"High",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d18dt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2qcxp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_44y4r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fv84e")
+}],
+"loop": 1,
+"name": &"Low",
+"speed": 6.0
+}]
+
+[node name="Shield" type="Node2D" unique_id=118058833]
+script = ExtResource("1_oux8c")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=176269277]
+sprite_frames = SubResource("SpriteFrames_0cr4r")
+animation = &"Low"
+autoplay = "High"
+frame_progress = 0.26205146

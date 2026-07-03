@@ -1,20 +1,5 @@
 extends CanvasLayer
 
-#				meus comentarios sempre vao começar em minusculo, pra saber q fui eu
-#				⡴⠑⡄⠀⠀⠀⠀⠀⠀⠀ ⣀⣀⣤⣤⣤⣀⡀
-#				⠸⡇⠀⠿⡀⠀⠀⠀⣀⡴⢿⣿⣿⣿⣿⣿⣿⣿⣷⣦⡀
-#				⠀⠀⠀⠀⠑⢄⣠⠾⠁⣀⣄⡈⠙⣿⣿⣿⣿⣿⣿⣿⣿⣆
-#				⠀⠀⠀⠀⢀⡀⠁⠀⠀⠈⠙⠛⠂⠈⣿⣿⣿⣿⣿⠿⡿⢿⣆
-#				⠀⠀⠀⢀⡾⣁⣀⠀⠴ ⠙⣗⡀⠀⢻⣿⣿⠭⢤⣴⣦⣤⣹⠀⠀⠀⢀⢴⣶⣆
-#				⠀⠀⢀⣾⣿⣿⣿⣷⣮⣽⣾⣿⣥⣴⣿⣿⡿⢂⠔⢚⡿⢿⣿⣦⣴⣾⠸⣼⡿
-#				⠀⢀⡞⠁⠙⠻⠿⠟⠉⠀⠛⢹⣿⣿⣿⣿⣿⣌⢤⣼⣿⣾⣿⡟⠉
-#				⠀⣾⣷⣶⠇⠀⠀⣤⣄⣀⡀⠈⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇
-#				⠀⠉⠈⠉⠀⠀⢦⡈⢻⣿⣿⣿⣶⣶⣶⣶⣤⣽⡹⣿⣿⣿⣿⡇
-#				⠀⠀⠀⠀⠀⠀⠀⠉⠲⣽⡻⢿⣿⣿⣿⣿⣿⣿⣷⣜⣿⣿⣿⡇
-#				⠀⠀ ⠀⠀⠀⠀⠀⢸⣿⣿⣷⣶⣮⣭⣽⣿⣿⣿⣿⣿⣿⣿⠇
-#				⠀⠀⠀⠀⠀⠀⣀⣀⣈⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠇
-#				⠀⠀⠀⠀⠀⠀⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-
 @onready var hud_tilemap: TileMapLayer = $Foreground
 
 #Constantes da HUD
@@ -49,6 +34,7 @@ func _ready() -> void:
 	GlobalVars.UpgradeLaser.connect(UpgradeLaser)
 	GlobalVars.UpgradeOption.connect(UpgradeOption)
 	GlobalVars.UpgradeShield.connect(UpgradeShield)
+	GlobalVars.ShieldDeactivated.connect(ShieldDeactivated)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -71,6 +57,7 @@ func resetUpgrades_to_initial() -> void:
 	hud_tilemap.set_pattern(OPTION_TILE, hud_tilemap.tile_set.get_pattern(patternInitial[OPTION]))
 	hud_tilemap.set_pattern(SHIELD_TILE, hud_tilemap.tile_set.get_pattern(patternInitial[SHIELD]))
 	optionsCalled = 0
+	GlobalVars.resetUpgrade()
 	
 func UpgradeGet(upgrade: int) -> void:
 	resetUpgrades()
@@ -97,27 +84,48 @@ func UpgradeGet(upgrade: int) -> void:
 			pass
 
 func UpgradeSpeed() -> void:
+	GlobalVars.resetUpgrade()
 	pass
 
 func UpgradeMissile() -> void:
-	patternNow[MISSILE] = BLANK
+	if patternNow[MISSILE] != 25:
+		patternNow[MISSILE] = BLANK
+		GlobalVars.resetUpgrade()
 	pass
 	
 func UpgradeDouble() -> void: #não pode possuir laser e double ao mesmo tempo, quando ativa um, desativa outro
-	patternNow[DOUBLE] = BLANK
-	patternNow[LASER] = patternInitial[LASER]
+	if patternNow[DOUBLE] != 25:
+		patternNow[DOUBLE] = BLANK
+		patternNow[LASER] = patternInitial[LASER]
+		GlobalVars.resetUpgrade()
 	pass
 	
 func UpgradeLaser() -> void:
-	patternNow[LASER] = BLANK
-	patternNow[DOUBLE] = patternInitial[DOUBLE]
+	if patternNow[LASER] != 25:
+		patternNow[LASER] = BLANK
+		patternNow[DOUBLE] = patternInitial[DOUBLE]
+		GlobalVars.resetUpgrade()
 	pass
 	
 func UpgradeOption() -> void:
-	optionsCalled += 1
-	if optionsCalled == 2:
-		patternNow[OPTION] = BLANK
+	if patternNow[OPTION] != 25:
+		optionsCalled += 1
+		if optionsCalled == 2:
+			patternNow[OPTION] = BLANK
+		GlobalVars.resetUpgrade()
 	pass
 	
 func UpgradeShield() -> void:
+	if patternNow[SHIELD] != 25:
+		patternNow[SHIELD] = BLANK
+		GlobalVars.resetUpgrade()
 	pass
+
+func ShieldDeactivated(upgrade: int) -> void:
+	patternNow[SHIELD] = patternInitial[SHIELD]
+	if(upgrade == 6):
+		hud_tilemap.set_pattern(SHIELD_TILE, hud_tilemap.tile_set.get_pattern(patternNow[SHIELD] + 6))
+	else:
+		hud_tilemap.set_pattern(SHIELD_TILE, hud_tilemap.tile_set.get_pattern(patternNow[SHIELD]))
+	pass
+	

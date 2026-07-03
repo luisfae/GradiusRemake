@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b6k7qs3gl514u" path="res://Scripts/animated_ship.gd" id="1_6m5ak"]
 [ext_resource type="Texture2D" uid="uid://c4r2j2642lxds" path="res://Sprites/NES - Gradius - Spaceship Sheet.png" id="2_6m5ak"]
+[ext_resource type="PackedScene" uid="uid://c1gdrrh2g6sky" path="res://Scenes/shield.tscn" id="3_ut24a"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_amiry"]
 radius = 4.0
@@ -90,6 +91,9 @@ shape = SubResource("CircleShape2D_amiry")
 texture_filter = 1
 position = Vector2(0, -6)
 sprite_frames = SubResource("SpriteFrames_rqaf1")
-animation = &"Death"
+animation = &"Standard"
+
+[node name="Shield" parent="." unique_id=118058833 instance=ExtResource("3_ut24a")]
+position = Vector2(16, -5)
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

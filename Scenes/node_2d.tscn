@@ -4,8 +4,13 @@
 [ext_resource type="PackedScene" uid="uid://dapugmoyj4g0l" path="res://Scenes/animated_ship.tscn" id="2_tx0tn"]
 [ext_resource type="TileSet" uid="uid://dldtdh173vltt" path="res://new_tile_set.tres" id="3_wjtap"]
 [ext_resource type="Texture2D" uid="uid://c3pffkftn3dxs" path="res://Misc/gradius-stage-1-volcano-nes-map.png" id="4_v7gqg"]
+[ext_resource type="Texture2D" uid="uid://53nvfh3ypwlj" path="res://Misc/Fase 1 Inteira Site Japones.png" id="5_v7gqg"]
 [ext_resource type="PackedScene" uid="uid://gvs313y44yp6" path="res://Scenes/hud.tscn" id="6_tx0tn"]
-[ext_resource type="PackedScene" uid="uid://c7mky0noyqc3v" path="res://Scenes/upgrade.tscn" id="7_wjtap"]
+[ext_resource type="PackedScene" uid="uid://ccw8otnewcuvp" path="res://Scenes/group.tscn" id="7_v7gqg"]
+[ext_resource type="PackedScene" uid="uid://b2bbuuen34qpt" path="res://Scenes/enemy_rugal.tscn" id="8_chwn1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0cr4r"]
+size = Vector2(0.5, 224)
 
 [node name="main" type="Node2D" unique_id=1970737621]
 
@@ -15,6 +20,12 @@ script = ExtResource("1_u7krg")
 
 [node name="AnimatedShip" parent="Camera2D" unique_id=808763228 instance=ExtResource("2_tx0tn")]
 position = Vector2(-45, -10)
+
+[node name="DetectorSpawns" type="Area2D" parent="Camera2D" unique_id=1584263400 groups=["Front Detector"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/DetectorSpawns" unique_id=1182450540]
+position = Vector2(117, 0)
+shape = SubResource("RectangleShape2D_0cr4r")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1779675352]
 position = Vector2(0, -17)
@@ -27,7 +38,26 @@ offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("4_v7gqg")
 
+[node name="TextureRect2" type="TextureRect" parent="." unique_id=48447262]
+visible = false
+offset_left = 288.0
+offset_right = 3872.0
+offset_bottom = 208.0
+texture = ExtResource("5_v7gqg")
+
 [node name="HUD" parent="." unique_id=1733061160 instance=ExtResource("6_tx0tn")]
 
-[node name="Upgrade" parent="." unique_id=880508371 instance=ExtResource("7_wjtap")]
-position = Vector2(735, 158)
+[node name="Group" parent="." unique_id=1324685765 instance=ExtResource("7_v7gqg")]
+position = Vector2(637, 100)
+
+[node name="EnemyRugal" parent="Group" unique_id=1140015944 instance=ExtResource("8_chwn1")]
+position = Vector2(23, -32)
+
+[node name="EnemyRugal2" parent="Group" unique_id=2108965890 instance=ExtResource("8_chwn1")]
+position = Vector2(-59, 40)
+
+[node name="EnemyRugal3" parent="Group" unique_id=1297942751 instance=ExtResource("8_chwn1")]
+position = Vector2(1, 55)
+
+[node name="EnemyRugal" parent="." unique_id=281718305 instance=ExtResource("8_chwn1")]
+position = Vector2(730, 121)

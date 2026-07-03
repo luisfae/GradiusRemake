@@ -19,10 +19,9 @@ func kill_sprite2d() -> void:
 	if find_child("Sprite2D"):
 		$Sprite2D.queue_free()
 
+func die() -> void:
+	pass
+
 #func _on_body_entered(body):
 	#if body.is_in_group("Enemies"):
 		#body.die()
-
-func _on_area_entered(area: Area2D) -> void:
-	if area.is_in_group("Enemies"):
-		area.die()
