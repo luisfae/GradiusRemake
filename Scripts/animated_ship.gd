@@ -23,8 +23,6 @@ func _ready():
 	GlobalVars.UpgradeLaser.connect(UpgradeLaser)
 	GlobalVars.UpgradeOption.connect(UpgradeOption)
 	GlobalVars.UpgradeShield.connect(UpgradeShield)
-	GlobalVars.KillPlayer.connect(die)
-	GlobalVars.WeakShield.connect(WeakShield)
 
 func get_input():
 	var input_dir := Vector2(
@@ -205,6 +203,3 @@ func UpgradeShield() -> void:
 func _on_animated_sprite_2d_animation_finished() -> void:
 	if sprite.animation == "Death":
 		queue_free()
-
-func WeakShield() -> void:
-	pass
