@@ -53,6 +53,10 @@ func die() -> void:
 	print("e matou")
 	death = true
 
+func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+	print("saiu de tela")
+	queue_free()
+
 func _on_animated_sprite_2d_animation_finished() -> void:
 	if sprite.animation == "Die":
 		if dropUpgrade:
