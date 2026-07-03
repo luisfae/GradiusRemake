@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b5ht84kug3sne" path="res://Scripts/camera_2d.gd" id="1_u7krg"]
 [ext_resource type="PackedScene" uid="uid://dapugmoyj4g0l" path="res://Scenes/animated_ship.tscn" id="2_tx0tn"]
+[ext_resource type="PackedScene" uid="uid://dipkfquxpe6lk" path="res://Scenes/projectile_enemy.tscn" id="3_v7gqg"]
 [ext_resource type="TileSet" uid="uid://dldtdh173vltt" path="res://new_tile_set.tres" id="3_wjtap"]
 [ext_resource type="Texture2D" uid="uid://c3pffkftn3dxs" path="res://Misc/gradius-stage-1-volcano-nes-map.png" id="4_v7gqg"]
 [ext_resource type="Texture2D" uid="uid://53nvfh3ypwlj" path="res://Misc/Fase 1 Inteira Site Japones.png" id="5_v7gqg"]
@@ -25,6 +26,9 @@ position = Vector2(-45, -10)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/DetectorSpawns" unique_id=1182450540]
 position = Vector2(117, 0)
 shape = SubResource("RectangleShape2D_0cr4r")
+
+[node name="ProjectileEnemy" parent="Camera2D" unique_id=721348252 instance=ExtResource("3_v7gqg")]
+position = Vector2(108, 89)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1779675352]
 position = Vector2(0, -17)
@@ -53,3 +57,6 @@ enemy_type = 3
 [node name="Enemy_Spawner2" parent="." unique_id=464557388 instance=ExtResource("9_chwn1")]
 position = Vector2(636, 183)
 enemy_type = 4
+
+[node name="ProjectileEnemy2" parent="." unique_id=1365647261 instance=ExtResource("3_v7gqg")]
+position = Vector2(520, 204)

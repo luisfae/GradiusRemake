@@ -8,14 +8,16 @@ var direction: Vector2 = Vector2.ZERO
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	if player:
-		direction = global_position.direction_to(player.global_position)
-	print("eu, senhor projetil inimigo fui criado!")
+	setDirection()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	global_position += direction * speed * delta
+	position += direction * speed * delta
 	
+
+func setDirection() -> void:
+	if player:
+		direction = position.direction_to(player.position)
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	print("projetil inimigo saiu de tela")
