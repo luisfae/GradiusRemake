@@ -62,7 +62,6 @@ func _physics_process(_delta: float) -> void:
 	get_input()
 	animate()
 	move_and_slide()
-	
 	# codigo teste para limitar a nave de sair da tela
 	var half_screen := get_viewport_rect().size / 2.0
 	var padding := Vector2(20, 12) # esse 20 eh hard coded, se fosse o tamanho da nave real q eh 26, ela nao vai tao pra < quanto no jogo original
