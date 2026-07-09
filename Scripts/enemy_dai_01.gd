@@ -4,28 +4,36 @@ class_name Dai
 @export var fire_rate: float = 3 # aqui define o tempo pra atirar
 
 var death: bool = false
-var dropUpgrade: bool = false
+@export var dropUpgrade: bool = false
+@export var health: int = 1
 var shoot_timer: Timer
+var points: int = 100
 
 @onready var projectile = preload("res://Scenes/projectile_enemy.tscn")
 @onready var sprite = $AnimatedSprite2D
-@onready var player: CharacterBody2D = get_tree().get_first_node_in_group("Player") as CharacterBody2D
-@onready var aimUp = $AnimatedSprite2D/Crosshair_Up
-@onready var aimMid = $AnimatedSprite2D/Crosshair_Mid
-@onready var aimDown = $AnimatedSprite2D/Crosshair_Down
+@onready var player: Player = get_tree().get_first_node_in_group("Player") as CharacterBody2D
+@onready var aimUp = $Crosshair_Up
+@onready var aimMid = $Crosshair_Mid
+@onready var aimDown = $Crosshair_Down
 @onready var camera: Camera2D = get_viewport().get_camera_2d()
+@onready var ray_down: RayCast2D = $RayCastDown
+@onready var ray_up: RayCast2D = $RayCastUp
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	if self.name.contains("Red"):
-		setDropUpgrade()
-	if global_position.y < player.global_position.y:
+	ray_down.force_raycast_update()
+	ray_up.force_raycast_update()
+	if ray_down.is_colliding():
+		print("detectou chão")
+		sprite.flip_v = false
+	elif ray_up.is_colliding():
+		print("detectou teto")
 		sprite.flip_v = true
 		aimUp.position.y *= -1
 		aimMid.position.y *= -1
 		aimDown.position.y *= -1
 	else:
-		sprite.flip_v = false
+		print("nao detectou nada")
 	
 	shoot_timer = Timer.new()
 	shoot_timer.wait_time = fire_rate
@@ -34,13 +42,12 @@ func _ready() -> void:
 	add_child(shoot_timer)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	animate()
 
 func animate():
 	if !death:
 		if not player: return
-		# 1. Olhar para a esquerda ou direita
 		if global_position.x > player.global_position.x:
 			sprite.flip_h = true
 			if aimUp.position.x > 0:
@@ -64,8 +71,6 @@ func animate():
 			sprite.play("Aim_Straight")
 		else:
 			sprite.play("Aim_Up")
-	else:
-		sprite.play("Die")
 
 func _on_shoot_timer_timeout() -> void:
 	if death or not player:
@@ -87,8 +92,10 @@ func setDropUpgrade() -> void:
 
 func die() -> void:
 	$CollisionShape2D.set_deferred("disabled", true)
+	AudioManager.play_sfx_enemyDeath()
 	print("e matou")
 	death = true
+	sprite.play("Die")
 
 func _on_animated_sprite_2d_animation_finished() -> void:
 	if sprite.animation == "Die":
@@ -103,9 +110,23 @@ func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 func _on_area_entered(area: Area2D) -> void:
 	if area.is_in_group("Player Projectiles"):
 		area.die()
-		die()
+		takeHit()
+		givePoints()
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player"):
 		body.takeHit()
+		if body.isShieldUp():
+			takeHit()
+
+func givePoints() -> void:
+	GlobalVars.receiveScore(points)
+	
+func setPoints(points_: int) -> void:
+	points = points_
+	
+func takeHit() -> void:
+	health -= 1
+	if health < 1:
 		die()
+	

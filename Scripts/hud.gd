@@ -19,6 +19,29 @@ const OPTION = 4
 const SHIELD = 5
 const BLANK = 25
 
+#constantes das posições de números na tela
+const score_0 = Vector2i(11,27)
+const score_1 = Vector2i(12,27)
+const score_2 = Vector2i(13,27)
+const score_3 = Vector2i(14,27)
+const score_4 = Vector2i(15,27)
+const score_5 = Vector2i(16,27)
+const score_6 = Vector2i(17,27)
+
+@onready var score_hud_positions : Array[Vector2i] = [score_6, score_5, score_4, score_3, score_2, score_1, score_0]
+
+#constantes dos números no padrão de spritesheet
+@onready var number_1: TileMapPattern = hud_tilemap.tile_set.get_pattern(14)
+@onready var number_2: TileMapPattern = hud_tilemap.tile_set.get_pattern(15)
+@onready var number_3: TileMapPattern = hud_tilemap.tile_set.get_pattern(16)
+@onready var number_4: TileMapPattern = hud_tilemap.tile_set.get_pattern(17)
+@onready var number_5: TileMapPattern = hud_tilemap.tile_set.get_pattern(18)
+@onready var number_6: TileMapPattern = hud_tilemap.tile_set.get_pattern(19)
+@onready var number_7: TileMapPattern = hud_tilemap.tile_set.get_pattern(20)
+@onready var number_8: TileMapPattern = hud_tilemap.tile_set.get_pattern(21)
+@onready var number_9: TileMapPattern = hud_tilemap.tile_set.get_pattern(22)
+@onready var number_0: TileMapPattern = hud_tilemap.tile_set.get_pattern(23)
+
 #vetor de padrões pra poder modificar eles apenas com logica e sem ifs
 var patternNow: Array = [0, 1, 2, 3, 4, 5]
 const patternInitial: Array = [0, 1, 2, 3, 4, 5]
@@ -35,11 +58,10 @@ func _ready() -> void:
 	GlobalVars.UpgradeOption.connect(UpgradeOption)
 	GlobalVars.UpgradeShield.connect(UpgradeShield)
 	GlobalVars.ShieldDeactivated.connect(ShieldDeactivated)
+	GlobalVars.KonamiCode.connect(KonamiCode)
+	GlobalVars.UpdateScore.connect(UpdateScore)
+	UpdateScore(0)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-	
 func resetUpgrades() -> void:
 	hud_tilemap.set_pattern(SPEEDUP_TILE, hud_tilemap.tile_set.get_pattern(patternNow[SPEED]))
 	hud_tilemap.set_pattern(MISSILE_TILE, hud_tilemap.tile_set.get_pattern(patternNow[MISSILE]))
@@ -129,3 +151,46 @@ func ShieldDeactivated(upgrade: int) -> void:
 		hud_tilemap.set_pattern(SHIELD_TILE, hud_tilemap.tile_set.get_pattern(patternNow[SHIELD]))
 	pass
 	
+func KonamiCode() -> void:
+	if patternNow[MISSILE] != 25:
+		patternNow[MISSILE] = BLANK
+	if patternNow[SHIELD] != 25:
+		patternNow[SHIELD] = BLANK
+	if patternNow[OPTION] != 25:
+		patternNow[OPTION] = BLANK
+	resetUpgrades()
+	
+func UpdateScore(score: int):
+	var segmentedScore: Array[int]
+	var formatedScore = "%07d" % score #maneira q encontrei de colocar zeros após o score
+	for c in formatedScore:
+		segmentedScore.append(int(c))
+	segmentedScore.reverse() # só tem q inverter pra escrever da esquerda pra direita na tela como fazemos
+	
+	for i in range(7):
+		UpdateScoreHUD(i, segmentedScore[i])
+
+func UpdateScoreHUD(index: int, score: int):
+	var pattern : TileMapPattern
+	match score:
+		1:
+			pattern = number_1
+		2:
+			pattern = number_2
+		3:
+			pattern = number_3
+		4:
+			pattern = number_4
+		5:
+			pattern = number_5
+		6:
+			pattern = number_6
+		7:
+			pattern = number_7
+		8:
+			pattern = number_8
+		9:
+			pattern = number_9
+		0:
+			pattern = number_0
+	hud_tilemap.set_pattern(score_hud_positions[index], pattern)

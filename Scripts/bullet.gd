@@ -4,6 +4,9 @@ class_name Bullet
 @export var speed: float = 700.0
 @onready var sprite = $AnimatedSprite2D
 @export var type: String = "Straight"
+var father: int = 0
+
+signal MyFatherIs(myFather: int)
 
 func _ready() -> void:
 	sprite.play(type)
@@ -21,11 +24,15 @@ func _physics_process(delta: float) -> void:
 		position += transform.x * speed * delta
 		position -= transform.y * speed * delta
 
+func setFather(father_: int) -> void:
+	father = father_
+
 func set_up() -> void:
 	type = "Up"
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	print("saiu de tela")
+	MyFatherIs.emit(father)
 	queue_free()
 	
 func kill_sprite2d() -> void:
@@ -34,9 +41,5 @@ func kill_sprite2d() -> void:
 		$Sprite2D.queue_free()
 
 func die() -> void:
+	MyFatherIs.emit(father)
 	queue_free()
-
-#func _on_body_entered(body):
-	#if body.is_in_group("Enemies"):
-		#body.die()
-		#queue_free()

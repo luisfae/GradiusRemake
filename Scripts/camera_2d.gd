@@ -1,12 +1,19 @@
 extends Camera2D
 
 @export var speed: float = 20.0
+var stopped: bool = false
 
 
 func _ready() -> void:
-	pass
-
+	GlobalVars.StopCamera.connect(StopCamera)
+	GlobalVars.StartCamera.connect(StartCamera)
 
 func _process(delta: float) -> void:
-	position.x += speed * delta
-	pass
+	if !stopped:
+		position.x += speed * delta
+
+func StopCamera() -> void:
+	stopped = true
+
+func StartCamera() -> void:
+	stopped = false

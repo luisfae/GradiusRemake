@@ -1,0 +1,88 @@
+[gd_scene format=3 uid="uid://ba2ejufuletcu"]
+
+[ext_resource type="Script" uid="uid://cwht4eclev4b5" path="res://Scripts/enemy_dakker.gd" id="1_4a5a8"]
+[ext_resource type="Texture2D" uid="uid://c3b0g40er4j5s" path="res://Sprites/enemiesSpritesheet.png" id="2_3s2xa"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vcs2c"]
+atlas = ExtResource("2_3s2xa")
+region = Rect2(48, 80, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xh70s"]
+atlas = ExtResource("2_3s2xa")
+region = Rect2(64, 80, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lhv4u"]
+atlas = ExtResource("2_3s2xa")
+region = Rect2(80, 80, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4a5a8"]
+atlas = ExtResource("2_3s2xa")
+region = Rect2(176, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3s2xa"]
+atlas = ExtResource("2_3s2xa")
+region = Rect2(144, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hiuu7"]
+atlas = ExtResource("2_3s2xa")
+region = Rect2(160, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0cr4r"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vcs2c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xh70s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lhv4u")
+}],
+"loop": 0,
+"name": &"Die",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4a5a8")
+}],
+"loop": 1,
+"name": &"Still",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3s2xa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hiuu7")
+}],
+"loop": 1,
+"name": &"Walk",
+"speed": 6.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_eaqjm"]
+radius = 7.0
+
+[node name="Enemy_Dakker_Red" type="Area2D" unique_id=1729751823]
+script = ExtResource("1_4a5a8")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=693596167]
+sprite_frames = SubResource("SpriteFrames_0cr4r")
+animation = &"Walk"
+autoplay = "Still"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=708171310]
+shape = SubResource("CircleShape2D_eaqjm")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1831854193]
+
+[node name="Crosshair" type="Marker2D" parent="." unique_id=687017616]
+position = Vector2(11, -11)
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

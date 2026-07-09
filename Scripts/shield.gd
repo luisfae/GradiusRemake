@@ -8,10 +8,6 @@ func _ready() -> void:
 	sprite.visible = false
 	pass # Replace with function body.
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
 func setLow() -> void:
 	sprite.play("Low")
 	high = false

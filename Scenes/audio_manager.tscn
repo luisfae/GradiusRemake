@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://bvxbitsycjt6f"]
+
+[ext_resource type="Script" uid="uid://bgafdxqqhh473" path="res://Scripts/audio_manager.gd" id="1_4tj6f"]
+[ext_resource type="AudioStream" uid="uid://d3l24f1ex1s3u" path="res://Sounds/Music/01 space.mp3" id="2_hhwve"]
+[ext_resource type="AudioStream" uid="uid://cdo5k0ye6otps" path="res://Sounds/Music/02 cave.mp3" id="3_qixve"]
+[ext_resource type="AudioStream" uid="uid://rjqeehrl1qkb" path="res://Sounds/Music/03 vulcao.mp3" id="4_0hehx"]
+[ext_resource type="AudioStream" uid="uid://b51xbeuiwnqv6" path="res://Sounds/SFX/Fire1.wav" id="5_5nrbi"]
+[ext_resource type="AudioStream" uid="uid://p7w2g5pbct7y" path="res://Sounds/SFX/Laser.wav" id="6_pn88s"]
+[ext_resource type="AudioStream" uid="uid://dyyytab4nyhdc" path="res://Sounds/SFX/PlayerDeath.wav" id="7_fasow"]
+[ext_resource type="AudioStream" uid="uid://dn2u5nid7ahgn" path="res://Sounds/SFX/UpgradeApply.wav" id="8_1bal0"]
+[ext_resource type="AudioStream" uid="uid://d2qrl8lfwir0v" path="res://Sounds/SFX/UpgradeGet.wav" id="9_vhwx7"]
+[ext_resource type="AudioStream" uid="uid://ci4wxa3pbxdae" path="res://Sounds/SFX/Pause.wav" id="10_bkjj7"]
+[ext_resource type="AudioStream" uid="uid://ba258bwta3yl5" path="res://Sounds/SFX/EnemyDeath.wav" id="11_dv115"]
+
+[node name="AudioManager" type="Node" unique_id=1691148021 node_paths=PackedStringArray("streamPlayers")]
+script = ExtResource("1_4tj6f")
+bgm = Array[AudioStream]([ExtResource("2_hhwve"), ExtResource("3_qixve"), ExtResource("4_0hehx")])
+streamPlayers = [NodePath("SFX1"), NodePath("SFX2"), NodePath("SFX3"), NodePath("SFX4"), NodePath("SFX5"), NodePath("SFX6"), NodePath("SFX7"), NodePath("SFX8"), NodePath("SFX9")]
+sfx_playerFire = ExtResource("5_5nrbi")
+sfx_playerLaser = ExtResource("6_pn88s")
+sfx_playerDeath = ExtResource("7_fasow")
+sfx_upgradeApply = ExtResource("8_1bal0")
+sfx_upgradeGet = ExtResource("9_vhwx7")
+sfx_gamePause = ExtResource("10_bkjj7")
+sfx_enemyDeath = ExtResource("11_dv115")
+
+[node name="Music" type="AudioStreamPlayer" parent="." unique_id=1404618592]
+bus = &"Music"
+
+[node name="SFX1" type="AudioStreamPlayer" parent="." unique_id=1988933876]
+bus = &"SFX"
+
+[node name="SFX2" type="AudioStreamPlayer" parent="." unique_id=995454524]
+bus = &"SFX"
+
+[node name="SFX3" type="AudioStreamPlayer" parent="." unique_id=2131182360]
+bus = &"SFX"
+
+[node name="SFX4" type="AudioStreamPlayer" parent="." unique_id=511725501]
+bus = &"SFX"
+
+[node name="SFX5" type="AudioStreamPlayer" parent="." unique_id=337099131]
+bus = &"SFX"
+
+[node name="SFX6" type="AudioStreamPlayer" parent="." unique_id=2021705884]
+bus = &"SFX"
+
+[node name="SFX7" type="AudioStreamPlayer" parent="." unique_id=161023219]
+bus = &"SFX"
+
+[node name="SFX8" type="AudioStreamPlayer" parent="." unique_id=1117321397]
+bus = &"SFX"
+
+[node name="SFX9" type="AudioStreamPlayer" parent="." unique_id=1919334915]
+bus = &"SFX"

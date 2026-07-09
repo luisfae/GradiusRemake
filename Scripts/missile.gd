@@ -4,29 +4,43 @@ class_name Missile
 @export var speed: float = 125.0
 @export var speedX: float = 60.0
 @onready var sprite = $AnimatedSprite2D
-@export var type: String = "Down"
+var father: int = 0
+
+signal MyFatherIs(myFather: int)
+
+@onready var ray_down: RayCast2D = $RayCastDown
+@onready var ray_forward: RayCast2D = $RayCastForward
 
 func _ready() -> void:
-	sprite.play(type)
-	#var tween = get_tree().create_tween()
-	#tween.set_trans(Tween.TRANS_BOUNCE)
-	#tween.set_ease(Tween.EASE_OUT)
-	#tween.tween_property(self, "position", Vector2(2.0, 2.0), 2.0)
-	#tween.tween_property(self, "position", Vector2.ONE, 1.0)
+	sprite.play("Down")
 
 func _physics_process(delta: float) -> void:
-	# Move forward along the local X-axis
-	if type == "Straight":
-		position += transform.x * speed * delta
-	else:
-		position += transform.x * speedX * delta
-		position += transform.y * speed * delta
+	if ray_forward.is_colliding():
+		die()
+		return
 
-func set_straight() -> void:
-	type = "Straight"
+	if ray_down.is_colliding():
+		if sprite.animation != "Straight":
+			sprite.play("Straight")
+			
+		position.x += speed * delta
+		
+		var collision_point = ray_down.get_collision_point()
+		global_position.y = collision_point.y - 2 # hardcode pra ele ficar acima do chão sempre
+		
+	else:
+		if sprite.animation != "Down":
+			sprite.play("Down")
+			
+		position.x += speedX * delta
+		position.y += speed * delta
+
+func setFather(father_: int) -> void:
+	father = father_
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	print("saiu de tela")
+	MyFatherIs.emit(father)
 	queue_free()
 	
 func kill_sprite2d() -> void:
@@ -35,4 +49,9 @@ func kill_sprite2d() -> void:
 		$Sprite2D.queue_free()
 
 func die() -> void:
+	MyFatherIs.emit(father)
 	queue_free()
+
+func _on_area_entered(area: Area2D) -> void:
+	if area.is_in_group("Missile Detector"):
+		die()
