@@ -1,0 +1,96 @@
+[gd_scene format=3 uid="uid://c4qfpnc0o0y1r"]
+
+[ext_resource type="Texture2D" uid="uid://c3b0g40er4j5s" path="res://Sprites/enemiesSpritesheet.png" id="1_j56id"]
+[ext_resource type="Script" uid="uid://cwht4eclev4b5" path="res://Scripts/enemy_dakker.gd" id="1_vcs2c"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vcs2c"]
+atlas = ExtResource("1_j56id")
+region = Rect2(48, 80, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xh70s"]
+atlas = ExtResource("1_j56id")
+region = Rect2(64, 80, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lhv4u"]
+atlas = ExtResource("1_j56id")
+region = Rect2(80, 80, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e445k"]
+atlas = ExtResource("1_j56id")
+region = Rect2(128, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ddnqf"]
+atlas = ExtResource("1_j56id")
+region = Rect2(96, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j0a4w"]
+atlas = ExtResource("1_j56id")
+region = Rect2(112, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0cr4r"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vcs2c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xh70s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lhv4u")
+}],
+"loop": 0,
+"name": &"Die",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e445k")
+}],
+"loop": 0,
+"name": &"Still",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ddnqf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j0a4w")
+}],
+"loop": 1,
+"name": &"Walk",
+"speed": 6.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_eaqjm"]
+radius = 7.0
+
+[node name="Enemy_Dakker" type="Area2D" unique_id=1729751823]
+script = ExtResource("1_vcs2c")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=693596167]
+sprite_frames = SubResource("SpriteFrames_0cr4r")
+animation = &"Still"
+autoplay = "Still"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=708171310]
+shape = SubResource("CircleShape2D_eaqjm")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1831854193]
+
+[node name="Crosshair" type="Marker2D" parent="." unique_id=152556722]
+position = Vector2(11, -11)
+
+[node name="RayCastDown" type="RayCast2D" parent="." unique_id=1698782405]
+target_position = Vector2(0, 11)
+collision_mask = 2
+
+[node name="RayCastUp" type="RayCast2D" parent="." unique_id=1372757691]
+target_position = Vector2(0, -11)
+collision_mask = 2
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

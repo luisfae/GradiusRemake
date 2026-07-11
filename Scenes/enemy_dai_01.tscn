@@ -79,20 +79,29 @@ sprite_frames = SubResource("SpriteFrames_0cr4r")
 animation = &"Aim_Up"
 autoplay = "Aim_Straight"
 
-[node name="Crosshair_Up" type="Marker2D" parent="AnimatedSprite2D" unique_id=1662407286]
-position = Vector2(4, -10)
-
-[node name="Crosshair_Mid" type="Marker2D" parent="AnimatedSprite2D" unique_id=282851791]
-position = Vector2(8, -8)
-
-[node name="Crosshair_Down" type="Marker2D" parent="AnimatedSprite2D" unique_id=537770642]
-position = Vector2(10, -1)
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=868014282]
 position = Vector2(0, 2)
 shape = SubResource("CircleShape2D_arp66")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=48955838]
+
+[node name="Crosshair_Up" type="Marker2D" parent="." unique_id=1662407286]
+position = Vector2(4, -10)
+
+[node name="Crosshair_Mid" type="Marker2D" parent="." unique_id=282851791]
+position = Vector2(8, -8)
+
+[node name="Crosshair_Down" type="Marker2D" parent="." unique_id=537770642]
+position = Vector2(10, -1)
+
+[node name="RayCastDown" type="RayCast2D" parent="." unique_id=1411568973]
+target_position = Vector2(0, 11)
+collision_mask = 2
+
+[node name="RayCastUp" type="RayCast2D" parent="." unique_id=1788111345]
+exclude_parent = false
+target_position = Vector2(0, -11)
+collision_mask = 2
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

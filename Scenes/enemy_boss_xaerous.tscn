@@ -14,6 +14,7 @@ radius = 6.0827627
 
 [node name="Xaerous" type="Node2D" unique_id=263810032 groups=["Enemies"]]
 script = ExtResource("1_x0jkm")
+speed = null
 
 [node name="ShipSprite" type="Sprite2D" parent="." unique_id=837204009]
 texture = ExtResource("1_fxnoi")
@@ -30,7 +31,7 @@ region_rect = Rect2(32, 73, 16, 16)
 position = Vector2(-9, -10)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ShipTop" unique_id=2129394311]
-position = Vector2(12.5, -4.5)
+position = Vector2(13, -4.5)
 shape = SubResource("RectangleShape2D_x0jkm")
 debug_color = Color(0.8879683, 0.0002795434, 0.80197716, 0.41960785)
 
@@ -97,6 +98,12 @@ position = Vector2(6, 0)
 shape = SubResource("CircleShape2D_0cc02")
 debug_color = Color(0.8879683, 0.0002795434, 0.80197716, 0.41960785)
 
+[node name="Timer" type="Timer" parent="." unique_id=480577219]
+autostart = true
+
+[node name="RayCastLeft" type="RayCast2D" parent="." unique_id=94371062]
+target_position = Vector2(-200, 0)
+
 [connection signal="area_entered" from="ShipTop" to="." method="_on_ship_top_area_entered"]
 [connection signal="body_entered" from="ShipTop" to="." method="_on_ship_top_body_entered"]
 [connection signal="area_entered" from="ShipBottom" to="." method="_on_ship_bottom_area_entered"]
@@ -110,3 +117,4 @@ debug_color = Color(0.8879683, 0.0002795434, 0.80197716, 0.41960785)
 [connection signal="area_entered" from="Shield_4" to="." method="_on_shield_4_area_entered"]
 [connection signal="body_entered" from="Shield_4" to="." method="_on_shield_4_body_entered"]
 [connection signal="area_entered" from="Core2" to="." method="_on_core_2_area_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

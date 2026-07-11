@@ -1,0 +1,87 @@
+[gd_scene format=3 uid="uid://drb023nlg2im3"]
+
+[ext_resource type="Script" uid="uid://dgpkw4fhjqvqs" path="res://Scripts/enemy_rashe.gd" id="1_3p6a6"]
+[ext_resource type="Texture2D" uid="uid://c3b0g40er4j5s" path="res://Sprites/enemiesSpritesheet.png" id="2_d0pte"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_57dml"]
+atlas = ExtResource("2_d0pte")
+region = Rect2(48, 80, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v31xa"]
+atlas = ExtResource("2_d0pte")
+region = Rect2(64, 80, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q2pxw"]
+atlas = ExtResource("2_d0pte")
+region = Rect2(80, 80, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3p6a6"]
+atlas = ExtResource("2_d0pte")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d0pte"]
+atlas = ExtResource("2_d0pte")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xl2xo"]
+atlas = ExtResource("2_d0pte")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_37aek"]
+atlas = ExtResource("2_d0pte")
+region = Rect2(96, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0cr4r"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_57dml")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v31xa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q2pxw")
+}],
+"loop": 0,
+"name": &"Die",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3p6a6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d0pte")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xl2xo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_37aek")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 6.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_eaqjm"]
+radius = 7.0
+
+[node name="Enemy_Rashe" type="Area2D" unique_id=1729751823]
+script = ExtResource("1_3p6a6")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=693596167]
+sprite_frames = SubResource("SpriteFrames_0cr4r")
+animation = &"Die"
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=708171310]
+shape = SubResource("CircleShape2D_eaqjm")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1831854193]
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

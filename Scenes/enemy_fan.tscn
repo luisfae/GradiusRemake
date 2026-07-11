@@ -1,0 +1,80 @@
+[gd_scene format=3 uid="uid://crrw727mk6vnr"]
+
+[ext_resource type="Script" uid="uid://beyube4p7l5jx" path="res://Scripts/enemy_fan.gd" id="1_wk40e"]
+[ext_resource type="Texture2D" uid="uid://c3b0g40er4j5s" path="res://Sprites/enemiesSpritesheet.png" id="1_ximaa"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ximaa"]
+radius = 6.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wk40e"]
+atlas = ExtResource("1_ximaa")
+region = Rect2(0, 80, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x0a61"]
+atlas = ExtResource("1_ximaa")
+region = Rect2(16, 80, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_176k7"]
+atlas = ExtResource("1_ximaa")
+region = Rect2(32, 80, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vsvex"]
+atlas = ExtResource("1_ximaa")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ad5vc"]
+atlas = ExtResource("1_ximaa")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u6uyf"]
+atlas = ExtResource("1_ximaa")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_15ls0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wk40e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x0a61")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_176k7")
+}],
+"loop": 0,
+"name": &"Die",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vsvex")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ad5vc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u6uyf")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 6.0
+}]
+
+[node name="Enemy_Fan" type="Area2D" unique_id=1061170695]
+script = ExtResource("1_wk40e")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1149658943]
+shape = SubResource("CircleShape2D_ximaa")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=292871876]
+sprite_frames = SubResource("SpriteFrames_15ls0")
+animation = &"Die"
+autoplay = "default"
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=394137519]
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

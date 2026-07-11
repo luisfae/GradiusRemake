@@ -2,22 +2,21 @@ extends Node2D
 
 var path_history: Array[Vector2] = []
 var speed: float = 50.0 
-@export var follow_distance: float = 20.0
+
+@export var frame_delay: int = 15 
 
 var target_node: Node2D
-var player_ship: Player
+@onready var player: CharacterBody2D = get_tree().get_first_node_in_group("Player") as CharacterBody2D
 
 func _ready() -> void:
-	var camera_node = get_parent()
-	if camera_node and camera_node.has_node("AnimatedShip"):
-		player_ship = camera_node.get_node("AnimatedShip") as Player
+	pass
 
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	if not target_node or not is_instance_valid(target_node):
 		return
 
-	if player_ship and is_instance_valid(player_ship):
-		speed = player_ship.speed
+	if player:
+		speed = player.speed
 	else:
 		speed = 250.0
 
@@ -25,23 +24,14 @@ func _process(delta: float) -> void:
 	if target_node.has_node("AnimatedSprite2D"):
 		var anim_sprite = target_node.get_node("AnimatedSprite2D") as AnimatedSprite2D
 		if anim_sprite:
-			#target_global_center += anim_sprite.offset
 			target_global_center += anim_sprite.position
 			if anim_sprite.animation.get_basename() == "Standard" or anim_sprite.animation.get_basename() == "Up" or anim_sprite.animation.get_basename() == "Down":
-				target_global_center.x -= 3 #offset hard coded pra ficar identico ao jogo
-
+				target_global_center.x -= 3 
 	var target_local_pos: Vector2 = get_parent().to_local(target_global_center)
-	if path_history.is_empty() or path_history.back().distance_to(target_local_pos) > 1.0:
+	var is_pressing_input = Input.get_axis("left", "right") != 0 or Input.get_axis("up", "down") != 0
+	var target_moved = path_history.is_empty() or path_history.back().distance_to(target_local_pos) > 0.1
+	if target_moved or is_pressing_input:
 		path_history.append(target_local_pos)
-
-	var total_path_length: float = 0.0
-	var current_pos = position
-	for point in path_history:
-		total_path_length += current_pos.distance_to(point)
-		current_pos = point
-
-	if total_path_length > follow_distance and not path_history.is_empty():
-		target_local_pos = path_history[0]
-		position = position.move_toward(target_local_pos, speed * delta)
-		if position.distance_to(target_local_pos) < 3.0:
-			path_history.remove_at(0)
+	if path_history.size() > frame_delay:
+		var oldest_target = path_history.pop_front()
+		position = position.move_toward(oldest_target, speed * delta)
