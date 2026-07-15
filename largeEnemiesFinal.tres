@@ -2,6 +2,30 @@
 
 [ext_resource type="Texture2D" uid="uid://c7xqmmk8esnsy" path="res://Sprites/largeEnemiesSpritesheet.png" id="1_5i487"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_5i487"]
+atlas = ExtResource("1_5i487")
+region = Rect2(0, 112, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cdkwj"]
+atlas = ExtResource("1_5i487")
+region = Rect2(48, 112, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tbre4"]
+atlas = ExtResource("1_5i487")
+region = Rect2(64, 112, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ji2ju"]
+atlas = ExtResource("1_5i487")
+region = Rect2(88, 112, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8arfy"]
+atlas = ExtResource("1_5i487")
+region = Rect2(120, 112, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x868r"]
+atlas = ExtResource("1_5i487")
+region = Rect2(152, 112, 24, 24)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_40kmj"]
 atlas = ExtResource("1_5i487")
 region = Rect2(0, 24, 48, 48)
@@ -12,6 +36,29 @@ region = Rect2(48, 24, 48, 48)
 
 [resource]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5i487")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cdkwj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tbre4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ji2ju")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8arfy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x868r")
+}],
+"loop": 0,
+"name": &"death",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_40kmj")

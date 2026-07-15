@@ -1,19 +1,19 @@
 [gd_scene format=3 uid="uid://cp26bm2mem1ri"]
 
-[ext_resource type="Script" uid="uid://bscvktttriiey" path="res://enemy_boss_xaerous_shot.gd" id="1_0fykm"]
-[ext_resource type="Texture2D" uid="uid://c7xqmmk8esnsy" path="res://Sprites/largeEnemiesSpritesheet.png" id="2_pmoex"]
+[ext_resource type="Script" uid="uid://bscvktttriiey" path="res://enemy_boss_xaerous_shot.gd" id="1_nmq71"]
+[ext_resource type="Texture2D" uid="uid://c7xqmmk8esnsy" path="res://Sprites/largeEnemiesSpritesheet.png" id="2_ts4rk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h3vyf"]
 size = Vector2(16, 4)
 
 [node name="EnemyBossXaerousShot" type="Node2D" unique_id=697254178]
-script = ExtResource("1_0fykm")
+script = ExtResource("1_nmq71")
 
 [node name="Shot1" type="Area2D" parent="." unique_id=59694276]
 position = Vector2(8, -18)
 
 [node name="Sprite2D" type="Sprite2D" parent="Shot1" unique_id=1147514645]
-texture = ExtResource("2_pmoex")
+texture = ExtResource("2_ts4rk")
 region_enabled = true
 region_rect = Rect2(16, 72, 16, 4)
 
@@ -24,7 +24,7 @@ shape = SubResource("RectangleShape2D_h3vyf")
 position = Vector2(-8, -7)
 
 [node name="Sprite2D" type="Sprite2D" parent="Shot2" unique_id=1119032888]
-texture = ExtResource("2_pmoex")
+texture = ExtResource("2_ts4rk")
 region_enabled = true
 region_rect = Rect2(16, 72, 16, 4)
 
@@ -35,7 +35,7 @@ shape = SubResource("RectangleShape2D_h3vyf")
 position = Vector2(-8, 7)
 
 [node name="Sprite2D" type="Sprite2D" parent="Shot3" unique_id=862659972]
-texture = ExtResource("2_pmoex")
+texture = ExtResource("2_ts4rk")
 region_enabled = true
 region_rect = Rect2(16, 72, 16, 4)
 
@@ -46,14 +46,18 @@ shape = SubResource("RectangleShape2D_h3vyf")
 position = Vector2(8, 18)
 
 [node name="Sprite2D" type="Sprite2D" parent="Shot4" unique_id=667608099]
-texture = ExtResource("2_pmoex")
+texture = ExtResource("2_ts4rk")
 region_enabled = true
 region_rect = Rect2(16, 72, 16, 4)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Shot4" unique_id=1874130972]
 shape = SubResource("RectangleShape2D_h3vyf")
 
+[node name="Timer" type="Timer" parent="." unique_id=978693982]
+autostart = true
+
 [connection signal="body_entered" from="Shot1" to="." method="_on_shot_1_body_entered"]
 [connection signal="body_entered" from="Shot2" to="." method="_on_shot_2_body_entered"]
 [connection signal="body_entered" from="Shot3" to="." method="_on_shot_3_body_entered"]
 [connection signal="body_entered" from="Shot4" to="." method="_on_shot_4_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

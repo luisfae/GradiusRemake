@@ -2,7 +2,7 @@ extends CharacterBody2D
 class_name Player
 
 @export var health: int = 1
-@export var speed := 90.0
+@export var speed := 80.0
 @onready var sprite = $AnimatedSprite2D
 @onready var bullet = preload("res://Scenes/bullet.tscn")
 @onready var missile = preload("res://Scenes/missile.tscn")
@@ -174,6 +174,7 @@ func shootWeapons() -> void:
 				m_opt.MyFatherIs.connect(fatherOfMyMissile)
 
 func takeHit():
+	return
 	health -= 1
 	if health < 1:
 		die()
