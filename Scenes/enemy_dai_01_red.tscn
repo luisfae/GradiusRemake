@@ -94,12 +94,13 @@ position = Vector2(8, -8)
 [node name="Crosshair_Down" type="Marker2D" parent="." unique_id=537770642]
 position = Vector2(10, -1)
 
-[node name="RayCastDown" type="RayCast2D" parent="." unique_id=659270170]
-target_position = Vector2(0, 11)
+[node name="RayCastDown" type="RayCast2D" parent="." unique_id=758479704]
+target_position = Vector2(0, 20)
 collision_mask = 2
 
-[node name="RayCastUp" type="RayCast2D" parent="." unique_id=141867036]
-target_position = Vector2(0, -11)
+[node name="RayCastUp" type="RayCast2D" parent="." unique_id=275476569]
+exclude_parent = false
+target_position = Vector2(0, -20)
 collision_mask = 2
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]

@@ -58,7 +58,6 @@ func _on_area_entered(area: Area2D) -> void:
 	if area.is_in_group("Player Projectiles"):
 		area.die()
 		takeHit()
-		givePoints()
 
 func setDropUpgrade() -> void:
 	dropUpgrade = true
@@ -74,4 +73,4 @@ func takeHit() -> void:
 	health -= 1
 	if health < 1:
 		die()
-	
+		givePoints()

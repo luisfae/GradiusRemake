@@ -34,6 +34,8 @@ animations = [{
 size = Vector2(5.000001, 5.9973373)
 
 [node name="Bullet" type="Area2D" unique_id=1391774488 groups=["Player Projectiles"]]
+collision_layer = 3
+collision_mask = 3
 script = ExtResource("1_v8qja")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=993501477]
@@ -48,4 +50,6 @@ shape = SubResource("RectangleShape2D_2b2rl")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=241377415]
 
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

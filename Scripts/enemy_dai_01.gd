@@ -26,14 +26,22 @@ func _ready() -> void:
 	if ray_down.is_colliding():
 		print("detectou chão")
 		sprite.flip_v = false
+		# cola no chao
+		var sprite_altura = sprite.get_sprite_frames().get_frame_texture(sprite.animation, sprite.frame).get_size().y
+		var metade_altura = sprite_altura / 2.0
+		global_position.y = ray_down.get_collision_point().y - (metade_altura) - 1 # hard coded 1 pra n ficar colado
 	elif ray_up.is_colliding():
 		print("detectou teto")
 		sprite.flip_v = true
 		aimUp.position.y *= -1
 		aimMid.position.y *= -1
 		aimDown.position.y *= -1
+		# cola no chao
+		var sprite_altura = sprite.get_sprite_frames().get_frame_texture(sprite.animation, sprite.frame).get_size().y
+		var metade_altura = sprite_altura / 2.0
+		global_position.y = ray_up.get_collision_point().y - (-metade_altura) + 1 # msm hard coded 1
 	else:
-		print("nao detectou nada")
+		pass
 	
 	shoot_timer = Timer.new()
 	shoot_timer.wait_time = fire_rate
@@ -112,7 +120,6 @@ func _on_area_entered(area: Area2D) -> void:
 	if area.is_in_group("Player Projectiles"):
 		area.die()
 		takeHit()
-		givePoints()
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player"):
@@ -130,4 +137,5 @@ func takeHit() -> void:
 	health -= 1
 	if health < 1:
 		die()
+		givePoints()
 	

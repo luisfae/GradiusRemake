@@ -71,7 +71,7 @@ script = ExtResource("1_vcs2c")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=693596167]
 sprite_frames = SubResource("SpriteFrames_0cr4r")
-animation = &"Still"
+animation = &"Walk"
 autoplay = "Still"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=708171310]
@@ -83,11 +83,21 @@ shape = SubResource("CircleShape2D_eaqjm")
 position = Vector2(11, -11)
 
 [node name="RayCastDown" type="RayCast2D" parent="." unique_id=1698782405]
-target_position = Vector2(0, 11)
+target_position = Vector2(0, 20)
 collision_mask = 2
 
 [node name="RayCastUp" type="RayCast2D" parent="." unique_id=1372757691]
-target_position = Vector2(0, -11)
+target_position = Vector2(0, -20)
+collision_mask = 2
+
+[node name="RayCastRight" type="RayCast2D" parent="." unique_id=1623518515]
+position = Vector2(0, 7)
+target_position = Vector2(1, 0)
+collision_mask = 2
+
+[node name="RayCastLeft" type="RayCast2D" parent="." unique_id=1162566440]
+position = Vector2(0, 7)
+target_position = Vector2(-1, 0)
 collision_mask = 2
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
