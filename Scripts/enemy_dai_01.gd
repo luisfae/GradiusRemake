@@ -29,7 +29,7 @@ func _ready() -> void:
 		# cola no chao
 		var sprite_altura = sprite.get_sprite_frames().get_frame_texture(sprite.animation, sprite.frame).get_size().y
 		var metade_altura = sprite_altura / 2.0
-		global_position.y = ray_down.get_collision_point().y - (metade_altura) - 1 # hard coded 1 pra n ficar colado
+		global_position.y = ray_down.get_collision_point().y - (metade_altura) - 2 # hard coded 1 pra n ficar colado
 	elif ray_up.is_colliding():
 		print("detectou teto")
 		sprite.flip_v = true
@@ -39,7 +39,7 @@ func _ready() -> void:
 		# cola no chao
 		var sprite_altura = sprite.get_sprite_frames().get_frame_texture(sprite.animation, sprite.frame).get_size().y
 		var metade_altura = sprite_altura / 2.0
-		global_position.y = ray_up.get_collision_point().y - (-metade_altura) + 1 # msm hard coded 1
+		global_position.y = ray_up.get_collision_point().y - (-metade_altura) + 2 # msm hard coded 1
 	else:
 		pass
 	

@@ -41,6 +41,8 @@ Player=""
 "Front Detector"=""
 "Missile Detector"=""
 Cenario=""
+"Back Detector"=""
+"Checkpoint Detector"=""
 
 [input]
 

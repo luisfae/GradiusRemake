@@ -35,3 +35,6 @@ func _physics_process(delta: float) -> void:
 	if path_history.size() > frame_delay:
 		var oldest_target = path_history.pop_front()
 		position = position.move_toward(oldest_target, speed * delta)
+
+func die() -> void:
+	queue_free()

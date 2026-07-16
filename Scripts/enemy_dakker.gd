@@ -6,7 +6,7 @@ enum State { STATIONED, MOVING, EXITING }
 var current_state: State = State.MOVING # Nasce a mover-se para entrar no ecrã
 
 # --- CONFIGURAÇÕES AJUSTÁVEIS NO INSPECTOR ---
-@export var speed: float = 60.0
+@export var speed: float = 70.0
 @export var health: int = 1
 @export var points: int = 100
 
@@ -24,8 +24,8 @@ var already_shot_this_cycle: bool = false
 # Constantes importantes pra definir o tempo e a distancia que o dakker senta e se move
 const stationed_duration_min: float = 0.8
 const stationed_duration_max: float = 2.5
-const offset_aleatorio_min: float = 40.0
-const offset_aleatorio_max: float = 140.0
+const offset_aleatorio_min: float = 30.0
+const offset_aleatorio_max: float = 150.0
 
 var dropUpgrade: bool = false
 var death: bool = false
@@ -61,7 +61,7 @@ func _ready() -> void:
 		invert_y = 1.0
 		var sprite_altura = sprite.get_sprite_frames().get_frame_texture(sprite.animation, sprite.frame).get_size().y
 		var metade_altura = sprite_altura / 2.0
-		global_position.y = ray_down.get_collision_point().y - (metade_altura) - 1
+		global_position.y = ray_down.get_collision_point().y - (metade_altura) - 3
 	elif ray_up.is_colliding():
 		sprite.flip_v = true
 		crosshair.position.y *= -1
@@ -71,7 +71,7 @@ func _ready() -> void:
 		invert_y = -1.0
 		var sprite_altura = sprite.get_sprite_frames().get_frame_texture(sprite.animation, sprite.frame).get_size().y
 		var metade_altura = sprite_altura / 2.0
-		global_position.y = ray_up.get_collision_point().y - (-metade_altura) + 1
+		global_position.y = ray_up.get_collision_point().y - (-metade_altura) + 3
 	else:
 		invert_y = 1.0
 		ray_floor = ray_down
@@ -109,6 +109,8 @@ func _physics_process(delta: float) -> void:
 				direction_x = -1.0
 			elif global_position.x < target_pos_x - 4.0:
 				direction_x = 1.0
+				if global_position.x >= camera_right_edge - 15.0:
+					entrar_estado_stationed()
 			else:
 				# Chegou à meta de pixels! Transiciona para STATIONED
 				entrar_estado_stationed()
@@ -140,10 +142,12 @@ func _physics_process(delta: float) -> void:
 
 	if olhar_para_direita:
 		sprite.flip_h = false
-		if crosshair.position.x < 0: crosshair.position.x *= -1
+		if crosshair.position.x < 0:
+			crosshair.position.x *= -1
 	else:
 		sprite.flip_h = true
-		if crosshair.position.x > 0: crosshair.position.x *= -1
+		if crosshair.position.x > 0:
+			crosshair.position.x *= -1
 		
 
 	# --- PASSO 3: O TEU MOTOR FÍSICO DE TERRENO OTIMIZADO ---
@@ -173,7 +177,7 @@ func _physics_process(delta: float) -> void:
 	if ray_floor and ray_floor.is_colliding() and !leteralCollision:
 		var sprite_altura = sprite.get_sprite_frames().get_frame_texture(sprite.animation, sprite.frame).get_size().y
 		var metade_altura = sprite_altura / 2.0
-		global_position.y = ray_floor.get_collision_point().y - (metade_altura * invert_y)
+		global_position.y = ray_floor.get_collision_point().y - (metade_altura * invert_y) - (3 * invert_y)
 
 	# --- LIMPEZA DE TELA (1/4 FORA PELA ESQUERDA) ---
 	var margem_tolerancia = screen_width / 4.0
@@ -186,13 +190,15 @@ func calcular_proximo_alvo_moving() -> void:
 	# Recebe a posição X do player + um valor aleatório à frente (entre 40 e 110 pixels)
 	var offset_aleatorio = randf_range(offset_aleatorio_min, offset_aleatorio_max)
 	target_pos_x = player.global_position.x + offset_aleatorio
+	if (player.global_position.x > global_position.x):
+		target_pos_x += player.global_position.x - global_position.x
 	
 	# REGRAS DE LIMITE DA TELA DIREITA:
 	# Se o alvo calculado empurrar o robô para fora da tela à direita, 
 	# travamos a meta dele ligeiramente antes da borda visível da câmara
-	var camera_right_edge = camera.global_position.x + (screen_width / 2.0)
-	if target_pos_x >= camera_right_edge - 25.0:
-		target_pos_x = camera_right_edge - 25.0
+	#var camera_right_edge = camera.global_position.x + (screen_width / 2.0)
+	#if target_pos_x >= camera_right_edge - 25.0:
+	#	target_pos_x = camera_right_edge - 25.0
 
 func entrar_estado_stationed() -> void:
 	current_state = State.STATIONED

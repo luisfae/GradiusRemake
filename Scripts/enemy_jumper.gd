@@ -31,7 +31,7 @@ func _ready() -> void:
 	if ray_floor.is_colliding():
 		var sprite_altura = sprite.get_sprite_frames().get_frame_texture(sprite.animation, sprite.frame).get_size().y
 		var metade_altura = sprite_altura / 2.0
-		global_position.y = ray_floor.get_collision_point().y - (metade_altura) - 1 # hard coded 1 pra n ficar colado
+		global_position.y = ray_floor.get_collision_point().y - (metade_altura) - 2 # hard coded 1 pra n ficar colado
 	floor_y = global_position.y
 
 func _physics_process(delta: float) -> void:

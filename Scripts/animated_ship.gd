@@ -1,6 +1,8 @@
 extends CharacterBody2D
 class_name Player
 
+const baseSpeed: float = 80.0
+
 @export var health: int = 1
 @export var speed := 80.0
 @onready var sprite = $AnimatedSprite2D
@@ -191,6 +193,7 @@ func die():
 	alive = false
 	print("e morreu")
 	sprite.play("Death")
+	GlobalVars.playerDied()
 	
 func animate():
 	if !alive:
@@ -252,14 +255,14 @@ func UpgradeOption() -> void:
 	print("Nova option criada: ", new_option.name)
 	
 func UpgradeShield() -> void:
-	if health < 6:
+	if health < 2:
 		shield.activate()
 		health = 6
 		AudioManager.play_sfx_upgradeApply()
 
-func _on_animated_sprite_2d_animation_finished() -> void:
-	if sprite.animation == "Death":
-		queue_free()
+#func _on_animated_sprite_2d_animation_finished() -> void:
+	#if sprite.animation == "Death":
+		#queue_free()
 
 func KonamiCode() -> void:
 	UpgradeSpeed() # nao sei quantos speed upgrades o cheat dá, lembro de algum video dizer
@@ -276,6 +279,33 @@ func fatherOfMyProjectiles(father_: int) -> void:
 
 func isShieldUp() -> bool:
 	if health > 1:
+		return true
+	else:
+		return false
+
+func resetToFactory() -> void:
+	alive = true
+	health = 1
+	shield.deactivate()
+	speed = baseSpeed
+	double_fire = false
+	laser_fire = false
+	missile_fire = false
+	sprite.play("Standard")
+	
+	var active_followers: Array[Node2D] = []
+	var camera_node = get_parent()
+	if camera_node:
+		for child in camera_node.get_children():
+			if child.name.begins_with("Option") and is_instance_valid(child) and child.is_inside_tree():
+				active_followers.append(child as Node2D)
+	for i in range(active_followers.size()):
+		var follower = active_followers[i]
+		follower.die()
+		print("tentou matar seus filhos")
+
+func hadUpgrades() -> bool:
+	if double_fire or laser_fire or missile_fire or speed > 80.0 or health > 1:
 		return true
 	else:
 		return false

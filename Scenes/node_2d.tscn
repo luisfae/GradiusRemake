@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://gvs313y44yp6" path="res://Scenes/hud.tscn" id="6_tx0tn"]
 [ext_resource type="PackedScene" uid="uid://cochvfrrugxrn" path="res://Scenes/enemy_spawner.tscn" id="7_wjtap"]
 [ext_resource type="PackedScene" uid="uid://chatwc2rtuctp" path="res://Scenes/volcano_spawner.tscn" id="8_v7gqg"]
+[ext_resource type="PackedScene" uid="uid://cafsln1jijuox" path="res://Scenes/checkpoint.tscn" id="9_chwn1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0cr4r"]
 size = Vector2(0.5, 224)
@@ -15,12 +16,14 @@ size = Vector2(0.5, 224)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_arp66"]
 size = Vector2(40.370613, 3.184906)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gdukd"]
+size = Vector2(1, 1)
+
 [node name="main" type="Node2D" unique_id=1970737621]
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=187331477]
-position = Vector2(3500, 113)
+position = Vector2(1440, 112)
 script = ExtResource("1_u7krg")
-stopped = true
 
 [node name="AnimatedShip" parent="Camera2D" unique_id=808763228 instance=ExtResource("2_tx0tn")]
 position = Vector2(-45, -10)
@@ -31,12 +34,23 @@ position = Vector2(117, 0)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/DetectorSpawns" unique_id=1182450540]
 shape = SubResource("RectangleShape2D_0cr4r")
 
+[node name="DetectorSpawnsBack" type="Area2D" parent="Camera2D" unique_id=471400477 groups=["Back Detector"]]
+position = Vector2(-109, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/DetectorSpawnsBack" unique_id=1424983446]
+shape = SubResource("RectangleShape2D_0cr4r")
+
 [node name="DetectorMissiles" type="Area2D" parent="Camera2D" unique_id=1360648041 groups=["Missile Detector"]]
 position = Vector2(0, 94)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/DetectorMissiles" unique_id=1980019577]
 scale = Vector2(6.3412457, -0.31397867)
 shape = SubResource("RectangleShape2D_arp66")
+
+[node name="DetectorCheckpoints" type="Area2D" parent="Camera2D" unique_id=62706753 groups=["Checkpoint Detector"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/DetectorCheckpoints" unique_id=1857464562]
+shape = SubResource("RectangleShape2D_gdukd")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1779675352 groups=["Cenario"]]
 z_index = 1
@@ -60,16 +74,32 @@ texture = ExtResource("5_wjtap")
 
 [node name="HUD" parent="." unique_id=1733061160 instance=ExtResource("6_tx0tn")]
 
-[node name="Enemy_Spawner" parent="." unique_id=1465881767 instance=ExtResource("7_wjtap")]
+[node name="Enemy_Spawner" parent="." unique_id=1332165567 instance=ExtResource("7_wjtap")]
 position = Vector2(1561, 173)
 enemy_type = 9
+spawn_pos = 1
 
 [node name="Enemy_Spawner2" parent="." unique_id=117380300 instance=ExtResource("7_wjtap")]
 position = Vector2(1548, 24)
 enemy_type = 10
+spawn_pos = 1
 
 [node name="VolcanoSpawner" parent="." unique_id=1805389839 instance=ExtResource("8_v7gqg")]
 position = Vector2(3424, 154)
 
 [node name="VolcanoSpawner2" parent="." unique_id=614232083 instance=ExtResource("8_v7gqg")]
 position = Vector2(3552, 154)
+
+[node name="Enemy_Spawner3" parent="." unique_id=1465881767 instance=ExtResource("7_wjtap")]
+position = Vector2(1429, 173)
+enemy_type = 11
+
+[node name="Checkpoint" parent="." unique_id=1916949476 instance=ExtResource("9_chwn1")]
+position = Vector2(1440, 112)
+
+[node name="Checkpoint2" parent="." unique_id=1669501667 instance=ExtResource("9_chwn1")]
+position = Vector2(1995, 112)
+
+[node name="Checkpoint3" parent="." unique_id=674945358 instance=ExtResource("9_chwn1")]
+position = Vector2(3488, 112)
+checkpoint_type = 1

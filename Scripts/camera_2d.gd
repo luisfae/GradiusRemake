@@ -17,3 +17,6 @@ func StopCamera() -> void:
 
 func StartCamera() -> void:
 	stopped = false
+
+func setPosition(position_ : Vector2) -> void:
+	global_position = position_
