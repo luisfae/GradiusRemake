@@ -20,7 +20,7 @@ var shield: int = 500
 @onready var shield4 = $Shield_4
 @onready var ray_left: RayCast2D = $RayCastLeft
 @onready var deathAnimation: AnimatedSprite2D = $DeathAnimation
-@onready var boss_shot = preload("res://Scripts/enemy_boss_xaerous_shot.tscn")
+@onready var boss_shot = preload("res://Scenes/enemy_boss_xaerous_shot.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
