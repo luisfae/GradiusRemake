@@ -1,19 +1,19 @@
 [gd_scene format=3 uid="uid://cp26bm2mem1ri"]
 
-[ext_resource type="Script" uid="uid://bscvktttriiey" path="res://enemy_boss_xaerous_shot.gd" id="1_nmq71"]
-[ext_resource type="Texture2D" uid="uid://c7xqmmk8esnsy" path="res://Sprites/largeEnemiesSpritesheet.png" id="2_ts4rk"]
+[ext_resource type="Script" uid="uid://bscvktttriiey" path="res://Scripts/enemy_boss_xaerous_shot.gd" id="1_0fykm"]
+[ext_resource type="Texture2D" uid="uid://c7xqmmk8esnsy" path="res://Sprites/largeEnemiesSpritesheet.png" id="2_pmoex"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h3vyf"]
 size = Vector2(16, 4)
 
 [node name="EnemyBossXaerousShot" type="Node2D" unique_id=697254178]
-script = ExtResource("1_nmq71")
+script = ExtResource("1_0fykm")
 
 [node name="Shot1" type="Area2D" parent="." unique_id=59694276]
 position = Vector2(8, -18)
 
 [node name="Sprite2D" type="Sprite2D" parent="Shot1" unique_id=1147514645]
-texture = ExtResource("2_ts4rk")
+texture = ExtResource("2_pmoex")
 region_enabled = true
 region_rect = Rect2(16, 72, 16, 4)
 
@@ -24,7 +24,7 @@ shape = SubResource("RectangleShape2D_h3vyf")
 position = Vector2(-8, -7)
 
 [node name="Sprite2D" type="Sprite2D" parent="Shot2" unique_id=1119032888]
-texture = ExtResource("2_ts4rk")
+texture = ExtResource("2_pmoex")
 region_enabled = true
 region_rect = Rect2(16, 72, 16, 4)
 
@@ -35,7 +35,7 @@ shape = SubResource("RectangleShape2D_h3vyf")
 position = Vector2(-8, 7)
 
 [node name="Sprite2D" type="Sprite2D" parent="Shot3" unique_id=862659972]
-texture = ExtResource("2_ts4rk")
+texture = ExtResource("2_pmoex")
 region_enabled = true
 region_rect = Rect2(16, 72, 16, 4)
 
@@ -46,7 +46,7 @@ shape = SubResource("RectangleShape2D_h3vyf")
 position = Vector2(8, 18)
 
 [node name="Sprite2D" type="Sprite2D" parent="Shot4" unique_id=667608099]
-texture = ExtResource("2_ts4rk")
+texture = ExtResource("2_pmoex")
 region_enabled = true
 region_rect = Rect2(16, 72, 16, 4)
 
