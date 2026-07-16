@@ -12,11 +12,6 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
-
-func _physics_process(delta: float) -> void:
-	if Input.is_action_just_pressed("fire"):
-		print("FOI")
-		queue_free()
 	
 func spawnRock():
 	var b = rock.instantiate() as Projectile_Rock_Volcano

@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://jgib17dnxvm5"
-path="res://.godot/imported/Sound Effect (8).wav-ebb68759beb88635ca7ed4cc2b2c76fd.sample"
+path="res://.godot/imported/VolcanoRockDestroy.wav-7cb3ec5c4a1456c91f8635fd0cc2098a.sample"
 
 [deps]
 
-source_file="res://Sounds/SFX/Misc/Sound Effect (8).wav"
-dest_files=["res://.godot/imported/Sound Effect (8).wav-ebb68759beb88635ca7ed4cc2b2c76fd.sample"]
+source_file="res://Sounds/SFX/VolcanoRockDestroy.wav"
+dest_files=["res://.godot/imported/VolcanoRockDestroy.wav-7cb3ec5c4a1456c91f8635fd0cc2098a.sample"]
 
 [params]
 

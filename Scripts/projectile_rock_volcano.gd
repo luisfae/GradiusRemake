@@ -54,16 +54,16 @@ func die():
 	is_flying = false
 	sprite.play("death")
 	sprite.animation_finished.connect(queue_free, CONNECT_ONE_SHOT)
-	givePoints()
 
 func givePoints():
 	GlobalVars.receiveScore(points)
 	
 func _on_area_entered(area: Area2D) -> void:
-	if area.is_in_group("Missile Detector"):
-		die()
 	if area.is_in_group("Player Projectiles"):
+		area.die()
 		die()
+		givePoints()
+		AudioManager.play_sfx_volcanoRockDestroy()
 
 
 func _on_body_entered(body: Node2D) -> void:

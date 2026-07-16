@@ -68,7 +68,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="ProjectileRockVolcano" type="Area2D" unique_id=200402007]
+[node name="ProjectileRockVolcano" type="Area2D" unique_id=200402007 groups=["Enemies"]]
 z_index = -5
 script = ExtResource("1_d8ght")
 
