@@ -1,7 +1,7 @@
 extends Camera2D
 
 @export var speed: float = 20.0
-var stopped: bool = false
+@export var stopped: bool = false
 
 
 func _ready() -> void:

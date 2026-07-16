@@ -14,6 +14,7 @@ signal StopCamera
 signal StartCamera
 signal KonamiCode
 signal UpdateScore(score: int)
+signal VolcanoEnd
 
 @onready var UpgradeObject = preload("res://Scenes/upgrade.tscn")
 
@@ -140,3 +141,6 @@ func canKonamiAgain() -> void:
 func receiveScore(score_: int) -> void:
 	score += score_
 	UpdateScore.emit(score)
+	
+func VolcanoEndSpawning():
+	VolcanoEnd.emit()
