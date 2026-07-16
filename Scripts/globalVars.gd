@@ -20,8 +20,6 @@ signal KonamiCode
 signal UpdateScore(score: int)
 signal VolcanoEnd
 
-@onready var UpgradeObject = preload("res://Scenes/upgrade.tscn")
-
 var checkpointPositions: Array[Vector2]
 var actualCheckpoint: int = 0
 var lives: int = 3
