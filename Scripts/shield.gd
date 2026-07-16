@@ -19,9 +19,7 @@ func setHigh() -> void:
 func activate() -> void:
 	setHigh()
 	sprite.visible = true
-	pass
 
 func deactivate() -> void:
 	sprite.visible = false
 	GlobalVars.deactivateShield()
-	pass

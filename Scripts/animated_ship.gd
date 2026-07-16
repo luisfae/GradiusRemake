@@ -1,8 +1,10 @@
 extends CharacterBody2D
 class_name Player
 
+const baseSpeed: float = 80.0
+
 @export var health: int = 1
-@export var speed := 50.0
+@export var speed := 80.0
 @onready var sprite = $AnimatedSprite2D
 @onready var bullet = preload("res://Scenes/bullet.tscn")
 @onready var missile = preload("res://Scenes/missile.tscn")
@@ -11,6 +13,8 @@ class_name Player
 @onready var shield = self.get_node("Shield")
 @onready var alive: bool
 @onready var shootTimer: Timer = $ShootTimer
+@onready var ray_down: RayCast2D = $RayCastDown
+@onready var ray_right: RayCast2D = $RayCastRight
 @export var double_fire = false
 @export var laser_fire = false
 @export var missile_fire = false
@@ -61,6 +65,7 @@ func _physics_process(_delta: float) -> void:
 		return
 	get_input()
 	animate()
+	checkColisions()
 	move_and_slide()
 	# codigo teste para limitar a nave de sair da tela
 	var half_screen := get_viewport_rect().size / 2.0
@@ -68,6 +73,12 @@ func _physics_process(_delta: float) -> void:
 	position.x = clampf(position.x, -half_screen.x + padding.x, half_screen.x - padding.x)
 	position.y = clampf(position.y, -102 + padding.y, 98 - padding.y)
 	#print(half_screen)
+
+func checkColisions() -> void:
+	ray_right.force_raycast_update()
+	ray_down.force_raycast_update()
+	if ray_down.is_colliding() or ray_right.is_colliding():
+		die()
 
 func shootWeapons() -> void:
 	print("shoot")
@@ -165,6 +176,7 @@ func shootWeapons() -> void:
 				m_opt.MyFatherIs.connect(fatherOfMyMissile)
 
 func takeHit():
+	return
 	health -= 1
 	if health < 1:
 		die()
@@ -177,9 +189,11 @@ func takeHit():
 func die():
 	$CollisionShape2D.set_deferred("disabled", true)
 	AudioManager.play_sfx_playerDeath()
+	health = 0
 	alive = false
 	print("e morreu")
 	sprite.play("Death")
+	GlobalVars.playerDied()
 	
 func animate():
 	if !alive:
@@ -241,14 +255,14 @@ func UpgradeOption() -> void:
 	print("Nova option criada: ", new_option.name)
 	
 func UpgradeShield() -> void:
-	if health < 6:
+	if health < 2:
 		shield.activate()
 		health = 6
 		AudioManager.play_sfx_upgradeApply()
 
-func _on_animated_sprite_2d_animation_finished() -> void:
-	if sprite.animation == "Death":
-		queue_free()
+#func _on_animated_sprite_2d_animation_finished() -> void:
+	#if sprite.animation == "Death":
+		#queue_free()
 
 func KonamiCode() -> void:
 	UpgradeSpeed() # nao sei quantos speed upgrades o cheat dá, lembro de algum video dizer
@@ -265,6 +279,33 @@ func fatherOfMyProjectiles(father_: int) -> void:
 
 func isShieldUp() -> bool:
 	if health > 1:
+		return true
+	else:
+		return false
+
+func resetToFactory() -> void:
+	alive = true
+	health = 1
+	shield.deactivate()
+	speed = baseSpeed
+	double_fire = false
+	laser_fire = false
+	missile_fire = false
+	sprite.play("Standard")
+	
+	var active_followers: Array[Node2D] = []
+	var camera_node = get_parent()
+	if camera_node:
+		for child in camera_node.get_children():
+			if child.name.begins_with("Option") and is_instance_valid(child) and child.is_inside_tree():
+				active_followers.append(child as Node2D)
+	for i in range(active_followers.size()):
+		var follower = active_followers[i]
+		follower.die()
+		print("tentou matar seus filhos")
+
+func hadUpgrades() -> bool:
+	if double_fire or laser_fire or missile_fire or speed > 80.0 or health > 1:
 		return true
 	else:
 		return false

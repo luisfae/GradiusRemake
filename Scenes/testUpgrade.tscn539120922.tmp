@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://kbua37j8nevd"]
+
+[ext_resource type="Script" uid="uid://b5ht84kug3sne" path="res://Scripts/camera_2d.gd" id="1_b02bw"]
+[ext_resource type="PackedScene" uid="uid://dapugmoyj4g0l" path="res://Scenes/animated_ship.tscn" id="2_28oh7"]
+[ext_resource type="PackedScene" uid="uid://b7pg3hvhfc240" path="res://Scenes/enemy_boss_xaerous.tscn" id="4_yk53h"]
+[ext_resource type="PackedScene" uid="uid://gvs313y44yp6" path="res://Scenes/hud.tscn" id="5_28oh7"]
+
+[node name="main" type="Node2D" unique_id=1970737621]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=187331477]
+position = Vector2(129, 112)
+script = ExtResource("1_b02bw")
+speed = 0.0
+
+[node name="AnimatedShip" parent="Camera2D" unique_id=808763228 instance=ExtResource("2_28oh7")]
+position = Vector2(-45, -10)
+
+[node name="HUD" parent="." unique_id=1733061160 instance=ExtResource("5_28oh7")]
+
+[node name="Xaerous" parent="." unique_id=263810032 instance=ExtResource("4_yk53h")]
+position = Vector2(178, 132)

@@ -3,6 +3,7 @@ class_name ProjectileEnemy
 
 @export var speed: float = 40.0
 var direction: Vector2 = Vector2.ZERO
+@export var max_miss: float = 10.0 # valor que a bala pode errar o player, pois no jogo ela é imprecisa
 
 @onready var player: CharacterBody2D = get_tree().get_first_node_in_group("Player") as CharacterBody2D
 
@@ -16,7 +17,10 @@ func _process(delta: float) -> void:
 	
 func setDirection() -> void:
 	if player:
-		direction = position.direction_to(player.position)
+		var target_position: Vector2 = player.position
+		var miss: float = randf_range(0.0, max_miss) # parte do codigo que aplica a margem de erro ao tiro
+		target_position.x += miss
+		direction = position.direction_to(target_position)
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	print("projetil inimigo saiu de tela")

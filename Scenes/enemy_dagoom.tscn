@@ -1,0 +1,104 @@
+[gd_scene format=3 uid="uid://dvrvmx8ttntwa"]
+
+[ext_resource type="Script" uid="uid://x2rgrq3uajal" path="res://Scripts/enemy_dagoom.gd" id="1_eive8"]
+[ext_resource type="Texture2D" uid="uid://dij4v075tmjjc" path="res://Sprites/enemy hatch.png" id="1_qg68g"]
+[ext_resource type="Texture2D" uid="uid://c7xqmmk8esnsy" path="res://Sprites/largeEnemiesSpritesheet.png" id="2_eive8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_arp66"]
+size = Vector2(26, 27)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6e3xj"]
+atlas = ExtResource("1_qg68g")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pb0p4"]
+atlas = ExtResource("1_qg68g")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cdkwj"]
+atlas = ExtResource("2_eive8")
+region = Rect2(48, 112, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tbre4"]
+atlas = ExtResource("2_eive8")
+region = Rect2(64, 112, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ji2ju"]
+atlas = ExtResource("2_eive8")
+region = Rect2(88, 112, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8arfy"]
+atlas = ExtResource("2_eive8")
+region = Rect2(120, 112, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x868r"]
+atlas = ExtResource("2_eive8")
+region = Rect2(152, 112, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4hthr"]
+atlas = ExtResource("1_qg68g")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0cr4r"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6e3xj")
+}],
+"loop": 1,
+"name": &"Damaged",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pb0p4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cdkwj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tbre4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ji2ju")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8arfy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x868r")
+}],
+"loop": 0,
+"name": &"Die",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4hthr")
+}],
+"loop": 1,
+"name": &"Healthy",
+"speed": 5.0
+}]
+
+[node name="Enemy_Dagoom" type="Area2D" unique_id=1522789686]
+script = ExtResource("1_eive8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1782620627]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_arp66")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1925048183]
+sprite_frames = SubResource("SpriteFrames_0cr4r")
+animation = &"Healthy"
+autoplay = "Healthy"
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=563226471]
+
+[node name="RayCastFloor" type="RayCast2D" parent="." unique_id=1737868858]
+target_position = Vector2(0, 40)
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

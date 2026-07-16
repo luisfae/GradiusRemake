@@ -28,3 +28,8 @@ func kill_sprite2d() -> void:
 
 func die() -> void:
 	pass
+
+func _on_body_entered(body: Node2D) -> void:
+	if body.is_in_group("Cenario"):
+		MyFatherIs.emit(father)
+		queue_free()

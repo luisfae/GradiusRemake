@@ -19,9 +19,8 @@ func _physics_process(delta: float) -> void:
 			velocityX = (speed * 2) * move_direction * delta
 		else:
 			velocityX = speed * move_direction * delta
-		if player:
+		if player and is_instance_valid(player):
 			var distance_y: float = (player.global_position.y - 7) - global_position.y
-			
 			if distance_y < -2:
 				velocityY = -speed * delta
 			elif distance_y > 2:
@@ -75,7 +74,6 @@ func _on_area_entered(area: Area2D) -> void:
 	if area.is_in_group("Player Projectiles"):
 		area.die()
 		takeHit()
-		givePoints()
 
 func setDropUpgrade() -> void:
 	dropUpgrade = true
@@ -91,4 +89,5 @@ func takeHit() -> void:
 	health -= 1
 	if health < 1:
 		die()
+		givePoints()
 	

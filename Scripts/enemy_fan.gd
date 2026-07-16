@@ -7,12 +7,15 @@ var current_state: State = State.ADVANCE
 @export var speed: float = 60.0
 @export var diagonalAcceleration: float = 40.0
 @export var health: int = 1
+@export var topLimit := 40.0 # limites que ele vai, ele nao vai até os cantos
+@export var bottomLimit := 160.0
 
 var camera: Camera2D = null
 var points: int = 100
 var death: bool = false
 var dropUpgrade: bool = false
 var movement_vector: Vector2 = Vector2.ZERO
+
 
 @onready var sprite = $AnimatedSprite2D
 @onready var screen_width: float = get_viewport().get_visible_rect().size.x
@@ -50,8 +53,8 @@ func _physics_process(delta: float) -> void:
 				var y_direction = sign(player.global_position.y - global_position.y)
 				movement_vector.y = y_direction * speed
 				
-				# se Y alinhar (com uma folguinha), muda pra retrocede
-				if abs(global_position.y - player.global_position.y) < 5.0:
+				# se Y alinhar (com uma folguinha), muda pra retrocede, ou se ele chega aos limites que ele alcança, retrocede tbm
+				if abs(global_position.y - player.global_position.y) < 5.0 or global_position.y <= topLimit or global_position.y >= bottomLimit:
 					current_state = State.RETROCEDE
 			else:
 				# se o player morreu tbm retroce
@@ -68,7 +71,6 @@ func _on_area_entered(area: Area2D) -> void:
 	if area.is_in_group("Player Projectiles"):
 		area.die()
 		takeHit()
-		givePoints()
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player"):
@@ -106,4 +108,5 @@ func takeHit() -> void:
 	health -= 1
 	if health < 1:
 		die()
+		givePoints()
 	

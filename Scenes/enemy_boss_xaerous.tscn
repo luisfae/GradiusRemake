@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://c7xqmmk8esnsy" path="res://Sprites/largeEnemiesSpritesheet.png" id="1_fxnoi"]
 [ext_resource type="Script" uid="uid://cwx0eij0typft" path="res://Scripts/enemy_boss_xaerous.gd" id="1_x0jkm"]
+[ext_resource type="SpriteFrames" uid="uid://cljdm51ta5yyt" path="res://largeEnemiesFinal.tres" id="3_uccb1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x0jkm"]
 size = Vector2(36, 17)
@@ -21,6 +22,7 @@ region_enabled = true
 region_rect = Rect2(48, 24, 48, 48)
 
 [node name="Core" type="Sprite2D" parent="." unique_id=273532380]
+visible = false
 position = Vector2(8, 0)
 texture = ExtResource("1_fxnoi")
 region_enabled = true
@@ -97,6 +99,19 @@ position = Vector2(6, 0)
 shape = SubResource("CircleShape2D_0cc02")
 debug_color = Color(0.8879683, 0.0002795434, 0.80197716, 0.41960785)
 
+[node name="Timer" type="Timer" parent="." unique_id=480577219]
+autostart = true
+
+[node name="RayCastLeft" type="RayCast2D" parent="." unique_id=94371062]
+target_position = Vector2(-200, 0)
+
+[node name="DeathAnimation" type="AnimatedSprite2D" parent="." unique_id=414273400]
+visible = false
+sprite_frames = ExtResource("3_uccb1")
+animation = &"death"
+frame = 5
+frame_progress = 1.0
+
 [connection signal="area_entered" from="ShipTop" to="." method="_on_ship_top_area_entered"]
 [connection signal="body_entered" from="ShipTop" to="." method="_on_ship_top_body_entered"]
 [connection signal="area_entered" from="ShipBottom" to="." method="_on_ship_bottom_area_entered"]
@@ -110,3 +125,4 @@ debug_color = Color(0.8879683, 0.0002795434, 0.80197716, 0.41960785)
 [connection signal="area_entered" from="Shield_4" to="." method="_on_shield_4_area_entered"]
 [connection signal="body_entered" from="Shield_4" to="." method="_on_shield_4_body_entered"]
 [connection signal="area_entered" from="Core2" to="." method="_on_core_2_area_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

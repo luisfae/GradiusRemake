@@ -1,7 +1,9 @@
 extends Area2D
 
-enum types {RUGAL, GARRUN, GARRUNRED, DAI01, DAI01RED, FAN, RASHE, JUMPER, JUMPERRED, DAKKER, DAKKERRED}
+enum types {RUGAL, GARRUN, GARRUNRED, DAI01, DAI01RED, FAN, RASHE, JUMPER, JUMPERRED, DAKKER, DAKKERRED, DAGOOM}
+enum spawnReleasePos {FRONT, BACK}
 @export var enemy_type: types
+@export var spawn_pos: spawnReleasePos
 @export var active: bool = true
 @onready var enemy
 
@@ -29,7 +31,8 @@ func _ready() -> void:
 			enemy = preload("res://Scenes/enemy_dakker.tscn")
 		types.DAKKERRED:
 			enemy = preload("res://Scenes/enemy_dakker_red.tscn")
-		
+		types.DAGOOM:
+			enemy = preload("res://Scenes/enemy_dagoom.tscn")
 
 func setActive() -> void:
 	active = true
@@ -38,8 +41,8 @@ func setInactive() -> void:
 	active = false
 
 func _on_area_entered(area: Area2D) -> void:
-	if active:
-		if area.is_in_group("Front Detector"):
+	if active: # caso o tipo do spawn seja front E colida com o front detector OU se for tipo back E colida com back detector, spawna
+		if (area.is_in_group("Front Detector") and spawn_pos == spawnReleasePos.FRONT) or (area.is_in_group("Back Detector") and spawn_pos == spawnReleasePos.BACK):
 			active = false
 			var spawn_target = get_parent()
 			if spawn_target.name != "Group":
@@ -103,4 +106,8 @@ func _on_area_entered(area: Area2D) -> void:
 					e.position = global_position
 					e.setDropUpgrade()
 					spawn_target.call_deferred("add_child", e)
-				
+					
+				types.DAGOOM: # Turret do diabo q fica andando e atirando mas dropa upgrade pelomenos
+					var e = enemy.instantiate() as Dagoom
+					e.position = global_position
+					spawn_target.call_deferred("add_child", e)

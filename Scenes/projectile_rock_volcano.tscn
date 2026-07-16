@@ -1,0 +1,82 @@
+[gd_scene format=3 uid="uid://cyjfi4le3l77v"]
+
+[ext_resource type="Texture2D" uid="uid://c3b0g40er4j5s" path="res://Sprites/enemiesSpritesheet.png" id="1_7n8qh"]
+[ext_resource type="Script" uid="uid://ca0dl56gnlfuv" path="res://Scripts/projectile_rock_volcano.gd" id="1_d8ght"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_h3vyf"]
+radius = 6.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d8ght"]
+atlas = ExtResource("1_7n8qh")
+region = Rect2(0, 80, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b1kse"]
+atlas = ExtResource("1_7n8qh")
+region = Rect2(16, 80, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vk0fj"]
+atlas = ExtResource("1_7n8qh")
+region = Rect2(32, 80, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yvur1"]
+atlas = ExtResource("1_7n8qh")
+region = Rect2(48, 80, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0pean"]
+atlas = ExtResource("1_7n8qh")
+region = Rect2(64, 80, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l0bfp"]
+atlas = ExtResource("1_7n8qh")
+region = Rect2(80, 80, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tsskm"]
+atlas = ExtResource("1_7n8qh")
+region = Rect2(209, 4, 11, 11)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bcp0y"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d8ght")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b1kse")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vk0fj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yvur1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0pean")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l0bfp")
+}],
+"loop": 0,
+"name": &"death",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tsskm")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="ProjectileRockVolcano" type="Area2D" unique_id=200402007]
+z_index = -5
+script = ExtResource("1_d8ght")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1888622973]
+shape = SubResource("CircleShape2D_h3vyf")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=900797671]
+sprite_frames = SubResource("SpriteFrames_bcp0y")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

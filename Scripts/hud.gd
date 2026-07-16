@@ -60,6 +60,7 @@ func _ready() -> void:
 	GlobalVars.ShieldDeactivated.connect(ShieldDeactivated)
 	GlobalVars.KonamiCode.connect(KonamiCode)
 	GlobalVars.UpdateScore.connect(UpdateScore)
+	GlobalVars.ZeroUpgrades.connect(resetUpgrades_to_initial)
 	UpdateScore(0)
 
 func resetUpgrades() -> void:
@@ -72,12 +73,19 @@ func resetUpgrades() -> void:
 	
 	#função pra zerar tudo, pra quando o jogador morrer ou voltar ao menu, talvez modificar ou criar outra, se ele morre com upgrades ele ja começa no SPEED
 func resetUpgrades_to_initial() -> void:
+	print("tentou zerar upgrades")
 	hud_tilemap.set_pattern(SPEEDUP_TILE, hud_tilemap.tile_set.get_pattern(patternInitial[SPEED]))
 	hud_tilemap.set_pattern(MISSILE_TILE, hud_tilemap.tile_set.get_pattern(patternInitial[MISSILE]))
 	hud_tilemap.set_pattern(DOUBLE_TILE, hud_tilemap.tile_set.get_pattern(patternInitial[DOUBLE]))
 	hud_tilemap.set_pattern(LASER_TILE, hud_tilemap.tile_set.get_pattern(patternInitial[LASER]))
 	hud_tilemap.set_pattern(OPTION_TILE, hud_tilemap.tile_set.get_pattern(patternInitial[OPTION]))
 	hud_tilemap.set_pattern(SHIELD_TILE, hud_tilemap.tile_set.get_pattern(patternInitial[SHIELD]))
+	patternNow[SPEED] = patternInitial[SPEED]
+	patternNow[MISSILE] = patternInitial[MISSILE]
+	patternNow[DOUBLE] = patternInitial[DOUBLE]
+	patternNow[LASER] = patternInitial[LASER]
+	patternNow[OPTION] = patternInitial[OPTION]
+	patternNow[SHIELD] = patternInitial[SHIELD]
 	optionsCalled = 0
 	GlobalVars.resetUpgrade()
 	

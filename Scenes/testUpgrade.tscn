@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://b5ht84kug3sne" path="res://Scripts/camera_2d.gd" id="1_b02bw"]
 [ext_resource type="PackedScene" uid="uid://dapugmoyj4g0l" path="res://Scenes/animated_ship.tscn" id="2_28oh7"]
 [ext_resource type="PackedScene" uid="uid://b7pg3hvhfc240" path="res://Scenes/enemy_boss_xaerous.tscn" id="4_yk53h"]
+[ext_resource type="PackedScene" uid="uid://cyjfi4le3l77v" path="res://Scenes/projectile_rock_volcano.tscn" id="5_2bx4r"]
 [ext_resource type="PackedScene" uid="uid://gvs313y44yp6" path="res://Scenes/hud.tscn" id="5_28oh7"]
 
 [node name="main" type="Node2D" unique_id=1970737621]
@@ -19,3 +20,33 @@ position = Vector2(-45, -10)
 
 [node name="Xaerous" parent="." unique_id=263810032 instance=ExtResource("4_yk53h")]
 position = Vector2(178, 132)
+
+[node name="ProjectileRockVolcano" parent="." unique_id=919816638 instance=ExtResource("5_2bx4r")]
+position = Vector2(54, 191)
+
+[node name="ProjectileRockVolcano2" parent="." unique_id=1651758225 instance=ExtResource("5_2bx4r")]
+position = Vector2(54, 191)
+
+[node name="ProjectileRockVolcano3" parent="." unique_id=1353920254 instance=ExtResource("5_2bx4r")]
+position = Vector2(54, 191)
+
+[node name="ProjectileRockVolcano4" parent="." unique_id=1237394542 instance=ExtResource("5_2bx4r")]
+position = Vector2(54, 191)
+
+[node name="ProjectileRockVolcano6" parent="." unique_id=908201183 instance=ExtResource("5_2bx4r")]
+position = Vector2(54, 191)
+
+[node name="ProjectileRockVolcano5" parent="." unique_id=208778688 instance=ExtResource("5_2bx4r")]
+position = Vector2(130, 190)
+
+[node name="ProjectileRockVolcano7" parent="." unique_id=1259202833 instance=ExtResource("5_2bx4r")]
+position = Vector2(130, 190)
+
+[node name="ProjectileRockVolcano8" parent="." unique_id=1676202712 instance=ExtResource("5_2bx4r")]
+position = Vector2(130, 190)
+
+[node name="ProjectileRockVolcano9" parent="." unique_id=1124917567 instance=ExtResource("5_2bx4r")]
+position = Vector2(130, 190)
+
+[node name="ProjectileRockVolcano10" parent="." unique_id=264476851 instance=ExtResource("5_2bx4r")]
+position = Vector2(130, 190)

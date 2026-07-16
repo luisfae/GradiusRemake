@@ -11,13 +11,18 @@ var current_state: State = State.LAUNCH
 var dropUpgrade: bool = false
 var death: bool = false
 var points: int = 100
+var shoot_timer: Timer
+var goLeft: bool = false
 
 @onready var player: CharacterBody2D = get_tree().get_first_node_in_group("Player") as CharacterBody2D
 var movement_vector: Vector2 = Vector2.ZERO
 
 func _ready() -> void:
-	pass
-
+	shoot_timer = Timer.new()
+	#shoot_timer.wait_time = 2.0
+	shoot_timer.timeout.connect(canGoLeft)
+	add_child(shoot_timer)
+	shoot_timer.start(0.3)
 
 func _physics_process(delta: float) -> void:
 	if death:
@@ -27,11 +32,11 @@ func _physics_process(delta: float) -> void:
 			movement_vector.x = 0
 			movement_vector.y = -speed
 			
-			if player and is_instance_valid(player):
+			if player and is_instance_valid(player) and goLeft:
 				if global_position.y <= (player.global_position.y - 5):
 					#global_position.y = player.global_position.y - 5
 					current_state = State.GOLEFT
-			else:
+			elif goLeft:
 				current_state = State.GOLEFT
 
 		State.GOLEFT:
@@ -40,6 +45,8 @@ func _physics_process(delta: float) -> void:
 
 	global_position += movement_vector * delta
 
+func canGoLeft() -> void:
+	goLeft = true
 
 func die() -> void:
 	$CollisionShape2D.set_deferred("disabled", true)
@@ -67,7 +74,6 @@ func _on_area_entered(area: Area2D) -> void:
 	if area.is_in_group("Player Projectiles"):
 		area.die()
 		takeHit()
-		givePoints()
 
 func setDropUpgrade() -> void:
 	dropUpgrade = true
@@ -83,4 +89,5 @@ func takeHit() -> void:
 	health -= 1
 	if health < 1:
 		die()
+		givePoints()
 	

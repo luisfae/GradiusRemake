@@ -1,7 +1,7 @@
 extends Camera2D
 
 @export var speed: float = 20.0
-var stopped: bool = false
+@export var stopped: bool = false
 
 
 func _ready() -> void:
@@ -17,3 +17,6 @@ func StopCamera() -> void:
 
 func StartCamera() -> void:
 	stopped = false
+
+func setPosition(position_ : Vector2) -> void:
+	global_position = position_

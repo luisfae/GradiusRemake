@@ -78,6 +78,5 @@ script = ExtResource("1_oux8c")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=176269277]
 process_mode = 3
 sprite_frames = SubResource("SpriteFrames_0cr4r")
-animation = &"Low"
+animation = &"High"
 autoplay = "High"
-frame_progress = 0.26205146
