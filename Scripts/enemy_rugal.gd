@@ -13,8 +13,10 @@ var points: int = 100
 @onready var sprite = $AnimatedSprite2D
 @onready var player: CharacterBody2D = get_tree().get_first_node_in_group("Player") as CharacterBody2D
 
-func _physics_process(delta: float) -> void:
+func _ready() -> void:
 	GlobalVars.KillAllEnemies.connect(erase)
+
+func _physics_process(delta: float) -> void:
 	if !death:
 		if sprite.animation == "Straight":
 			velocityX = (speed * 2) * move_direction * delta

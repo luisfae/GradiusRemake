@@ -19,6 +19,7 @@ var upsideDown: float = -1.0
 var movement_vector: Vector2 = Vector2.ZERO
 
 func _ready() -> void:
+	GlobalVars.KillAllEnemies.connect(erase)
 	shoot_timer = Timer.new()
 	#shoot_timer.wait_time = 2.0
 	shoot_timer.timeout.connect(canGoLeft)
@@ -28,7 +29,6 @@ func _ready() -> void:
 		upsideDown = 1.0
 
 func _physics_process(delta: float) -> void:
-	GlobalVars.KillAllEnemies.connect(erase)
 	if death:
 		return
 	match current_state:
