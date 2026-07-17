@@ -8,6 +8,7 @@ extends CanvasLayer
 #Constantes da HUD
 const ONE_PLAYER = Vector2i(9, 16)
 const TWO_PLAYER = Vector2i(9, 18)
+const GAMEPLAY_SCENE_PATH = "res://Scenes/node_2d.tscn"
 
 var singlePlayer: bool
 var gameStarting: bool
@@ -23,7 +24,7 @@ func _ready() -> void:
 	tween.tween_property(menu_tilemap, "position:x", 0, 2.0)
 	tween.finished.connect(changeGameMode)
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if gameStarting:
 		return
 	if Input.is_action_just_pressed("select"):
@@ -58,3 +59,5 @@ func _on_timer_timeout() -> void:
 	igt += 0.2
 	if igt >= 1.4:
 		queue_free()
+		get_tree().change_scene_to_file(GAMEPLAY_SCENE_PATH)
+		GlobalVars.gameplay = true

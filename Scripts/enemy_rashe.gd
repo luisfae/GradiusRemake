@@ -13,6 +13,7 @@ var death: bool = false
 var points: int = 100
 var shoot_timer: Timer
 var goLeft: bool = false
+var upsideDown: float = -1.0
 
 @onready var player: CharacterBody2D = get_tree().get_first_node_in_group("Player") as CharacterBody2D
 var movement_vector: Vector2 = Vector2.ZERO
@@ -23,21 +24,30 @@ func _ready() -> void:
 	shoot_timer.timeout.connect(canGoLeft)
 	add_child(shoot_timer)
 	shoot_timer.start(0.3)
+	if global_position.y < 120:
+		upsideDown = 1.0
 
 func _physics_process(delta: float) -> void:
+	GlobalVars.KillAllEnemies.connect(erase)
 	if death:
 		return
 	match current_state:
 		State.LAUNCH:
 			movement_vector.x = 0
-			movement_vector.y = -speed
+			movement_vector.y = speed * upsideDown
 			
-			if player and is_instance_valid(player) and goLeft:
-				if global_position.y <= (player.global_position.y - 5):
-					#global_position.y = player.global_position.y - 5
+			if player and is_instance_valid(player):
+				if upsideDown < 0:
+					if global_position.y <= (player.global_position.y - 2) and goLeft:
+						#global_position.y = player.global_position.y - 5
+						current_state = State.GOLEFT
+				else:
+					if global_position.y >= (player.global_position.y - 2) and goLeft:
+						#global_position.y = player.global_position.y - 5
+						current_state = State.GOLEFT
+			else:
+				if goLeft:
 					current_state = State.GOLEFT
-			elif goLeft:
-				current_state = State.GOLEFT
 
 		State.GOLEFT:
 			movement_vector.x = -speed * 1.5
@@ -91,3 +101,5 @@ func takeHit() -> void:
 		die()
 		givePoints()
 	
+func erase() -> void:
+	queue_free()

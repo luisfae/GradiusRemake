@@ -1,6 +1,6 @@
 extends Area2D
 
-enum types {RUGAL, GARRUN, GARRUNRED, DAI01, DAI01RED, FAN, RASHE, JUMPER, JUMPERRED, DAKKER, DAKKERRED, DAGOOM}
+enum types {RUGAL, GARRUN, GARRUNRED, DAI01, DAI01RED, FAN, RASHE, JUMPER, JUMPERRED, DAKKER, DAKKERRED, DAGOOM, BOSS}
 enum spawnReleasePos {FRONT, BACK}
 @export var enemy_type: types
 @export var spawn_pos: spawnReleasePos
@@ -33,6 +33,8 @@ func _ready() -> void:
 			enemy = preload("res://Scenes/enemy_dakker_red.tscn")
 		types.DAGOOM:
 			enemy = preload("res://Scenes/enemy_dagoom.tscn")
+		types.BOSS:
+			enemy = preload("res://Scenes/enemy_boss_xaerous.tscn")
 
 func setActive() -> void:
 	active = true
@@ -45,7 +47,7 @@ func _on_area_entered(area: Area2D) -> void:
 		if (area.is_in_group("Front Detector") and spawn_pos == spawnReleasePos.FRONT) or (area.is_in_group("Back Detector") and spawn_pos == spawnReleasePos.BACK):
 			active = false
 			var spawn_target = get_parent()
-			if spawn_target.name != "Group":
+			if !spawn_target.name.contains("Group"):
 				spawn_target = get_tree().current_scene
 			match enemy_type:
 				types.RUGAL: # Rugal
@@ -109,5 +111,10 @@ func _on_area_entered(area: Area2D) -> void:
 					
 				types.DAGOOM: # Turret do diabo q fica andando e atirando mas dropa upgrade pelomenos
 					var e = enemy.instantiate() as Dagoom
+					e.position = global_position
+					spawn_target.call_deferred("add_child", e)
+					
+				types.BOSS: # Turret do diabo q fica andando e atirando mas dropa upgrade pelomenos
+					var e = enemy.instantiate() as Xaerous
 					e.position = global_position
 					spawn_target.call_deferred("add_child", e)
