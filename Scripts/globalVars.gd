@@ -19,6 +19,7 @@ signal StartCamera
 signal KonamiCode
 signal UpdateScore(score: int)
 signal VolcanoEnd
+signal UpdateLives(lives: int)
 
 var checkpointPositions: Array[Vector2]
 var actualCheckpoint: int = 0
