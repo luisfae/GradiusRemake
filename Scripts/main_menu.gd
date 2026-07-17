@@ -29,7 +29,7 @@ func _physics_process(_delta: float) -> void:
 		return
 	if Input.is_action_just_pressed("select"):
 		changeGameMode()
-	if Input.is_action_just_pressed("start_game"):
+	if Input.is_action_just_pressed("start"):
 		startGame()
 
 func clearCells(START_CELL: Vector2i, width: int, height: int):
