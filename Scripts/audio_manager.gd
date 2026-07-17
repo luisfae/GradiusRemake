@@ -28,7 +28,6 @@ func play_music():
 	if !mute:
 		$Music.stop()
 		$Music.play()
-		$Music.stream.loop = true
 
 func stop_music():
 	$Music.stop()
