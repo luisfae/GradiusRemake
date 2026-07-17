@@ -17,6 +17,7 @@ extends Node
 @export var sfx_gamePause : AudioStream
 @export var sfx_enemyDeath : AudioStream
 @export var sfx_volcanoRockDestroy : AudioStream
+@export var sfx_gameStart : AudioStream
 
 func _ready() -> void:
 	if !mute:
@@ -56,6 +57,9 @@ func play_sfx_enemyDeath():
 
 func play_sfx_volcanoRockDestroy():
 	play_sfx(sfx_volcanoRockDestroy)
+	
+func play_sfx_gameStart():
+	play_sfx(sfx_gameStart)
 		
 func play_sfx(audio : AudioStream, volume : float = 1.0) -> void:
 	streamPlayers[currentStream].stream = audio
