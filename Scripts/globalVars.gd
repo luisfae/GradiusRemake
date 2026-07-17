@@ -50,6 +50,7 @@ func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	score = 0
 	UpdateScore.emit(score)
+	UpdateHiScore.emit(hiscore)
 	
 	checkpointPositions.append(Vector2(416, 112))
 	checkpointPositions.append(Vector2(1440, 112))
@@ -306,7 +307,7 @@ func receiveScore(score_: int) -> void:
 	UpdateScore.emit(score)
 	if score > hiscore:
 		hiscore = score
-		#UpdateHiScore.emit() # chamar aqui pra dar update no highscore
+		UpdateHiScore.emit(hiscore) # chamar aqui pra dar update no highscore
 
 func lifeUp() -> void:
 	lives += 1

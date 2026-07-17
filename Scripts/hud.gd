@@ -29,7 +29,17 @@ const score_4 = Vector2i(15,27)
 const score_5 = Vector2i(16,27)
 const score_6 = Vector2i(17,27)
 
+#constantes das posições de números na tela
+const hiscore_0 = Vector2i(23,27)
+const hiscore_1 = Vector2i(24,27)
+const hiscore_2 = Vector2i(25,27)
+const hiscore_3 = Vector2i(26,27)
+const hiscore_4 = Vector2i(27,27)
+const hiscore_5 = Vector2i(28,27)
+const hiscore_6 = Vector2i(29,27)
+
 @onready var score_hud_positions : Array[Vector2i] = [score_6, score_5, score_4, score_3, score_2, score_1, score_0]
+@onready var hiscore_hud_positions : Array[Vector2i] = [hiscore_6, hiscore_5, hiscore_4, hiscore_3, hiscore_2, hiscore_1, hiscore_0]
 
 #constantes dos números no padrão de spritesheet
 @onready var number_1: TileMapPattern = hud_tilemap.tile_set.get_pattern(14)
@@ -61,6 +71,7 @@ func _ready() -> void:
 	GlobalVars.ShieldDeactivated.connect(ShieldDeactivated)
 	GlobalVars.KonamiCode.connect(KonamiCode)
 	GlobalVars.UpdateScore.connect(UpdateScore)
+	GlobalVars.UpdateHiScore.connect(UpdateHiScore)
 	GlobalVars.ZeroUpgrades.connect(resetUpgrades_to_initial)
 	GlobalVars.UpdateLives.connect(UpdateLives)
 	UpdateScore(0)
@@ -204,6 +215,42 @@ func UpdateScoreHUD(index: int, score: int):
 		0:
 			pattern = number_0
 	hud_tilemap.set_pattern(score_hud_positions[index], pattern)
+
+func UpdateHiScore(hiscore: int):
+	var segmentedScore: Array[int]
+	var formatedScore = "%07d" % hiscore #maneira q encontrei de colocar zeros após o score
+	for c in formatedScore:
+		segmentedScore.append(int(c))
+	segmentedScore.reverse() # só tem q inverter pra escrever da esquerda pra direita na tela como fazemos
+	
+	for i in range(7):
+		UpdateHiScoreHUD(i, segmentedScore[i])
+
+func UpdateHiScoreHUD(index: int, score: int):
+	var pattern : TileMapPattern
+	match score:
+		1:
+			pattern = number_1
+		2:
+			pattern = number_2
+		3:
+			pattern = number_3
+		4:
+			pattern = number_4
+		5:
+			pattern = number_5
+		6:
+			pattern = number_6
+		7:
+			pattern = number_7
+		8:
+			pattern = number_8
+		9:
+			pattern = number_9
+		0:
+			pattern = number_0
+	hud_tilemap.set_pattern(hiscore_hud_positions[index], pattern)
+
 
 func UpdateLives(lives: int):
 	match lives:
