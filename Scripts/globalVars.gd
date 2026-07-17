@@ -149,6 +149,8 @@ func startCamera() -> void:
 
 func checkpointAchieved() -> void:
 	actualCheckpoint += 1
+	if actualCheckpoint == 1:
+		AudioManager.play_bgm_area_2()
 
 func check_cheat_input(event: InputEvent) -> void:
 	# Lista de ações que nos interessam monitorizar
@@ -177,6 +179,7 @@ func check_cheat_input(event: InputEvent) -> void:
 			break
 
 func playerDied() -> void:
+	AudioManager.stop_music()
 	death_restart_timer = Timer.new()
 	#shoot_timer.wait_time = 2.0
 	death_restart_timer.one_shot = true
@@ -211,6 +214,10 @@ func restartPlay() -> void:
 		camera.setPosition(checkpointPositions[actualCheckpoint])
 		resetPlayer()
 		startCamera()
+		if actualCheckpoint == 0:
+			AudioManager.play_bgm_area_1()
+		elif actualCheckpoint > 0:
+			AudioManager.play_bgm_area_2()
 
 func adjustSpawners() -> void:
 	match actualCheckpoint:
@@ -334,6 +341,7 @@ func startVolcanoEvent() -> void:
 	v = Vulcan.instantiate() as Volcano
 	v.position = position
 	main_scene.add_child(v)
+	AudioManager.play_bgm_area_3()
 
 func startBossEvent() -> void:
 	stopCamera()

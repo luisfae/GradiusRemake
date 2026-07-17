@@ -22,17 +22,25 @@ extends Node
 func _ready() -> void:
 	if !mute:
 		play_music()
+	#play_bgm_area_1()
 
 func play_music():
 	if !mute:
+		$Music.stop()
 		$Music.play()
-		
+		$Music.stream.loop = true
+
+func stop_music():
+	$Music.stop()
 func play_bgm_area_1():
 	$Music.stream = bgm[0]
+	play_music()
 func play_bgm_area_2():
 	$Music.stream = bgm[1]
+	play_music()
 func play_bgm_area_3():
 	$Music.stream = bgm[2]
+	play_music()
 	
 func play_sfx_playerFire():
 	play_sfx(sfx_playerFire)
@@ -81,3 +89,7 @@ func toggle_bus(bus_name: String) -> void:
 	var idx := AudioServer.get_bus_index(bus_name)
 	if idx != -1:
 		AudioServer.set_bus_mute(idx, !AudioServer.is_bus_mute(idx))
+
+
+func _on_music_finished() -> void:
+	play_music()

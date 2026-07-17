@@ -57,3 +57,5 @@ bus = &"SFX"
 
 [node name="SFX9" type="AudioStreamPlayer" parent="." unique_id=1919334915]
 bus = &"SFX"
+
+[connection signal="finished" from="Music" to="." method="_on_music_finished"]

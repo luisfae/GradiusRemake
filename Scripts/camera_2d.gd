@@ -7,6 +7,7 @@ extends Camera2D
 func _ready() -> void:
 	GlobalVars.StopCamera.connect(StopCamera)
 	GlobalVars.StartCamera.connect(StartCamera)
+	AudioManager.play_bgm_area_1()
 
 func _process(delta: float) -> void:
 	if !stopped:
