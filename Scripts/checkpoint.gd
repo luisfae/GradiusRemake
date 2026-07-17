@@ -13,16 +13,15 @@ func _on_area_entered(area: Area2D) -> void:
 			types.CHECKPOINT:
 				active = false
 				GlobalVars.checkpointAchieved()
-				
 			types.VULCANEVENT:
 				#vulcan_event.start()
 				active = false
-				GlobalVars.stopCamera()
-				
+				#GlobalVars.stopCamera()
+				GlobalVars.startVolcanoEvent()
 			types.BOSSEVENT:
 				#boss_event.start()
 				active = false
-				GlobalVars.stopCamera()
+				GlobalVars.startBossEvent()
 
 func setActive() -> void:
 	active = true

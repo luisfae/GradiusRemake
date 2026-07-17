@@ -21,6 +21,7 @@ var points: int = 100
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	GlobalVars.KillAllEnemies.connect(erase)
 	ray_down.force_raycast_update()
 	ray_up.force_raycast_update()
 	if ray_down.is_colliding():
@@ -139,3 +140,5 @@ func takeHit() -> void:
 		die()
 		givePoints()
 	
+func erase() -> void:
+	queue_free()

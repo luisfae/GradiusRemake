@@ -100,7 +100,6 @@ shape = SubResource("CircleShape2D_0cc02")
 debug_color = Color(0.8879683, 0.0002795434, 0.80197716, 0.41960785)
 
 [node name="Timer" type="Timer" parent="." unique_id=480577219]
-autostart = true
 
 [node name="RayCastLeft" type="RayCast2D" parent="." unique_id=94371062]
 target_position = Vector2(-200, 0)

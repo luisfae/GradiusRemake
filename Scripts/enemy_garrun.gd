@@ -18,6 +18,7 @@ var time_passed: float = 0.0
 var spawn_y: float = 0.0
 
 func _ready() -> void:
+	GlobalVars.KillAllEnemies.connect(erase)
 	# seta o spawn pra posição inicial, pra ir pra cima e pra baixo em ralação a ela
 	spawn_y = global_position.y
 
@@ -74,3 +75,6 @@ func takeHit() -> void:
 	if health < 1:
 		die()
 		givePoints()
+
+func erase() -> void:
+	queue_free()

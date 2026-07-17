@@ -16,6 +16,7 @@ var numberSpawned: int = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	GlobalVars.KillAllEnemies.connect(erase)
 	ray_floor.force_raycast_update()
 	if ray_floor.is_colliding():
 		print("detectou chão")
@@ -23,6 +24,15 @@ func _ready() -> void:
 		var sprite_altura = sprite.get_sprite_frames().get_frame_texture(sprite.animation, sprite.frame).get_size().y
 		var metade_altura = sprite_altura / 2.0
 		global_position.y = ray_floor.get_collision_point().y - (metade_altura)
+	else:
+		ray_floor.target_position.y *= -1
+		ray_floor.force_raycast_update()
+		if ray_floor.is_colliding():
+			sprite.flip_v = true
+			var sprite_altura = sprite.get_sprite_frames().get_frame_texture(sprite.animation, sprite.frame).get_size().y
+			var metade_altura = sprite_altura / 2.0
+			global_position.y = ray_floor.get_collision_point().y - (-metade_altura)
+			
 	
 	shoot_timer = Timer.new()
 	#shoot_timer.wait_time = 2.0
@@ -78,9 +88,12 @@ func _on_area_entered(area: Area2D) -> void:
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player"):
-		body.takeHit()
-		if body.isShieldUp():
-			takeHit()
+		if health > 1:
+			body.die()
+		else:
+			body.takeHit()
+			if body.isShieldUp():
+				takeHit()
 
 func givePoints() -> void:
 	GlobalVars.receiveScore(points)
@@ -96,3 +109,5 @@ func takeHit() -> void:
 		die()
 		givePoints()
 	
+func erase() -> void:
+	queue_free()

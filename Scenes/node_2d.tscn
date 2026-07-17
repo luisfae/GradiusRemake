@@ -4,11 +4,14 @@
 [ext_resource type="PackedScene" uid="uid://dapugmoyj4g0l" path="res://Scenes/animated_ship.tscn" id="2_tx0tn"]
 [ext_resource type="TileSet" uid="uid://dldtdh173vltt" path="res://new_tile_set.tres" id="3_wjtap"]
 [ext_resource type="Texture2D" uid="uid://c3pffkftn3dxs" path="res://Misc/gradius-stage-1-volcano-nes-map.png" id="4_v7gqg"]
+[ext_resource type="Texture2D" uid="uid://53nvfh3ypwlj" path="res://Misc/Fase 1 Inteira Site Japones.png" id="5_2ooml"]
 [ext_resource type="Texture2D" uid="uid://do3533amtjxgv" path="res://Misc/mega fundo desnecessario.png" id="5_wjtap"]
 [ext_resource type="PackedScene" uid="uid://gvs313y44yp6" path="res://Scenes/hud.tscn" id="6_tx0tn"]
+[ext_resource type="Texture2D" uid="uid://7qxthx5fb2vn" path="res://Misc/linha preta desnecessario.png" id="7_p20hg"]
 [ext_resource type="PackedScene" uid="uid://cochvfrrugxrn" path="res://Scenes/enemy_spawner.tscn" id="7_wjtap"]
-[ext_resource type="PackedScene" uid="uid://chatwc2rtuctp" path="res://Scenes/volcano_spawner.tscn" id="8_v7gqg"]
 [ext_resource type="PackedScene" uid="uid://cafsln1jijuox" path="res://Scenes/checkpoint.tscn" id="9_chwn1"]
+[ext_resource type="PackedScene" uid="uid://ccw8otnewcuvp" path="res://Scenes/group.tscn" id="10_p20hg"]
+[ext_resource type="PackedScene" uid="uid://dreak86orjj42" path="res://Scenes/bonus.tscn" id="12_p20hg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0cr4r"]
 size = Vector2(0.5, 224)
@@ -22,7 +25,7 @@ size = Vector2(1, 1)
 [node name="main" type="Node2D" unique_id=1970737621]
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=187331477]
-position = Vector2(1440, 112)
+position = Vector2(416, 112)
 script = ExtResource("1_u7krg")
 
 [node name="AnimatedShip" parent="Camera2D" unique_id=808763228 instance=ExtResource("2_tx0tn")]
@@ -35,7 +38,7 @@ position = Vector2(117, 0)
 shape = SubResource("RectangleShape2D_0cr4r")
 
 [node name="DetectorSpawnsBack" type="Area2D" parent="Camera2D" unique_id=471400477 groups=["Back Detector"]]
-position = Vector2(-109, 0)
+position = Vector2(-113, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/DetectorSpawnsBack" unique_id=1424983446]
 shape = SubResource("RectangleShape2D_0cr4r")
@@ -55,7 +58,7 @@ shape = SubResource("RectangleShape2D_gdukd")
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1779675352 groups=["Cenario"]]
 z_index = 1
 position = Vector2(0, -17)
-tile_map_data = PackedByteArray("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AADVAAoAAwAJAAEAAADVAAsAAwAJAAIAAADVAAwAAwAJAAMAAADVAA0AAwAJAAQAAADWAAoAAwAKAAEAAADWAAsAAwAKAAIAAADWAAwAAwAKAAMAAADWAA0AAwAKAAQAAADXAAoAAwALAAEAAADXAAsAAwALAAIAAADXAAwAAwALAAMAAADXAA0AAwALAAQAAADcAAoAAwAIAAEAAADcAAsAAwAIAAIAAADcAAwAAwAIAAMAAADcAA0AAwAIAAQAAADdAAoAAwAJAAEAAADdAAsAAwAJAAIAAADdAAwAAwAJAAMAAADdAA0AAwAJAAQAAADeAAoAAwAKAAEAAADeAAsAAwAKAAIAAADeAAwAAwAKAAMAAADeAA0AAwAKAAQAAADfAAoAAwALAAEAAADfAAsAAwALAAIAAADfAAwAAwALAAMAAADfAA0AAwALAAQAAADEAAQAAwAAAAAAAADEAAUAAwAAAAEAAADEAAYAAwAAAAIAAADEAAcAAwAAAAMAAADEAAgAAwAAAAQAAADEAAkAAwAAAAUAAADFAAQAAwABAAAAAADFAAUAAwABAAEAAADFAAYAAwABAAIAAADFAAcAAwABAAMAAADFAAgAAwABAAQAAADFAAkAAwABAAUAAADGAAQAAwACAAAAAADGAAUAAwACAAEAAADGAAYAAwACAAIAAADGAAcAAwACAAMAAADGAAgAAwACAAQAAADGAAkAAwACAAUAAADHAAQAAwADAAAAAADHAAUAAwADAAEAAADHAAYAAwADAAIAAADHAAcAAwADAAMAAADHAAgAAwADAAQAAADHAAkAAwADAAUAAABcAAoAAwAIAAEAAABcAAsAAwAIAAIAAABcAAwAAwAIAAMAAABdAAoAAwAJAAEAAABdAAsAAwAJAAIAAABdAAwAAwAJAAMAAABcAA0AAwAIAAQAAABdAA0AAwAJAAQAAABSAAEAAAAEAAEAACBTAAEAAAAFAAEAACBVAAEAAAAHAAIAACBYAAEAAAAHAAIAACBbAAEAAAAHAAIAACBeAAEAAAAHAAIAACBhAAEAAAAHAAIAACBiAAEAAAAHAAIAACBnAAEAAAAHAAIAACBqAAEAAAAHAAIAACBtAAEAAAAHAAIAACBwAAEAAAAHAAIAACB0AAEAAAAHAAIAACB3AAEAAAAHAAIAACB6AAEAAAAHAAIA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")
+tile_map_data = PackedByteArray("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AADVAAoAAwAJAAEAAADVAAsAAwAJAAIAAADVAAwAAwAJAAMAAADVAA0AAwAJAAQAAADWAAoAAwAKAAEAAADWAAsAAwAKAAIAAADWAAwAAwAKAAMAAADWAA0AAwAKAAQAAADXAAoAAwALAAEAAADXAAsAAwALAAIAAADXAAwAAwALAAMAAADXAA0AAwALAAQAAADcAAoAAwAIAAEAAADcAAsAAwAIAAIAAADcAAwAAwAIAAMAAADcAA0AAwAIAAQAAADdAAoAAwAJAAEAAADdAAsAAwAJAAIAAADdAAwAAwAJAAMAAADdAA0AAwAJAAQAAADeAAoAAwAKAAEAAADeAAsAAwAKAAIAAADeAAwAAwAKAAMAAADeAA0AAwAKAAQAAADfAAoAAwALAAEAAADfAAsAAwALAAIAAADfAAwAAwALAAMAAADfAA0AAwALAAQAAADEAAQAAwAAAAAAAADEAAUAAwAAAAEAAADEAAYAAwAAAAIAAADEAAcAAwAAAAMAAADEAAgAAwAAAAQAAADEAAkAAwAAAAUAAADFAAQAAwABAAAAAADFAAUAAwABAAEAAADFAAYAAwABAAIAAADFAAcAAwABAAMAAADFAAgAAwABAAQAAADFAAkAAwABAAUAAADGAAQAAwACAAAAAADGAAUAAwACAAEAAADGAAYAAwACAAIAAADGAAcAAwACAAMAAADGAAgAAwACAAQAAADGAAkAAwACAAUAAADHAAQAAwADAAAAAADHAAUAAwADAAEAAADHAAYAAwADAAIAAADHAAcAAwADAAMAAADHAAgAAwADAAQAAADHAAkAAwADAAUAAABcAAoAAwAIAAEAAABcAAsAAwAIAAIAAABcAAwAAwAIAAMAAABdAAoAAwAJAAEAAABdAAsAAwAJAAIAAABdAAwAAwAJAAMAAABcAA0AAwAIAAQAAABdAA0AAwAJAAQAAABSAAEAAAAEAAEAACBTAAEAAAAFAAEAACBVAAEAAAAHAAIAACBYAAEAAAAHAAIAACBbAAEAAAAHAAIAACBeAAEAAAAHAAIAACBhAAEAAAAHAAIAACBiAAEAAAAHAAIAACBnAAEAAAAHAAIAACBqAAEAAAAHAAIAACBtAAEAAAAHAAIAACBwAAEAAAAHAAIAACB0AAEAAAAHAAIAACB3AAEAAAAHAAIAACB6AAEAAAAHAAIA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")
 tile_set = ExtResource("3_wjtap")
 
 [node name="Guide Tilemap" type="TextureRect" parent="." unique_id=1972079363]
@@ -65,6 +68,14 @@ offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("4_v7gqg")
 
+[node name="Guide Tilemap2" type="TextureRect" parent="." unique_id=972979233]
+visible = false
+z_index = -10
+offset_left = 288.0
+offset_right = 3872.0
+offset_bottom = 208.0
+texture = ExtResource("5_2ooml")
+
 [node name="StarsBackground" type="TextureRect" parent="." unique_id=48447262]
 z_index = -10
 offset_left = 288.0
@@ -72,27 +83,14 @@ offset_right = 3872.0
 offset_bottom = 208.0
 texture = ExtResource("5_wjtap")
 
+[node name="Black Line" type="TextureRect" parent="." unique_id=457022472]
+offset_left = 288.0
+offset_top = 197.0
+offset_right = 5336.0
+offset_bottom = 237.0
+texture = ExtResource("7_p20hg")
+
 [node name="HUD" parent="." unique_id=1733061160 instance=ExtResource("6_tx0tn")]
-
-[node name="Enemy_Spawner" parent="." unique_id=1332165567 instance=ExtResource("7_wjtap")]
-position = Vector2(1561, 173)
-enemy_type = 9
-spawn_pos = 1
-
-[node name="Enemy_Spawner2" parent="." unique_id=117380300 instance=ExtResource("7_wjtap")]
-position = Vector2(1548, 24)
-enemy_type = 10
-spawn_pos = 1
-
-[node name="VolcanoSpawner" parent="." unique_id=1805389839 instance=ExtResource("8_v7gqg")]
-position = Vector2(3424, 154)
-
-[node name="VolcanoSpawner2" parent="." unique_id=614232083 instance=ExtResource("8_v7gqg")]
-position = Vector2(3552, 154)
-
-[node name="Enemy_Spawner3" parent="." unique_id=1465881767 instance=ExtResource("7_wjtap")]
-position = Vector2(1429, 173)
-enemy_type = 11
 
 [node name="Checkpoint" parent="." unique_id=1916949476 instance=ExtResource("9_chwn1")]
 position = Vector2(1440, 112)
@@ -100,6 +98,660 @@ position = Vector2(1440, 112)
 [node name="Checkpoint2" parent="." unique_id=1669501667 instance=ExtResource("9_chwn1")]
 position = Vector2(1995, 112)
 
-[node name="Checkpoint3" parent="." unique_id=674945358 instance=ExtResource("9_chwn1")]
+[node name="Checkpoint3" parent="." unique_id=575245439 instance=ExtResource("9_chwn1")]
+position = Vector2(2465, 112)
+
+[node name="CheckpointVulcan" parent="." unique_id=674945358 groups=["Event Checkpoints"] instance=ExtResource("9_chwn1")]
 position = Vector2(3488, 112)
 checkpoint_type = 1
+
+[node name="CheckpointBoss" parent="." unique_id=594298064 groups=["Event Checkpoints"] instance=ExtResource("9_chwn1")]
+position = Vector2(3744, 112)
+checkpoint_type = 2
+
+[node name="Group" parent="." unique_id=1324685765 instance=ExtResource("10_p20hg")]
+
+[node name="Enemy_Spawner" parent="Group" unique_id=1465881767 groups=["Spawns Checkpoint1"] instance=ExtResource("7_wjtap")]
+position = Vector2(566, 47)
+enemy_type = 5
+
+[node name="Enemy_Spawner2" parent="Group" unique_id=1264973636 groups=["Spawns Checkpoint1"] instance=ExtResource("7_wjtap")]
+position = Vector2(570, 47)
+enemy_type = 5
+
+[node name="Enemy_Spawner3" parent="Group" unique_id=882160180 groups=["Spawns Checkpoint1"] instance=ExtResource("7_wjtap")]
+position = Vector2(574, 47)
+enemy_type = 5
+
+[node name="Enemy_Spawner4" parent="Group" unique_id=984454164 groups=["Spawns Checkpoint1"] instance=ExtResource("7_wjtap")]
+position = Vector2(578, 47)
+enemy_type = 5
+
+[node name="Group3" parent="." unique_id=1918033736 instance=ExtResource("10_p20hg")]
+
+[node name="Enemy_Spawner" parent="Group3" unique_id=640889603 groups=["Spawns Checkpoint1"] instance=ExtResource("7_wjtap")]
+position = Vector2(697, 47)
+enemy_type = 5
+
+[node name="Enemy_Spawner2" parent="Group3" unique_id=429006996 groups=["Spawns Checkpoint1"] instance=ExtResource("7_wjtap")]
+position = Vector2(701, 47)
+enemy_type = 5
+
+[node name="Enemy_Spawner3" parent="Group3" unique_id=328292064 groups=["Spawns Checkpoint1"] instance=ExtResource("7_wjtap")]
+position = Vector2(705, 47)
+enemy_type = 5
+
+[node name="Enemy_Spawner4" parent="Group3" unique_id=1123602118 groups=["Spawns Checkpoint1"] instance=ExtResource("7_wjtap")]
+position = Vector2(709, 47)
+enemy_type = 5
+
+[node name="Group5" parent="." unique_id=775985333 instance=ExtResource("10_p20hg")]
+
+[node name="Enemy_Spawner" parent="Group5" unique_id=1613306927 groups=["Spawns Checkpoint1"] instance=ExtResource("7_wjtap")]
+position = Vector2(825, 47)
+enemy_type = 5
+
+[node name="Enemy_Spawner2" parent="Group5" unique_id=772700476 groups=["Spawns Checkpoint1"] instance=ExtResource("7_wjtap")]
+position = Vector2(829, 47)
+enemy_type = 5
+
+[node name="Enemy_Spawner3" parent="Group5" unique_id=1818142894 groups=["Spawns Checkpoint1"] instance=ExtResource("7_wjtap")]
+position = Vector2(833, 47)
+enemy_type = 5
+
+[node name="Enemy_Spawner4" parent="Group5" unique_id=1819149714 groups=["Spawns Checkpoint1"] instance=ExtResource("7_wjtap")]
+position = Vector2(837, 47)
+enemy_type = 5
+
+[node name="Group6" parent="." unique_id=2107346751 instance=ExtResource("10_p20hg")]
+
+[node name="Enemy_Spawner" parent="Group6" unique_id=916938269 groups=["Spawns Checkpoint1"] instance=ExtResource("7_wjtap")]
+position = Vector2(985, 47)
+enemy_type = 5
+
+[node name="Enemy_Spawner2" parent="Group6" unique_id=1675355667 groups=["Spawns Checkpoint1"] instance=ExtResource("7_wjtap")]
+position = Vector2(989, 47)
+enemy_type = 5
+
+[node name="Enemy_Spawner3" parent="Group6" unique_id=1582134171 groups=["Spawns Checkpoint1"] instance=ExtResource("7_wjtap")]
+position = Vector2(993, 47)
+enemy_type = 5
+
+[node name="Enemy_Spawner4" parent="Group6" unique_id=1590538969 groups=["Spawns Checkpoint1"] instance=ExtResource("7_wjtap")]
+position = Vector2(997, 47)
+enemy_type = 5
+
+[node name="Group8" parent="." unique_id=1015475467 instance=ExtResource("10_p20hg")]
+
+[node name="Enemy_Spawner" parent="Group8" unique_id=176090046 groups=["Spawns Checkpoint1"] instance=ExtResource("7_wjtap")]
+position = Vector2(1114, 47)
+enemy_type = 5
+
+[node name="Enemy_Spawner2" parent="Group8" unique_id=1942799041 groups=["Spawns Checkpoint1"] instance=ExtResource("7_wjtap")]
+position = Vector2(1118, 47)
+enemy_type = 5
+
+[node name="Enemy_Spawner3" parent="Group8" unique_id=1238373354 groups=["Spawns Checkpoint1"] instance=ExtResource("7_wjtap")]
+position = Vector2(1122, 47)
+enemy_type = 5
+
+[node name="Enemy_Spawner4" parent="Group8" unique_id=2064347421 groups=["Spawns Checkpoint1"] instance=ExtResource("7_wjtap")]
+position = Vector2(1126, 47)
+enemy_type = 5
+
+[node name="Group7" parent="." unique_id=197128051 instance=ExtResource("10_p20hg")]
+
+[node name="Enemy_Spawner" parent="Group7" unique_id=244255785 groups=["Spawns Checkpoint1"] instance=ExtResource("7_wjtap")]
+position = Vector2(1049, 164)
+enemy_type = 5
+
+[node name="Enemy_Spawner2" parent="Group7" unique_id=1829170578 groups=["Spawns Checkpoint1"] instance=ExtResource("7_wjtap")]
+position = Vector2(1053, 164)
+enemy_type = 5
+
+[node name="Enemy_Spawner3" parent="Group7" unique_id=1125859220 groups=["Spawns Checkpoint1"] instance=ExtResource("7_wjtap")]
+position = Vector2(1057, 164)
+enemy_type = 5
+
+[node name="Enemy_Spawner4" parent="Group7" unique_id=774796954 groups=["Spawns Checkpoint1"] instance=ExtResource("7_wjtap")]
+position = Vector2(1061, 164)
+enemy_type = 5
+
+[node name="Group4" parent="." unique_id=2104164396 instance=ExtResource("10_p20hg")]
+
+[node name="Enemy_Spawner" parent="Group4" unique_id=349405201 groups=["Spawns Checkpoint1"] instance=ExtResource("7_wjtap")]
+position = Vector2(760, 165)
+enemy_type = 5
+
+[node name="Enemy_Spawner2" parent="Group4" unique_id=1050020833 groups=["Spawns Checkpoint1"] instance=ExtResource("7_wjtap")]
+position = Vector2(764, 165)
+enemy_type = 5
+
+[node name="Enemy_Spawner3" parent="Group4" unique_id=1343171299 groups=["Spawns Checkpoint1"] instance=ExtResource("7_wjtap")]
+position = Vector2(768, 165)
+enemy_type = 5
+
+[node name="Enemy_Spawner4" parent="Group4" unique_id=414123269 groups=["Spawns Checkpoint1"] instance=ExtResource("7_wjtap")]
+position = Vector2(772, 165)
+enemy_type = 5
+
+[node name="Group2" parent="." unique_id=1006007554 instance=ExtResource("10_p20hg")]
+
+[node name="Enemy_Spawner" parent="Group2" unique_id=1642383621 groups=["Spawns Checkpoint1"] instance=ExtResource("7_wjtap")]
+position = Vector2(633, 165)
+enemy_type = 5
+
+[node name="Enemy_Spawner2" parent="Group2" unique_id=696152565 groups=["Spawns Checkpoint1"] instance=ExtResource("7_wjtap")]
+position = Vector2(637, 165)
+enemy_type = 5
+
+[node name="Enemy_Spawner3" parent="Group2" unique_id=1036207425 groups=["Spawns Checkpoint1"] instance=ExtResource("7_wjtap")]
+position = Vector2(641, 165)
+enemy_type = 5
+
+[node name="Enemy_Spawner4" parent="Group2" unique_id=446763067 groups=["Spawns Checkpoint1"] instance=ExtResource("7_wjtap")]
+position = Vector2(645, 165)
+enemy_type = 5
+
+[node name="Enemy_Spawner5" parent="." unique_id=34239871 groups=["Spawns Checkpoint1"] instance=ExtResource("7_wjtap")]
+position = Vector2(859, 165)
+
+[node name="Enemy_Spawner6" parent="." unique_id=119978824 groups=["Spawns Checkpoint1"] instance=ExtResource("7_wjtap")]
+position = Vector2(857, 115)
+
+[node name="Enemy_Spawner7" parent="." unique_id=665409056 groups=["Spawns Checkpoint1"] instance=ExtResource("7_wjtap")]
+position = Vector2(855, 65)
+
+[node name="Enemy_Spawner8" parent="." unique_id=1713866875 groups=["Spawns Checkpoint1"] instance=ExtResource("7_wjtap")]
+position = Vector2(890, 165)
+
+[node name="Enemy_Spawner9" parent="." unique_id=1840526896 groups=["Spawns Checkpoint1"] instance=ExtResource("7_wjtap")]
+position = Vector2(888, 115)
+
+[node name="Enemy_Spawner10" parent="." unique_id=454517907 groups=["Spawns Checkpoint1"] instance=ExtResource("7_wjtap")]
+position = Vector2(886, 65)
+
+[node name="Enemy_Spawner11" parent="." unique_id=258075069 groups=["Spawns Checkpoint1"] instance=ExtResource("7_wjtap")]
+position = Vector2(922, 165)
+
+[node name="Enemy_Spawner12" parent="." unique_id=345311057 groups=["Spawns Checkpoint1"] instance=ExtResource("7_wjtap")]
+position = Vector2(920, 115)
+
+[node name="Enemy_Spawner13" parent="." unique_id=301192111 groups=["Spawns Checkpoint1"] instance=ExtResource("7_wjtap")]
+position = Vector2(918, 65)
+
+[node name="Enemy_Spawner134" parent="." unique_id=1777698337 groups=["Spawns Checkpoint1"] instance=ExtResource("7_wjtap")]
+position = Vector2(955, 165)
+
+[node name="Enemy_Spawner135" parent="." unique_id=989939881 groups=["Spawns Checkpoint1"] instance=ExtResource("7_wjtap")]
+position = Vector2(953, 115)
+
+[node name="Enemy_Spawner136" parent="." unique_id=1635187888 groups=["Spawns Checkpoint1"] instance=ExtResource("7_wjtap")]
+position = Vector2(951, 65)
+
+[node name="Enemy_Spawner14" parent="." unique_id=870866807 groups=["Spawns Checkpoint1"] instance=ExtResource("7_wjtap")]
+position = Vector2(1147, 165)
+
+[node name="Enemy_Spawner15" parent="." unique_id=1622695412 groups=["Spawns Checkpoint1"] instance=ExtResource("7_wjtap")]
+position = Vector2(1145, 115)
+
+[node name="Enemy_Spawner16" parent="." unique_id=1053388304 groups=["Spawns Checkpoint1"] instance=ExtResource("7_wjtap")]
+position = Vector2(1143, 60)
+
+[node name="Enemy_Spawner17" parent="." unique_id=390933985 groups=["Spawns Checkpoint1"] instance=ExtResource("7_wjtap")]
+position = Vector2(1179, 165)
+
+[node name="Enemy_Spawner18" parent="." unique_id=1675702759 groups=["Spawns Checkpoint1"] instance=ExtResource("7_wjtap")]
+position = Vector2(1177, 115)
+
+[node name="Enemy_Spawner19" parent="." unique_id=1306639307 groups=["Spawns Checkpoint1"] instance=ExtResource("7_wjtap")]
+position = Vector2(1175, 60)
+
+[node name="Enemy_Spawner20" parent="." unique_id=159209863 groups=["Spawns Checkpoint1"] instance=ExtResource("7_wjtap")]
+position = Vector2(1211, 165)
+
+[node name="Enemy_Spawner21" parent="." unique_id=912158578 groups=["Spawns Checkpoint1"] instance=ExtResource("7_wjtap")]
+position = Vector2(1209, 115)
+
+[node name="Enemy_Spawner22" parent="." unique_id=2123794316 groups=["Spawns Checkpoint1"] instance=ExtResource("7_wjtap")]
+position = Vector2(1207, 60)
+
+[node name="Enemy_Spawner25" parent="." unique_id=305596845 groups=["Spawns Checkpoint1"] instance=ExtResource("7_wjtap")]
+position = Vector2(1338, 165)
+
+[node name="Enemy_Spawner26" parent="." unique_id=2006931865 groups=["Spawns Checkpoint1"] instance=ExtResource("7_wjtap")]
+position = Vector2(1336, 115)
+
+[node name="Enemy_Spawner27" parent="." unique_id=1841890793 groups=["Spawns Checkpoint1"] instance=ExtResource("7_wjtap")]
+position = Vector2(1334, 65)
+
+[node name="Enemy_Spawner28" parent="." unique_id=634044840 groups=["Spawns Checkpoint1"] instance=ExtResource("7_wjtap")]
+position = Vector2(1367, 165)
+
+[node name="Enemy_Spawner29" parent="." unique_id=433872165 groups=["Spawns Checkpoint1"] instance=ExtResource("7_wjtap")]
+position = Vector2(1365, 115)
+
+[node name="Enemy_Spawner30" parent="." unique_id=2027482200 groups=["Spawns Checkpoint1"] instance=ExtResource("7_wjtap")]
+position = Vector2(1363, 65)
+
+[node name="Enemy_Spawner31" parent="." unique_id=287671934 groups=["Spawns Checkpoint1"] instance=ExtResource("7_wjtap")]
+position = Vector2(1396, 165)
+
+[node name="Enemy_Spawner32" parent="." unique_id=146533140 groups=["Spawns Checkpoint1"] instance=ExtResource("7_wjtap")]
+position = Vector2(1394, 115)
+
+[node name="Enemy_Spawner33" parent="." unique_id=757563958 groups=["Spawns Checkpoint1"] instance=ExtResource("7_wjtap")]
+position = Vector2(1392, 65)
+
+[node name="Enemy_Spawner37" parent="." unique_id=1108262730 groups=["Spawns Checkpoint1"] instance=ExtResource("7_wjtap")]
+position = Vector2(1561, 165)
+
+[node name="Enemy_Spawner38" parent="." unique_id=197701033 groups=["Spawns Checkpoint1"] instance=ExtResource("7_wjtap")]
+position = Vector2(1559, 115)
+
+[node name="Enemy_Spawner39" parent="." unique_id=42420345 groups=["Spawns Checkpoint1"] instance=ExtResource("7_wjtap")]
+position = Vector2(1557, 65)
+
+[node name="Enemy_Spawner43" parent="." unique_id=143685932 groups=["Spawns Checkpoint2"] instance=ExtResource("7_wjtap")]
+position = Vector2(1619, 165)
+
+[node name="Enemy_Spawner44" parent="." unique_id=1361307333 groups=["Spawns Checkpoint2"] instance=ExtResource("7_wjtap")]
+position = Vector2(1617, 115)
+
+[node name="Enemy_Spawner45" parent="." unique_id=378935156 groups=["Spawns Checkpoint2"] instance=ExtResource("7_wjtap")]
+position = Vector2(1615, 65)
+
+[node name="Enemy_Spawner79" parent="." unique_id=1301308782 groups=["Spawns Checkpoint3"] instance=ExtResource("7_wjtap")]
+position = Vector2(2181, 165)
+
+[node name="Enemy_Spawner80" parent="." unique_id=1137738941 groups=["Spawns Checkpoint3"] instance=ExtResource("7_wjtap")]
+position = Vector2(2179, 115)
+
+[node name="Enemy_Spawner81" parent="." unique_id=640332428 groups=["Spawns Checkpoint3"] instance=ExtResource("7_wjtap")]
+position = Vector2(2177, 65)
+
+[node name="Enemy_Spawner82" parent="." unique_id=39462152 groups=["Spawns Checkpoint3"] instance=ExtResource("7_wjtap")]
+position = Vector2(2212, 165)
+
+[node name="Enemy_Spawner83" parent="." unique_id=125528436 groups=["Spawns Checkpoint3"] instance=ExtResource("7_wjtap")]
+position = Vector2(2210, 115)
+
+[node name="Enemy_Spawner84" parent="." unique_id=1717473848 groups=["Spawns Checkpoint3"] instance=ExtResource("7_wjtap")]
+position = Vector2(2208, 65)
+
+[node name="Enemy_Spawner85" parent="." unique_id=205647863 groups=["Spawns Checkpoint3"] instance=ExtResource("7_wjtap")]
+position = Vector2(2240, 165)
+
+[node name="Enemy_Spawner86" parent="." unique_id=162742309 groups=["Spawns Checkpoint3"] instance=ExtResource("7_wjtap")]
+position = Vector2(2238, 115)
+
+[node name="Enemy_Spawner87" parent="." unique_id=619468063 groups=["Spawns Checkpoint3"] instance=ExtResource("7_wjtap")]
+position = Vector2(2236, 65)
+
+[node name="Enemy_Spawner93" parent="." unique_id=1086443365 groups=["Spawns Checkpoint3"] instance=ExtResource("7_wjtap")]
+position = Vector2(2444, 165)
+
+[node name="Enemy_Spawner94" parent="." unique_id=1295486189 groups=["Spawns Checkpoint3"] instance=ExtResource("7_wjtap")]
+position = Vector2(2442, 115)
+
+[node name="Enemy_Spawner95" parent="." unique_id=2131514059 groups=["Spawns Checkpoint3"] instance=ExtResource("7_wjtap")]
+position = Vector2(2440, 65)
+
+[node name="Enemy_Spawner96" parent="." unique_id=711434881 groups=["Spawns Checkpoint3"] instance=ExtResource("7_wjtap")]
+position = Vector2(2473, 165)
+
+[node name="Enemy_Spawner97" parent="." unique_id=493326146 groups=["Spawns Checkpoint3"] instance=ExtResource("7_wjtap")]
+position = Vector2(2471, 115)
+
+[node name="Enemy_Spawner98" parent="." unique_id=1807168804 groups=["Spawns Checkpoint3"] instance=ExtResource("7_wjtap")]
+position = Vector2(2469, 65)
+
+[node name="Enemy_Spawner99" parent="." unique_id=1055742861 groups=["Spawns Checkpoint3"] instance=ExtResource("7_wjtap")]
+position = Vector2(2506, 165)
+
+[node name="Enemy_Spawner100" parent="." unique_id=146605833 groups=["Spawns Checkpoint3"] instance=ExtResource("7_wjtap")]
+position = Vector2(2504, 115)
+
+[node name="Enemy_Spawner101" parent="." unique_id=1887312966 groups=["Spawns Checkpoint3"] instance=ExtResource("7_wjtap")]
+position = Vector2(2502, 65)
+
+[node name="Enemy_Spawner107" parent="." unique_id=1975510546 groups=["Spawns Checkpoint4"] instance=ExtResource("7_wjtap")]
+position = Vector2(2653, 165)
+
+[node name="Enemy_Spawner108" parent="." unique_id=182702066 groups=["Spawns Checkpoint4"] instance=ExtResource("7_wjtap")]
+position = Vector2(2651, 115)
+
+[node name="Enemy_Spawner109" parent="." unique_id=912986929 groups=["Spawns Checkpoint4"] instance=ExtResource("7_wjtap")]
+position = Vector2(2649, 65)
+
+[node name="Enemy_Spawner115" parent="." unique_id=684118105 groups=["Spawns Checkpoint4"] instance=ExtResource("7_wjtap")]
+position = Vector2(2778, 165)
+
+[node name="Enemy_Spawner116" parent="." unique_id=1319046093 groups=["Spawns Checkpoint4"] instance=ExtResource("7_wjtap")]
+position = Vector2(2776, 115)
+
+[node name="Enemy_Spawner117" parent="." unique_id=981502456 groups=["Spawns Checkpoint4"] instance=ExtResource("7_wjtap")]
+position = Vector2(2775, 65)
+
+[node name="Enemy_Spawner123" parent="." unique_id=697280692 groups=["Spawns Checkpoint4"] instance=ExtResource("7_wjtap")]
+position = Vector2(2973, 165)
+
+[node name="Enemy_Spawner124" parent="." unique_id=1686624952 groups=["Spawns Checkpoint4"] instance=ExtResource("7_wjtap")]
+position = Vector2(2971, 115)
+
+[node name="Enemy_Spawner125" parent="." unique_id=1422689067 groups=["Spawns Checkpoint4"] instance=ExtResource("7_wjtap")]
+position = Vector2(2969, 65)
+
+[node name="Enemy_Spawner126" parent="." unique_id=205983072 groups=["Spawns Checkpoint4"] instance=ExtResource("7_wjtap")]
+position = Vector2(3005, 165)
+
+[node name="Enemy_Spawner127" parent="." unique_id=1024335507 groups=["Spawns Checkpoint4"] instance=ExtResource("7_wjtap")]
+position = Vector2(3003, 115)
+
+[node name="Enemy_Spawner128" parent="." unique_id=692337855 groups=["Spawns Checkpoint4"] instance=ExtResource("7_wjtap")]
+position = Vector2(3001, 65)
+
+[node name="Enemy_Spawner" parent="." unique_id=865962643 groups=["Spawns Checkpoint1"] instance=ExtResource("7_wjtap")]
+position = Vector2(1238, 73)
+enemy_type = 1
+
+[node name="Enemy_Spawner2" parent="." unique_id=1933223242 groups=["Spawns Checkpoint1"] instance=ExtResource("7_wjtap")]
+position = Vector2(1241, 141)
+enemy_type = 1
+
+[node name="Enemy_Spawner23" parent="." unique_id=2004994693 groups=["Spawns Checkpoint1"] instance=ExtResource("7_wjtap")]
+position = Vector2(1305, 73)
+enemy_type = 1
+
+[node name="Enemy_Spawner24" parent="." unique_id=816898488 groups=["Spawns Checkpoint1"] instance=ExtResource("7_wjtap")]
+position = Vector2(1308, 141)
+enemy_type = 1
+
+[node name="Enemy_Spawner3" parent="." unique_id=1519752313 groups=["Spawns Checkpoint1"] instance=ExtResource("7_wjtap")]
+position = Vector2(1273, 107)
+enemy_type = 2
+
+[node name="Enemy_Spawner4" parent="." unique_id=1304561491 groups=["Spawns Checkpoint1"] instance=ExtResource("7_wjtap")]
+position = Vector2(1276, 171)
+enemy_type = 2
+
+[node name="Enemy_Spawner40" parent="." unique_id=1630223798 groups=["Spawns Checkpoint2"] instance=ExtResource("7_wjtap")]
+position = Vector2(1660, 68)
+enemy_type = 1
+
+[node name="Enemy_Spawner41" parent="." unique_id=1747153047 groups=["Spawns Checkpoint2"] instance=ExtResource("7_wjtap")]
+position = Vector2(1663, 141)
+enemy_type = 1
+
+[node name="Enemy_Spawner42" parent="." unique_id=1431936200 groups=["Spawns Checkpoint2"] instance=ExtResource("7_wjtap")]
+position = Vector2(1695, 100)
+enemy_type = 2
+
+[node name="Enemy_Spawner59" parent="." unique_id=788573949 groups=["Spawns Checkpoint2"] instance=ExtResource("7_wjtap")]
+position = Vector2(1698, 171)
+enemy_type = 2
+
+[node name="Enemy_Spawner66" parent="." unique_id=1588130764 groups=["Spawns Checkpoint2"] instance=ExtResource("7_wjtap")]
+position = Vector2(1918, 68)
+enemy_type = 1
+
+[node name="Enemy_Spawner67" parent="." unique_id=286687248 groups=["Spawns Checkpoint2"] instance=ExtResource("7_wjtap")]
+position = Vector2(1921, 141)
+enemy_type = 1
+
+[node name="Enemy_Spawner70" parent="." unique_id=1228600894 groups=["Spawns Checkpoint2"] instance=ExtResource("7_wjtap")]
+position = Vector2(1982, 68)
+enemy_type = 1
+
+[node name="Enemy_Spawner71" parent="." unique_id=592223851 groups=["Spawns Checkpoint2"] instance=ExtResource("7_wjtap")]
+position = Vector2(1985, 141)
+enemy_type = 1
+
+[node name="Enemy_Spawner74" parent="." unique_id=1372175411 groups=["Spawns Checkpoint2"] instance=ExtResource("7_wjtap")]
+position = Vector2(2046, 68)
+enemy_type = 1
+
+[node name="Enemy_Spawner75" parent="." unique_id=32154546 groups=["Spawns Checkpoint2"] instance=ExtResource("7_wjtap")]
+position = Vector2(2049, 141)
+enemy_type = 1
+
+[node name="Enemy_Spawner89" parent="." unique_id=2041326696 groups=["Spawns Checkpoint3"] instance=ExtResource("7_wjtap")]
+position = Vector2(2295, 68)
+enemy_type = 1
+
+[node name="Enemy_Spawner90" parent="." unique_id=601638404 groups=["Spawns Checkpoint3"] instance=ExtResource("7_wjtap")]
+position = Vector2(2298, 141)
+enemy_type = 1
+
+[node name="Enemy_Spawner102" parent="." unique_id=1730037399 groups=["Spawns Checkpoint3"] instance=ExtResource("7_wjtap")]
+position = Vector2(2521, 68)
+enemy_type = 1
+
+[node name="Enemy_Spawner103" parent="." unique_id=1152920688 groups=["Spawns Checkpoint3"] instance=ExtResource("7_wjtap")]
+position = Vector2(2524, 141)
+enemy_type = 1
+
+[node name="Enemy_Spawner110" parent="." unique_id=1454419556 groups=["Spawns Checkpoint4"] instance=ExtResource("7_wjtap")]
+position = Vector2(2680, 68)
+enemy_type = 1
+
+[node name="Enemy_Spawner111" parent="." unique_id=1484082163 groups=["Spawns Checkpoint4"] instance=ExtResource("7_wjtap")]
+position = Vector2(2683, 141)
+enemy_type = 1
+
+[node name="Enemy_Spawner119" parent="." unique_id=891077044 groups=["Spawns Checkpoint4"] instance=ExtResource("7_wjtap")]
+position = Vector2(2903, 68)
+enemy_type = 1
+
+[node name="Enemy_Spawner120" parent="." unique_id=274305187 groups=["Spawns Checkpoint4"] instance=ExtResource("7_wjtap")]
+position = Vector2(2906, 141)
+enemy_type = 1
+
+[node name="Enemy_Spawner68" parent="." unique_id=1492681851 groups=["Spawns Checkpoint2"] instance=ExtResource("7_wjtap")]
+position = Vector2(1950, 94)
+enemy_type = 1
+
+[node name="Enemy_Spawner69" parent="." unique_id=448924144 groups=["Spawns Checkpoint2"] instance=ExtResource("7_wjtap")]
+position = Vector2(1953, 171)
+enemy_type = 1
+
+[node name="Enemy_Spawner72" parent="." unique_id=1432236138 groups=["Spawns Checkpoint2"] instance=ExtResource("7_wjtap")]
+position = Vector2(2014, 94)
+enemy_type = 1
+
+[node name="Enemy_Spawner73" parent="." unique_id=237622988 groups=["Spawns Checkpoint2"] instance=ExtResource("7_wjtap")]
+position = Vector2(2017, 171)
+enemy_type = 1
+
+[node name="Enemy_Spawner91" parent="." unique_id=1119760544 groups=["Spawns Checkpoint3"] instance=ExtResource("7_wjtap")]
+position = Vector2(2328, 100)
+enemy_type = 1
+
+[node name="Enemy_Spawner92" parent="." unique_id=1752697752 groups=["Spawns Checkpoint3"] instance=ExtResource("7_wjtap")]
+position = Vector2(2331, 171)
+enemy_type = 1
+
+[node name="Enemy_Spawner104" parent="." unique_id=998957406 groups=["Spawns Checkpoint3"] instance=ExtResource("7_wjtap")]
+position = Vector2(2549, 100)
+enemy_type = 1
+
+[node name="Enemy_Spawner105" parent="." unique_id=2084811985 groups=["Spawns Checkpoint3"] instance=ExtResource("7_wjtap")]
+position = Vector2(2552, 171)
+enemy_type = 1
+
+[node name="Enemy_Spawner112" parent="." unique_id=1678944683 groups=["Spawns Checkpoint4"] instance=ExtResource("7_wjtap")]
+position = Vector2(2711, 100)
+enemy_type = 2
+
+[node name="Enemy_Spawner113" parent="." unique_id=1737802719 groups=["Spawns Checkpoint4"] instance=ExtResource("7_wjtap")]
+position = Vector2(2714, 171)
+enemy_type = 2
+
+[node name="Enemy_Spawner121" parent="." unique_id=1231241712 groups=["Spawns Checkpoint4"] instance=ExtResource("7_wjtap")]
+position = Vector2(2936, 100)
+enemy_type = 1
+
+[node name="Enemy_Spawner122" parent="." unique_id=1576128771 groups=["Spawns Checkpoint4"] instance=ExtResource("7_wjtap")]
+position = Vector2(2939, 171)
+enemy_type = 1
+
+[node name="Enemy_Spawner34" parent="." unique_id=122607887 groups=["Spawns Checkpoint1"] instance=ExtResource("7_wjtap")]
+position = Vector2(1432, 20)
+enemy_type = 3
+
+[node name="Enemy_Spawner35" parent="." unique_id=703826782 groups=["Spawns Checkpoint1"] instance=ExtResource("7_wjtap")]
+position = Vector2(1448, 20)
+enemy_type = 3
+
+[node name="Enemy_Spawner36" parent="." unique_id=160795905 groups=["Spawns Checkpoint1"] instance=ExtResource("7_wjtap")]
+position = Vector2(1464, 20)
+enemy_type = 3
+
+[node name="Enemy_Spawner46" parent="." unique_id=723789600 groups=["Spawns Checkpoint1"] instance=ExtResource("7_wjtap")]
+position = Vector2(1470, 179)
+enemy_type = 8
+
+[node name="Enemy_Spawner47" parent="." unique_id=1474261344 groups=["Spawns Checkpoint1"] instance=ExtResource("7_wjtap")]
+position = Vector2(1539, 179)
+enemy_type = 8
+
+[node name="Enemy_Spawner48" parent="." unique_id=1325681487 groups=["Spawns Checkpoint2"] instance=ExtResource("7_wjtap")]
+position = Vector2(1776, 176)
+enemy_type = 11
+
+[node name="Enemy_Spawner49" parent="." unique_id=856867191 groups=["Spawns Checkpoint2"] instance=ExtResource("7_wjtap")]
+position = Vector2(1720, 182)
+enemy_type = 3
+
+[node name="Enemy_Spawner50" parent="." unique_id=1262154496 groups=["Spawns Checkpoint2"] instance=ExtResource("7_wjtap")]
+position = Vector2(1736, 182)
+enemy_type = 3
+
+[node name="Enemy_Spawner51" parent="." unique_id=1719701248 groups=["Spawns Checkpoint3"] instance=ExtResource("7_wjtap")]
+position = Vector2(2360, 182)
+enemy_type = 3
+
+[node name="Enemy_Spawner52" parent="." unique_id=1345035936 groups=["Spawns Checkpoint3"] instance=ExtResource("7_wjtap")]
+position = Vector2(2376, 182)
+enemy_type = 3
+
+[node name="Enemy_Spawner53" parent="." unique_id=1301917638 groups=["Spawns Checkpoint3"] instance=ExtResource("7_wjtap")]
+position = Vector2(2416, 177)
+enemy_type = 11
+
+[node name="Enemy_Spawner54" parent="." unique_id=1092964787 groups=["Spawns Checkpoint4"] instance=ExtResource("7_wjtap")]
+position = Vector2(3088, 177)
+enemy_type = 11
+
+[node name="Enemy_Spawner55" parent="." unique_id=855307019 groups=["Spawns Checkpoint4"] instance=ExtResource("7_wjtap")]
+position = Vector2(3032, 182)
+enemy_type = 3
+
+[node name="Enemy_Spawner56" parent="." unique_id=1965880395 groups=["Spawns Checkpoint4"] instance=ExtResource("7_wjtap")]
+position = Vector2(3048, 182)
+enemy_type = 4
+
+[node name="Enemy_Spawner57" parent="." unique_id=1730942030 groups=["Spawns Checkpoint4"] instance=ExtResource("7_wjtap")]
+position = Vector2(2840, 20)
+enemy_type = 3
+
+[node name="Enemy_Spawner58" parent="." unique_id=1952562555 groups=["Spawns Checkpoint4"] instance=ExtResource("7_wjtap")]
+position = Vector2(2856, 20)
+enemy_type = 3
+
+[node name="Enemy_Spawner60" parent="." unique_id=1043861108 groups=["Spawns Checkpoint2"] instance=ExtResource("7_wjtap")]
+position = Vector2(1415, 180)
+enemy_type = 9
+spawn_pos = 1
+
+[node name="Enemy_Spawner62" parent="." unique_id=1898128 groups=["Spawns Checkpoint2"] instance=ExtResource("7_wjtap")]
+position = Vector2(1658, 180)
+enemy_type = 9
+spawn_pos = 1
+
+[node name="Enemy_Spawner63" parent="." unique_id=936861965 groups=["Spawns Checkpoint2"] instance=ExtResource("7_wjtap")]
+position = Vector2(1662, 22)
+enemy_type = 9
+spawn_pos = 1
+
+[node name="Enemy_Spawner61" parent="." unique_id=957323002 groups=["Spawns Checkpoint2"] instance=ExtResource("7_wjtap")]
+position = Vector2(1415, 20)
+enemy_type = 9
+spawn_pos = 1
+
+[node name="Enemy_Spawner64" parent="." unique_id=100036910 groups=["Spawns Checkpoint2"] instance=ExtResource("7_wjtap")]
+position = Vector2(1823, 180)
+enemy_type = 7
+
+[node name="Enemy_Spawner65" parent="." unique_id=1157248303 groups=["Spawns Checkpoint2"] instance=ExtResource("7_wjtap")]
+position = Vector2(1854, 180)
+enemy_type = 8
+
+[node name="Enemy_Spawner76" parent="." unique_id=1822721054 groups=["Spawns Checkpoint2"] instance=ExtResource("7_wjtap")]
+position = Vector2(1852, 21)
+enemy_type = 9
+spawn_pos = 1
+
+[node name="Enemy_Spawner77" parent="." unique_id=1551714528 groups=["Spawns Checkpoint2"] instance=ExtResource("7_wjtap")]
+position = Vector2(1883, 180)
+enemy_type = 9
+spawn_pos = 1
+
+[node name="Enemy_Spawner78" parent="." unique_id=1971504299 groups=["Spawns Checkpoint3"] instance=ExtResource("7_wjtap")]
+position = Vector2(2137, 181)
+enemy_type = 8
+
+[node name="Enemy_Spawner88" parent="." unique_id=1223901613 groups=["Spawns Checkpoint3"] instance=ExtResource("7_wjtap")]
+position = Vector2(2263, 182)
+enemy_type = 8
+
+[node name="Enemy_Spawner106" parent="." unique_id=869862143 groups=["Spawns Checkpoint4"] instance=ExtResource("7_wjtap")]
+position = Vector2(2619, 181)
+enemy_type = 7
+
+[node name="Enemy_Spawner114" parent="." unique_id=309570296 groups=["Spawns Checkpoint4"] instance=ExtResource("7_wjtap")]
+position = Vector2(2524, 22)
+enemy_type = 10
+spawn_pos = 1
+
+[node name="Enemy_Spawner118" parent="." unique_id=133753595 groups=["Spawns Checkpoint4"] instance=ExtResource("7_wjtap")]
+position = Vector2(2593, 180)
+enemy_type = 9
+spawn_pos = 1
+
+[node name="Enemy_Spawner129" parent="." unique_id=1081528715 groups=["Spawns Checkpoint4"] instance=ExtResource("7_wjtap")]
+position = Vector2(2787, 20)
+enemy_type = 9
+spawn_pos = 1
+
+[node name="Enemy_Spawner130" parent="." unique_id=53369934 groups=["Spawns Checkpoint4"] instance=ExtResource("7_wjtap")]
+position = Vector2(2943, 21)
+
+[node name="Enemy_Spawner131" parent="." unique_id=1363047636 groups=["Spawns Checkpoint4"] instance=ExtResource("7_wjtap")]
+position = Vector2(3188, 181)
+enemy_type = 7
+
+[node name="Enemy_Spawner132" parent="." unique_id=447570910 groups=["Spawns Checkpoint4"] instance=ExtResource("7_wjtap")]
+position = Vector2(3286, 181)
+enemy_type = 7
+
+[node name="Enemy_Spawner133" parent="." unique_id=227234235 groups=["Spawns Checkpoint4"] instance=ExtResource("7_wjtap")]
+position = Vector2(3353, 181)
+enemy_type = 7
+
+[node name="Enemy_Spawner137" parent="." unique_id=58175605 groups=["Spawns Checkpoint4"] instance=ExtResource("7_wjtap")]
+position = Vector2(2896, 26)
+enemy_type = 11
+
+[node name="Enemy_Spawner138" parent="." unique_id=1334416208 groups=["Spawns Checkpoint4"] instance=ExtResource("7_wjtap")]
+position = Vector2(3798, 125)
+enemy_type = 12
+
+[node name="BonusPoints" parent="." unique_id=70272113 instance=ExtResource("12_p20hg")]
+z_index = 1
+position = Vector2(2057, 168)
+
+[node name="BonusLife" parent="." unique_id=1792180059 instance=ExtResource("12_p20hg")]
+z_index = 1
+position = Vector2(3189, 95)
+type = 1

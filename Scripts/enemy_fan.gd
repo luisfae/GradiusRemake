@@ -7,8 +7,8 @@ var current_state: State = State.ADVANCE
 @export var speed: float = 60.0
 @export var diagonalAcceleration: float = 40.0
 @export var health: int = 1
-@export var topLimit := 40.0 # limites que ele vai, ele nao vai até os cantos
-@export var bottomLimit := 160.0
+@export var topLimit := 44.0 # limites que ele vai, ele nao vai até os cantos cima e baixo
+@export var bottomLimit := 166.0
 
 var camera: Camera2D = null
 var points: int = 100
@@ -25,6 +25,7 @@ func _ready() -> void:
 	camera = get_viewport().get_camera_2d()
 
 func _physics_process(delta: float) -> void:
+	GlobalVars.KillAllEnemies.connect(erase)
 	if !camera or death:
 		return
 		
@@ -54,7 +55,7 @@ func _physics_process(delta: float) -> void:
 				movement_vector.y = y_direction * speed
 				
 				# se Y alinhar (com uma folguinha), muda pra retrocede, ou se ele chega aos limites que ele alcança, retrocede tbm
-				if abs(global_position.y - player.global_position.y) < 5.0 or global_position.y <= topLimit or global_position.y >= bottomLimit:
+				if abs(global_position.y - player.global_position.y) < 3.0 or global_position.y <= topLimit or global_position.y >= bottomLimit:
 					current_state = State.RETROCEDE
 			else:
 				# se o player morreu tbm retroce
@@ -110,3 +111,5 @@ func takeHit() -> void:
 		die()
 		givePoints()
 	
+func erase() -> void:
+	queue_free()

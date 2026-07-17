@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://dvt2t2pgosybr" path="res://Scripts/main_menu.gd" id="1_b7htb"]
 [ext_resource type="TileSet" uid="uid://yvloykaaiutn" path="res://ui_tiles.tres" id="2_b7htb"]
-[ext_resource type="Texture2D" uid="uid://bb4lyrrmbpivy" path="res://Misc/Gradius.2026-07-16 20.56.15.png" id="3_yl13b"]
 
 [node name="MainMenu" type="CanvasLayer" unique_id=1733061160]
 script = ExtResource("1_b7htb")
@@ -25,11 +24,6 @@ tile_set = ExtResource("2_b7htb")
 visible = false
 tile_map_data = PackedByteArray("AAAPABIAAAAaAAoAAAAQABIAAAAbAAoAAAARABIAAAAaAAoAAAASABIAAAAbAAoAAAATABIAAAAcAAoAAAAUABIAAAAdAAoAAAAVABIAAAAeAAoAAAANABIAAAAeAAMAAAA=")
 tile_set = ExtResource("2_b7htb")
-
-[node name="Gradius_2026071620_56_15" type="Sprite2D" parent="." unique_id=717437413]
-visible = false
-position = Vector2(128, 112)
-texture = ExtResource("3_yl13b")
 
 [node name="Timer" type="Timer" parent="." unique_id=2022808363]
 wait_time = 0.2
