@@ -3,6 +3,10 @@
 [ext_resource type="Script" uid="uid://c72jgeg84e0di" path="res://Scripts/enemy_garrun.gd" id="1_bptc0"]
 [ext_resource type="Texture2D" uid="uid://c3b0g40er4j5s" path="res://Sprites/enemiesSpritesheet.png" id="2_wog4t"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_4mp1g"]
+atlas = ExtResource("2_wog4t")
+region = Rect2(112, 32, 16, 16)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_bptc0"]
 atlas = ExtResource("2_wog4t")
 region = Rect2(64, 32, 16, 16)
@@ -14,10 +18,6 @@ region = Rect2(80, 32, 16, 16)
 [sub_resource type="AtlasTexture" id="AtlasTexture_jfn2f"]
 atlas = ExtResource("2_wog4t")
 region = Rect2(96, 32, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_4mp1g"]
-atlas = ExtResource("2_wog4t")
-region = Rect2(112, 32, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jvljf"]
 atlas = ExtResource("2_wog4t")
@@ -35,6 +35,9 @@ region = Rect2(80, 80, 16, 16)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_4mp1g")
+}, {
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_bptc0")
 }, {
 "duration": 1.0,
@@ -42,9 +45,6 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_jfn2f")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_4mp1g")
 }],
 "loop": 1,
 "name": &"Alive",

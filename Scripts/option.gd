@@ -3,7 +3,7 @@ extends Node2D
 var path_history: Array[Vector2] = []
 var speed: float = 50.0 
 
-@export var frame_delay: int = 15 
+@export var frame_delay: int = 12 # distancia que as options vao ficar do player 
 
 var target_node: Node2D
 @onready var player: CharacterBody2D = get_tree().get_first_node_in_group("Player") as CharacterBody2D

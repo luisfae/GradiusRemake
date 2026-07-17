@@ -11,6 +11,8 @@
 [ext_resource type="AudioStream" uid="uid://d2qrl8lfwir0v" path="res://Sounds/SFX/UpgradeGet.wav" id="9_vhwx7"]
 [ext_resource type="AudioStream" uid="uid://ci4wxa3pbxdae" path="res://Sounds/SFX/Pause.wav" id="10_bkjj7"]
 [ext_resource type="AudioStream" uid="uid://ba258bwta3yl5" path="res://Sounds/SFX/EnemyDeath.wav" id="11_dv115"]
+[ext_resource type="AudioStream" uid="uid://jgib17dnxvm5" path="res://Sounds/SFX/VolcanoRockDestroy.wav" id="12_pn88s"]
+[ext_resource type="AudioStream" uid="uid://0cuvmvbdcf7m" path="res://Sounds/SFX/GameStart.wav" id="13_fasow"]
 
 [node name="AudioManager" type="Node" unique_id=1691148021 node_paths=PackedStringArray("streamPlayers")]
 script = ExtResource("1_4tj6f")
@@ -23,6 +25,8 @@ sfx_upgradeApply = ExtResource("8_1bal0")
 sfx_upgradeGet = ExtResource("9_vhwx7")
 sfx_gamePause = ExtResource("10_bkjj7")
 sfx_enemyDeath = ExtResource("11_dv115")
+sfx_volcanoRockDestroy = ExtResource("12_pn88s")
+sfx_gameStart = ExtResource("13_fasow")
 
 [node name="Music" type="AudioStreamPlayer" parent="." unique_id=1404618592]
 bus = &"Music"

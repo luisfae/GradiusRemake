@@ -14,6 +14,7 @@ var points: int = 100
 @onready var player: CharacterBody2D = get_tree().get_first_node_in_group("Player") as CharacterBody2D
 
 func _physics_process(delta: float) -> void:
+	GlobalVars.KillAllEnemies.connect(erase)
 	if !death:
 		if sprite.animation == "Straight":
 			velocityX = (speed * 2) * move_direction * delta
@@ -91,3 +92,5 @@ func takeHit() -> void:
 		die()
 		givePoints()
 	
+func erase() -> void:
+	queue_free()

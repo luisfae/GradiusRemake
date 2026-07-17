@@ -9,6 +9,7 @@ var direction: Vector2 = Vector2.ZERO
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	GlobalVars.KillAllProjectiles.connect(die)
 	setDirection()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -17,10 +18,12 @@ func _process(delta: float) -> void:
 	
 func setDirection() -> void:
 	if player:
+
 		var target_position: Vector2 = player.position
 		var miss: float = randf_range(0.0, max_miss) # parte do codigo que aplica a margem de erro ao tiro
 		target_position.x += miss
 		direction = position.direction_to(target_position)
+
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	print("projetil inimigo saiu de tela")

@@ -27,6 +27,7 @@ var direction_x: float = -1.0
 var alreadyJumpedRight: bool = false
 
 func _ready() -> void:
+	GlobalVars.KillAllEnemies.connect(erase)
 	ray_floor.force_raycast_update()
 	if ray_floor.is_colliding():
 		var sprite_altura = sprite.get_sprite_frames().get_frame_texture(sprite.animation, sprite.frame).get_size().y
@@ -126,3 +127,5 @@ func takeHit() -> void:
 		die()
 		givePoints()
 	
+func erase() -> void:
+	queue_free()

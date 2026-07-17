@@ -5,6 +5,18 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hgitt"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_f5ow3"]
+atlas = ExtResource("1_w52ek")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o0s84"]
+atlas = ExtResource("1_w52ek")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d2ffm"]
+atlas = ExtResource("1_w52ek")
+region = Rect2(80, 0, 16, 16)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_hj5gr"]
 atlas = ExtResource("1_w52ek")
 region = Rect2(0, 0, 16, 16)
@@ -19,6 +31,20 @@ region = Rect2(32, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_moly5"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f5ow3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o0s84")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d2ffm")
+}],
+"loop": 1,
+"name": &"Killer",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_hj5gr")
@@ -42,6 +68,7 @@ shape = SubResource("RectangleShape2D_hgitt")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1091072553]
 sprite_frames = SubResource("SpriteFrames_moly5")
+animation = &"Killer"
 autoplay = "default"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -20,6 +20,7 @@ const baseSpeed: float = 80.0
 @export var missile_fire = false
 var canMissile: Array[bool] = [true, true, true]
 var projectilesMyAndOptions: Array[int] = [0, 0, 0]
+var weAreCheating: bool = false
 
 func _ready():
 	alive = true
@@ -40,8 +41,11 @@ func get_input():
 		input_dir = input_dir.normalized()
 	velocity = input_dir * speed
 	
-	if Input.is_action_just_pressed("r1"):
-		speed += 25
+	if Input.is_action_just_pressed("desligarTakehit"):
+		weAreCheating = true
+	
+	#if Input.is_action_just_pressed("r1"):
+		#speed += 25
 		
 	if Input.is_action_just_pressed("l1"):
 		print("Cheatando getUpgrade")
@@ -176,7 +180,9 @@ func shootWeapons() -> void:
 				m_opt.MyFatherIs.connect(fatherOfMyMissile)
 
 func takeHit():
-	return
+	if weAreCheating:
+		return
+	
 	health -= 1
 	if health < 1:
 		die()
@@ -284,6 +290,7 @@ func isShieldUp() -> bool:
 		return false
 
 func resetToFactory() -> void:
+	$CollisionShape2D.set_deferred("disabled", false)
 	alive = true
 	health = 1
 	shield.deactivate()

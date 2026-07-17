@@ -9,6 +9,7 @@ const DOUBLE_TILE = Vector2i(12, 26)
 const LASER_TILE = Vector2i(16, 26)
 const OPTION_TILE = Vector2i(20, 26)
 const SHIELD_TILE = Vector2i(24, 26)
+const LIVES_TILE = Vector2i(5, 27)
 
 #constantes pra não se perder em oq é oq nos vetores
 const SPEED = 0
@@ -61,6 +62,7 @@ func _ready() -> void:
 	GlobalVars.KonamiCode.connect(KonamiCode)
 	GlobalVars.UpdateScore.connect(UpdateScore)
 	GlobalVars.ZeroUpgrades.connect(resetUpgrades_to_initial)
+	GlobalVars.UpdateLives.connect(UpdateLives)
 	UpdateScore(0)
 
 func resetUpgrades() -> void:
@@ -202,3 +204,18 @@ func UpdateScoreHUD(index: int, score: int):
 		0:
 			pattern = number_0
 	hud_tilemap.set_pattern(score_hud_positions[index], pattern)
+
+func UpdateLives(lives: int):
+	match lives:
+		0:
+			hud_tilemap.erase_cell(LIVES_TILE)
+		1:
+			hud_tilemap.set_pattern(LIVES_TILE, number_1)
+		2:
+			hud_tilemap.set_pattern(LIVES_TILE, number_2)
+		3:
+			hud_tilemap.set_pattern(LIVES_TILE, number_3)
+		4:
+			hud_tilemap.set_pattern(LIVES_TILE, number_4)
+		5:
+			hud_tilemap.set_pattern(LIVES_TILE, number_5)
