@@ -1,6 +1,6 @@
 extends Camera2D
 
-@export var speed: float = 20.0
+@export var speed: float = 29.5
 @export var stopped: bool = false
 
 

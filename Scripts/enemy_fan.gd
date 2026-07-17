@@ -24,6 +24,7 @@ var movement_vector: Vector2 = Vector2.ZERO
 func _ready() -> void:
 	camera = get_viewport().get_camera_2d()
 	GlobalVars.KillAllEnemies.connect(erase)
+	GlobalVars.HitAllEnemies.connect(die)
 
 func _physics_process(delta: float) -> void:
 	if !camera or death:

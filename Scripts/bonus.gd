@@ -14,8 +14,9 @@ func _on_body_entered(body: Node2D) -> void:
 			GlobalVars.receiveScore(points)
 			sprite.play("Points")
 		else:
-			AudioManager.play_sfx_upgradeGet()
-			sprite.play("Life")
+			if GlobalVars.score % 2000 < 1000:
+				AudioManager.play_sfx_upgradeGet()
+				sprite.play("Life")
 
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:

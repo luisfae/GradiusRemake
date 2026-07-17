@@ -2,8 +2,8 @@ extends Area2D
 class_name Jumper
 
 # AQUI MUDA AS VARIAVEIS PRA CONFIGURAR O PULO, PRINCIPALMENTE AS DUAS PRIMEIRAS
-@export var jumpDistance: float = 70.0   # distância exata de cada salto em pixels
-@export var jumpHeight: float = 50.0     # altura máxima do topo do salto
+@export var jumpDistance: float = 65.0   # distância exata de cada salto em pixels
+@export var jumpHeight: float = 39.0     # altura máxima do topo do salto
 @export var jumpDuration: float = 1.0    # tempo que o salto demora a ser executado (segundos)
 @export var howFarCanGo: float = 120.0    # quao longe pode ir fora da tela
 
@@ -28,6 +28,7 @@ var alreadyJumpedRight: bool = false
 
 func _ready() -> void:
 	GlobalVars.KillAllEnemies.connect(erase)
+	GlobalVars.HitAllEnemies.connect(die)
 	ray_floor.force_raycast_update()
 	if ray_floor.is_colliding():
 		var sprite_altura = sprite.get_sprite_frames().get_frame_texture(sprite.animation, sprite.frame).get_size().y

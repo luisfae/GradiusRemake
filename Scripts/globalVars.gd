@@ -23,8 +23,10 @@ signal StopCamera
 signal StartCamera
 signal KonamiCode
 signal WakeBoss
+signal HitAllEnemies
 signal KillAllEnemies
 signal KillAllProjectiles
+signal KillAllUpgrades
 signal UpdateScore(score: int)
 signal UpdateHiScore(hiscore: int) # usar pra atualizar o highscore
 signal UpdateLives(lives: int)
@@ -34,6 +36,7 @@ var actualCheckpoint: int = 0
 var lives: int = 3
 var death_restart_timer: Timer
 var resume_after_event: Timer
+var game_ender_timer: Timer
 var gameplay: bool = false
 
 # konami code things
@@ -138,8 +141,8 @@ func createUpgrade(position: Vector2) -> void:
 		u.setKiller()
 
 func getUpgradeKiller() -> void:
-	for e in get_tree().get_nodes_in_group("Enemies"):
-		e.takeHit()
+	HitAllEnemies.emit()
+	
 
 func stopCamera() -> void:
 	StopCamera.emit()
@@ -189,10 +192,28 @@ func playerDied() -> void:
 	if lives <= 0:
 		pass # chamar aqui pra mudar o hud pra GAME OVER
 
+func gameEnded() -> void:
+	stopCamera()
+	game_ender_timer = Timer.new()
+	#shoot_timer.wait_time = 2.0
+	game_ender_timer.one_shot = true
+	game_ender_timer.timeout.connect(finishGameplay)
+	add_child(game_ender_timer)
+	game_ender_timer.start(5.0)
+
+func finishGameplay() -> void:
+	actualCheckpoint = 0
+	lives = 3
+	gameplay = false
+	score = 0
+	upgradesCreated = 0
+	resetPlayer()
+	upgrade = 0
+	get_tree().change_scene_to_file(MENU_SCENE_PATH)
+
 func restartPlay() -> void:
 	#print("vidas atuais: " + str(lives))
 	if lives <= 0:
-		print("implementar voltar pro menu e salvar hiscore")
 		actualCheckpoint = 0
 		lives = 3
 		gameplay = false
@@ -203,11 +224,9 @@ func restartPlay() -> void:
 		get_tree().change_scene_to_file(MENU_SCENE_PATH)
 	else:
 		lives -= 1
-		# Limpeza do grupo "Enemies"
 		KillAllEnemies.emit()
-		# Limpeza do grupo "Enemy Projectiles"
 		KillAllProjectiles.emit()
-		
+		KillAllUpgrades.emit()
 		adjustSpawners()
 		UpdateLives.emit(lives)
 		camera = get_viewport().get_camera_2d()

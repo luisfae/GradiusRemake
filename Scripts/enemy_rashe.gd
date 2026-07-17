@@ -5,7 +5,7 @@ enum State {LAUNCH, GOLEFT}
 var current_state: State = State.LAUNCH
 
 @onready var sprite = $AnimatedSprite2D
-@export var speed: float = 70.0
+@export var speed: float = 75.0
 @export var health: int = 1
 
 var dropUpgrade: bool = false
@@ -20,6 +20,7 @@ var movement_vector: Vector2 = Vector2.ZERO
 
 func _ready() -> void:
 	GlobalVars.KillAllEnemies.connect(erase)
+	GlobalVars.HitAllEnemies.connect(die)
 	shoot_timer = Timer.new()
 	#shoot_timer.wait_time = 2.0
 	shoot_timer.timeout.connect(canGoLeft)

@@ -1,6 +1,6 @@
 extends Area2D
 
-enum types {CHECKPOINT, VULCANEVENT, BOSSEVENT}
+enum types {CHECKPOINT, VULCANEVENT, BOSSEVENT, END}
 @export var checkpoint_type: types
 
 @onready var active: bool = true
@@ -22,6 +22,9 @@ func _on_area_entered(area: Area2D) -> void:
 				#boss_event.start()
 				active = false
 				GlobalVars.startBossEvent()
+			types.END:
+				active = false
+				GlobalVars.gameEnded()
 
 func setActive() -> void:
 	active = true

@@ -2,7 +2,7 @@ extends Area2D
 class_name Garrun
 
 # Movement configuration
-@export var speed: float = 50.0        # velocidade em X q ele vai pra <-
+@export var speed: float = 80.0        # velocidade em X q ele vai pra <-
 @export var rangeOfMotion: float = 15.0    # altura em pixels do arco q ele faz
 @export var frequency: float = 4.0     # rapidez q ele faz em Y pra /\ e pra \/
 @export var health: int = 1
@@ -19,8 +19,10 @@ var spawn_y: float = 0.0
 
 func _ready() -> void:
 	GlobalVars.KillAllEnemies.connect(erase)
+	GlobalVars.HitAllEnemies.connect(die)
 	# seta o spawn pra posição inicial, pra ir pra cima e pra baixo em ralação a ela
 	spawn_y = global_position.y
+	
 
 func _physics_process(delta: float) -> void:
 	if !death:

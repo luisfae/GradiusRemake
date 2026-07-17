@@ -42,6 +42,9 @@ func setActive() -> void:
 func setInactive() -> void:
 	active = false
 
+func receiveActive(active_ : bool) -> void:
+	active = active_
+
 func _on_area_entered(area: Area2D) -> void:
 	if active: # caso o tipo do spawn seja front E colida com o front detector OU se for tipo back E colida com back detector, spawna
 		if (area.is_in_group("Front Detector") and spawn_pos == spawnReleasePos.FRONT) or (area.is_in_group("Back Detector") and spawn_pos == spawnReleasePos.BACK):

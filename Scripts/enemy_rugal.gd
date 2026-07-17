@@ -2,7 +2,7 @@ extends Area2D
 class_name Rugal
 
 @export var health: int = 1
-@export var speed: float = 15.0
+@export var speed: float = 30.0
 @export var move_direction: float = -1.0
 var death: bool = false
 var velocityX: float = 0.0
@@ -15,6 +15,7 @@ var points: int = 100
 
 func _ready() -> void:
 	GlobalVars.KillAllEnemies.connect(erase)
+	GlobalVars.HitAllEnemies.connect(die)
 
 func _physics_process(delta: float) -> void:
 	if !death:
@@ -25,9 +26,9 @@ func _physics_process(delta: float) -> void:
 		if player and is_instance_valid(player):
 			var distance_y: float = (player.global_position.y - 7) - global_position.y
 			if distance_y < -2:
-				velocityY = -speed * delta
+				velocityY = (-speed / 2) * delta
 			elif distance_y > 2:
-				velocityY = speed * delta
+				velocityY = (speed / 2) * delta
 			else:
 				velocityY = 0
 		else:

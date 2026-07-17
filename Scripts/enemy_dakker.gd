@@ -45,6 +45,7 @@ var invert_y: float = 1.0
 
 func _ready() -> void:
 	GlobalVars.KillAllEnemies.connect(erase)
+	GlobalVars.HitAllEnemies.connect(die)
 	if !player: return
 	
 	max_stationed_uses = randi_range(3, 5)
